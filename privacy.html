@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy Policy · Acopio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ground:#F0F2F5; --surface:#FFF; --ink:#1A1A2E; --steel:#6B7280;
+    --line:#E5E7EB; --rack:#1B2A4A; --accent:#3B7DD8; --accent-ink:#1E52A0;
+    --amber-wash:#FEF3C7; --amber-ink:#B45309;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+       font:16px/1.7 Inter,-apple-system,BlinkMacSystemFont,sans-serif}
+  header{background:var(--rack);color:#fff;padding:1.1rem 1.4rem}
+  header a{color:#fff;text-decoration:none;font-weight:700;font-family:Archivo,Inter,sans-serif;letter-spacing:.01em}
+  header nav{max-width:820px;margin:0 auto;display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+  header nav .sp{flex:1}
+  header nav a.small{font-weight:500;font-size:.88rem;opacity:.85}
+  header nav a.small:hover{opacity:1}
+  main{max-width:820px;margin:0 auto;padding:2.4rem 1.4rem 5rem}
+  article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:2rem 2.1rem}
+  h1,h2,h3,h4{font-family:Archivo,Inter,sans-serif;line-height:1.25;text-wrap:balance}
+  h1{font-size:2rem;margin:.2rem 0 1.4rem}
+  h2{font-size:1.35rem;margin:2.2rem 0 .7rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+  h3{font-size:1.08rem;margin:1.5rem 0 .5rem}
+  h4{font-size:.98rem;margin:1.2rem 0 .4rem;color:var(--steel)}
+  p{margin:.75rem 0}
+  a{color:var(--accent-ink)}
+  ul,ol{margin:.7rem 0;padding-left:1.3rem}
+  li{margin:.35rem 0}
+  code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.88em;
+       background:var(--ground);border:1px solid var(--line);border-radius:4px;padding:.1em .35em}
+  pre{background:var(--rack);color:#E6ECF5;border-radius:8px;padding:1rem 1.1rem;overflow-x:auto}
+  pre code{background:none;border:0;padding:0;color:inherit;font-size:.84rem}
+  blockquote{margin:1.1rem 0;padding:.8rem 1.1rem;background:var(--amber-wash);
+             border-left:3px solid var(--amber-ink);border-radius:0 8px 8px 0}
+  blockquote p{margin:.35rem 0}
+  .tablewrap{overflow-x:auto;margin:1.1rem 0}
+  table{border-collapse:collapse;width:100%;font-size:.92rem}
+  th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+  th{background:var(--ground);font-weight:700}
+  hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+  footer{max-width:820px;margin:0 auto;padding:0 1.4rem 3rem;color:var(--steel);font-size:.85rem}
+  footer a{color:var(--steel)}
+</style>
+</head>
+<body>
+<header><nav>
+  <a href="/">Acopio</a>
+  <span class="sp"></span>
+  <a class="small" href="/detalle.html">Detalle</a>
+  <a class="small" href="/changelog.html">Changelog</a>
+  <a class="small" href="/novedades.html">Novedades</a>
+</nav></header>
+<main><article>
+<p>&lt;!-- SOURCE OF TRUTH. This text is also mirrored inside Index_v3_fixed.html      (LEGAL_DOCS), because every customer runs their own copy with nowhere to      link out to. Change it here first, then re-generate the copy in the app. --&gt;</p>
+<h1>Privacy Policy — Acopio</h1>
+<p><strong>Last updated:</strong> 27 August 2026</p>
+<p>Acopio is warehouse-management software provided by Jose Castro ("we", "us"). This policy explains what happens to data when you use it.</p>
+<p>Read the first section before anything else — it is the part that makes the rest of this document short.</p>
+<hr>
+<h2>1. Where your data lives — and who holds it</h2>
+<p><strong>Acopio does not host your business data. We never receive a copy of it.</strong></p>
+<p>Acopio runs entirely inside <strong>your own Google account</strong>. When you install it, a Google Sheet and a Google Apps Script project are created <strong>in your Google Drive</strong>, owned by you. Every inventory record, photo, document and user list the software creates is written to that spreadsheet and that Drive folder — both yours.</p>
+<p>There is no Acopio server. There is no Acopio database. We operate no infrastructure that your business data passes through or is stored on.</p>
+<p>Practically, this means:</p>
+<ul><li>We cannot read your inventory, your suppliers, your prices or your documents.</li><li>We cannot lose your data in a breach of our systems, because it is not on our systems.</li><li>If you stop paying us, your data does not go anywhere. It stays in your Drive and your spreadsheet keeps working.</li><li>A subpoena served on us produces nothing about your inventory, because we hold none of it. The only business information we may hold is your company name and your administrator's email address, and only in the one case described in section 3 — the setup check-in.</li></ul>
+<p>Your data is governed by <strong>your</strong> agreement with Google (Google Workspace Terms or the Google Terms of Service, as applicable to your account).</p>
+<h2>2. What the software accesses, and why</h2>
+<p>When you first install Acopio, Google asks you to authorise it. Each permission exists for a specific feature:</p>
+<div class="tablewrap"><table><thead><tr><th>Permission</th><th>Why it is needed</th></tr></thead><tbody><tr><td>See, edit and delete your Google Drive files</td><td>Store the photos and documents you attach to movements, and create nightly backup copies of your spreadsheet.</td></tr><tr><td>View and manage the spreadsheet this app is installed in</td><td>The spreadsheet is the application's database.</td></tr><tr><td>Send email as you</td><td>Delivery notifications to your project managers, and system alerts to your administrator. <strong>It cannot read your email.</strong></td></tr><tr><td>Create and edit Google Docs</td><td>Assemble multiple photos into a single PDF document.</td></tr><tr><td>Connect to an external service</td><td>Version checks and, if you enable it, the optional AI document-reading add-on.</td></tr><tr><td>Run when you are not present</td><td>The nightly automatic backup.</td></tr><tr><td>See your primary email address and basic profile</td><td>Identify who is signed in, so the app knows which permissions to apply.</td></tr></tbody></table></div>
+<p>Two notes on scope:</p>
+<ul><li><strong>Full Gmail access is NOT part of the base product.</strong> It is required only by the optional paid Gmail delivery-scanner add-on. If you have not bought that add-on, Acopio never requests it and cannot read your mail.</li><li>Every permission above is granted by you, to software running in your own account. None of it grants us access.</li></ul>
+<h2>3. What we collect</h2>
+<p><strong>We never receive your inventory data.</strong> Four things can send us something else, and they are listed here in full.</p>
+<ol><li><strong>"Report a problem" (the 🐞 button).</strong> When you submit a report, the message you typed, any screenshots you attach, your email address and your app version are emailed to your own administrator. If you send it on to us for support, we receive whatever you chose to include. Do not attach screenshots containing information you would rather we did not see.</li><li><strong>Support you initiate.</strong> If you email us for help and include a file, a screenshot or spreadsheet access, we see what you send us. We use it to resolve your issue and nothing else, and we do not retain copies afterwards.</li><li><strong>The setup check-in — the one thing that sends without you asking.</strong> If, and only if, your installation was configured with a support address, the software emails us once at 3 days and once at 7 days after setup <strong>when no inventory movement has been recorded at all</strong>. It is there so a customer who got stuck during setup hears from us instead of quietly giving up.</li></ol>
+<p>   That email contains exactly four things: <strong>your company name, your    administrator's email address, how many users are registered, and how many    days it has been since setup.</strong> Nothing else — no inventory, no materials,    no suppliers, no prices, no documents.</p>
+<p>   It stops permanently as soon as a single movement is recorded, and it never    sends more than those two messages. If your installation has no support    address configured, it never sends at all.</p>
+<ol><li><strong>Paying us.</strong> Your billing details — name, email, company, billing address — reach us through Stripe so we know who paid for what. <strong>Your card number does not</strong>: it goes to Stripe and stays there. See section 5.</li></ol>
+<p>We do not use analytics, tracking pixels, advertising identifiers or session recording. We do not sell, rent or share data — we have none to sell.</p>
+<h2>4. The optional AI add-on</h2>
+<p>If you enable the document-reading feature, the contents of the documents you choose to scan are sent to <strong>Google's Gemini API</strong> for processing, using an API key that <strong>you</strong> supply from your own Google account. The request goes from your Google account to Google. It does not pass through us.</p>
+<p>This feature is off unless you turn it on.</p>
+<h2>5. Sub-processors</h2>
+<p><strong>For your business data: none, because we do not process it.</strong></p>
+<p>Google is not our sub-processor — Google is <strong>your</strong> provider, under your own agreement with them.</p>
+<p><strong>For billing: Stripe.</strong> Paying us means Stripe processes your billing details — the name and email on the account, your company name and billing address, and your card. <strong>Your card number goes to Stripe and is held by Stripe; it never reaches us.</strong> Stripe is a payment processor under its own privacy policy at <a href="https://stripe.com/privacy">stripe.com/privacy</a>.</p>
+<p>This is the one place a third party sees anything of yours because of us, and it sees only what is needed to take a payment. <strong>It has nothing to do with your inventory</strong>, which stays in your Google account and is never sent anywhere.</p>
+<h2>6. Retention and deletion</h2>
+<p>You control retention entirely:</p>
+<ul><li>Inventory records live in your spreadsheet until you delete them.</li><li>Attached photos and documents live in your Drive until you delete them.</li><li>Nightly backups are deleted automatically after 30 days.</li></ul>
+<p><strong>To delete everything:</strong> delete the spreadsheet and the app's Drive folder. That is complete deletion — there is no second copy anywhere for us to purge, and no request to us is required.</p>
+<p>To revoke the software's access at any time, without deleting anything, go to <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+<h2>7. Your rights (GDPR, CCPA and similar)</h2>
+<p>Because your data never leaves your Google account, <strong>you are the data controller</strong> for it and we are not a processor of it. Access, correction, export and deletion are all things you perform directly, in your own spreadsheet, without asking us.</p>
+<p>For the limited personal data we hold as a business — your name, billing email and support correspondence — write to the address below and we will act on your request within 30 days.</p>
+<h2>8. Children</h2>
+<p>Acopio is business software and is not directed at anyone under 16.</p>
+<h2>9. Security</h2>
+<p>The software is built to keep your data inside your account: uploaded files are private to your Drive by default and are never shared publicly; access is restricted to the user list you configure; and the code is written to resist common web vulnerabilities. Security fixes are shipped as software updates for you to install.</p>
+<p>That said, the security of your Google account — passwords, two-factor authentication, who you grant access to — is yours to manage, and no software we write can compensate for a compromised account.</p>
+<h2>10. Changes</h2>
+<p>Material changes to this policy will be communicated to active customers by email before they take effect. The date at the top always reflects the current version.</p>
+<h2>11. Contact</h2>
+<p>Jose Castro — joseisrael5101@gmail.com</p>
+</article></main>
+<footer><p><a href="/">← Acopio</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p></footer>
+</body>
+</html>
