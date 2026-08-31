@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guía de instalación · Acopio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ground:#F0F2F5; --surface:#FFF; --ink:#1A1A2E; --steel:#6B7280;
+    --line:#E5E7EB; --rack:#1B2A4A; --accent:#3B7DD8; --accent-ink:#1E52A0;
+    --amber-wash:#FEF3C7; --amber-ink:#B45309;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+       font:16px/1.7 Inter,-apple-system,BlinkMacSystemFont,sans-serif}
+  header{background:var(--rack);color:#fff;padding:1.1rem 1.4rem}
+  header a{color:#fff;text-decoration:none;font-weight:700;font-family:Archivo,Inter,sans-serif;letter-spacing:.01em}
+  header nav{max-width:820px;margin:0 auto;display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+  header nav .sp{flex:1}
+  header nav a.small{font-weight:500;font-size:.88rem;opacity:.85}
+  header nav a.small:hover{opacity:1}
+  main{max-width:820px;margin:0 auto;padding:2.4rem 1.4rem 5rem}
+  article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:2rem 2.1rem}
+  h1,h2,h3,h4{font-family:Archivo,Inter,sans-serif;line-height:1.25;text-wrap:balance}
+  h1{font-size:2rem;margin:.2rem 0 1.4rem}
+  h2{font-size:1.35rem;margin:2.2rem 0 .7rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+  h3{font-size:1.08rem;margin:1.5rem 0 .5rem}
+  h4{font-size:.98rem;margin:1.2rem 0 .4rem;color:var(--steel)}
+  p{margin:.75rem 0}
+  a{color:var(--accent-ink)}
+  ul,ol{margin:.7rem 0;padding-left:1.3rem}
+  li{margin:.35rem 0}
+  code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.88em;
+       background:var(--ground);border:1px solid var(--line);border-radius:4px;padding:.1em .35em}
+  pre{background:var(--rack);color:#E6ECF5;border-radius:8px;padding:1rem 1.1rem;overflow-x:auto}
+  pre code{background:none;border:0;padding:0;color:inherit;font-size:.84rem}
+  blockquote{margin:1.1rem 0;padding:.8rem 1.1rem;background:var(--amber-wash);
+             border-left:3px solid var(--amber-ink);border-radius:0 8px 8px 0}
+  blockquote p{margin:.35rem 0}
+  .tablewrap{overflow-x:auto;margin:1.1rem 0}
+  table{border-collapse:collapse;width:100%;font-size:.92rem}
+  th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+  th{background:var(--ground);font-weight:700}
+  hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+  footer{max-width:820px;margin:0 auto;padding:0 1.4rem 3rem;color:var(--steel);font-size:.85rem}
+  footer a{color:var(--steel)}
+</style>
+</head>
+<body>
+<header><nav>
+  <a href="/">Acopio</a>
+  <span class="sp"></span>
+  <a class="small" href="/detalle.html">Detalle</a>
+  <a class="small" href="/changelog.html">Changelog</a>
+  <a class="small" href="/novedades.html">Novedades</a>
+</nav></header>
+<main><article>
+<h1>Guía de instalación — Acopio</h1>
+<p><strong>Tiempo estimado: 5 minutos.</strong> No necesitas saber programación. Solo una cuenta de Google (Gmail normal o de empresa).</p>
+<p>Al terminar vas a tener tu propio sistema de inventario, corriendo en tu propia cuenta de Google, con tus datos en tu propio Google Drive. Nadie más —ni siquiera nosotros— tiene acceso a tu información.</p>
+<hr>
+<h2>Antes de empezar</h2>
+<p>Vas a recibir de nosotros <strong>un enlace</strong>. Ten ese enlace a la mano.</p>
+<blockquote><p><strong>Importante:</strong> hazlo desde una computadora (no el teléfono), con <strong>una sola cuenta de Google abierta en el navegador</strong>. Si tienes varias cuentas abiertas al mismo tiempo, Google se confunde sobre cuál usar y la instalación puede fallar de formas raras. Lo más seguro: una ventana de <strong>incógnito</strong>, con solo la cuenta que va a ser la dueña del sistema.</p></blockquote>
+<p><strong>¿Cuál cuenta debe ser la dueña?</strong> La primera persona que abre el enlace y completa la configuración se convierte automáticamente en el <strong>administrador</strong>. Elige bien desde el principio.</p>
+<hr>
+<h2>Paso 1 — Haz tu copia</h2>
+<ol><li>Abre el enlace que te enviamos.</li><li>Te va a pedir <strong>"Hacer una copia"</strong>. Acepta.</li></ol>
+<p>Eso es todo. Ya tienes tu propio sistema — completamente tuyo, en tu Drive, sin nada compartido con nadie más. El código va incluido en la copia; no hay que instalar ni pegar nada.</p>
+<hr>
+<h2>Paso 2 — Configura tu empresa</h2>
+<p>Al abrir tu copia, un asistente aparece automáticamente sobre la hoja (si no aparece: menú <strong>🏭 Acopio → 🚀 Set Up Acopio</strong>).</p>
+<p>Te va a pedir, en orden:</p>
+<ol><li><strong>Tu empresa</strong> — nombre, tu correo, logo (opcional).</li><li><strong>Qué guardas</strong> — categorías de material. Puedes elegir una plantilla (vidrio, construcción) o empezar en blanco.</li><li><strong>Dónde lo guardas</strong> — tus racks/ubicaciones. Hay un generador automático (filas × niveles × lados) o puedes escribirlos a mano.</li><li><strong>Quién trabaja aquí</strong> — tu equipo, con su rol (Admin / Bodega / Solo lectura).</li><li><strong>Proveedores y proyectos</strong> — opcional, se puede saltar.</li></ol>
+<p>Nada de esto se pierde si cierras la ventana a medias — retoma donde ibas.</p>
+<hr>
+<h2>Paso 3 — El único paso técnico (una sola vez)</h2>
+<p>Al final del asistente, te va a pedir <strong>publicar tu sistema</strong>. Es el único paso donde vas a ver algo parecido a "código", y el asistente te lleva de la mano:</p>
+<ol><li><strong>Extensiones → Apps Script</strong> (se abre en una pestaña nueva; esta pestaña se queda abierta, regresa a ella después).</li><li>Arriba a la izquierda dice <strong>"Proyecto sin título"</strong> — haz clic y ponle el nombre de tu empresa. Esto es lo que tu equipo va a ver en la pantalla de permisos, así que vale la pena hacerlo antes de publicar.</li><li>Botón azul <strong>Implementar (Deploy) → Nueva implementación</strong></li><li>Engranaje ⚙️ junto a "Seleccionar tipo" → <strong>Aplicación web</strong></li><li><strong>Ejecutar como: Yo</strong> · <strong>Quién tiene acceso: Cualquier usuario con una cuenta de Google</strong></li><li><strong>Implementar</strong>, luego <strong>Autorizar acceso</strong></li></ol>
+<blockquote><p><strong>¿Sale "Google no ha verificado esta aplicación"?</strong> Es normal — le estás dando permiso a tu propio sistema, no a una app pública. Clic en <strong>Configuración avanzada → Ir a [tu proyecto] (no seguro)</strong>.</p>
+<p><strong>¿Sale un aviso de que falta la Política de Privacidad?</strong> También es normal — es un límite de Google para software personal como este, no algo que tengas que arreglar.</p></blockquote>
+<ol><li>Regresa a la pestaña del asistente y da clic en <strong>"Ya lo hice — muéstrame mi link"</strong>. El sistema verifica que funcionó y te entrega tu dirección web permanente.</li></ol>
+<p><strong>Guarda ese enlace</strong> — es tu sistema. Compártelo con tu equipo (solo entrarán quienes hayas dado de alta en el paso 4).</p>
+<blockquote><p>¿Se te perdió el enlace? Menú <strong>🏭 Acopio → Open WMS App</strong>, siempre desde tu hoja de cálculo.</p></blockquote>
+<hr>
+<h2>Ya tienes tu inventario en Excel</h2>
+<p>No lo captures a mano: <strong>Configuración → Importar</strong>. Guarda tu archivo como <strong>.csv</strong> primero (un .xlsx será rechazado).</p>
+<hr>
+<h2>Problemas comunes</h2>
+<p><strong>"Sign-in is not configured" / no me deja entrar</strong> Casi siempre es tener varias cuentas de Google abiertas en el navegador. Abre una ventana de incógnito, entra solo con la cuenta dueña, y prueba de nuevo. Si le pasa a varias personas, o solo a las que usan correo personal, mira <strong><code>ACCESO-Y-LOGIN.md</code></strong> — ahí está el diagnóstico completo por síntoma.</p>
+<p><strong>Hay gente que trabaja con nosotros pero no tiene correo de la empresa</strong> Necesitan un paso extra de configuración (una sola vez). Ver <strong><code>ACCESO-Y-LOGIN.md</code></strong>.</p>
+<p><strong>Republiqué la app y ahora los de correo personal no entran</strong> Es la trampa más común: <em>Deploy → New deployment</em> crea una URL nueva y rompe el login externo. Se arregla registrando la URL nueva. Ver <strong><code>ACCESO-Y-LOGIN.md</code></strong>, sección "La trampa número uno".</p>
+<p><strong>Actualicé el código pero no veo los cambios</strong> Publicar una versión nueva no es lo mismo que guardar. En el editor: <strong>Implementar → Administrar implementaciones → ✏️ (editar) → Versión: Nueva versión → Implementar</strong>. Usa <strong>Administrar implementaciones</strong>, no "Nueva implementación" — esa última crea una URL distinta y tu equipo seguiría entrando a la vieja.</p>
+<p><strong>Agregamos una función nueva y da error de permisos</strong> Fuérzalo así: en el editor de Apps Script, elige cualquier función en el menú de arriba y presiona ▶ <strong>Ejecutar</strong>. Ahí aparece la ventana de autorización.</p>
+<p><strong>No me llegan los correos de notificación</strong> Cuentas de Gmail normales: límite de 100 correos/día. Cuentas de Google Workspace: 1,500/día.</p>
+<p><strong>Cerré la ventana del asistente antes de terminar — ¿tengo que empezar de nuevo?</strong> No. Vuelve a abrirla desde el menú <strong>🏭 Acopio</strong>: si ya guardaste tu configuración (llegaste hasta el paso de publicar), la ventana te lleva directo ahí de nuevo, sin pedirte los datos otra vez.</p>
+<hr>
+<h2>¿Necesitas ayuda?</h2>
+<p>Dentro de la app, abajo a la derecha, hay un botón 🐞 (<strong>Reportar un problema</strong>). Escribe qué pasó y adjunta una foto — nos llega directo.</p>
+<hr>
+<h1>Actualizar un cliente ya instalado — SON TRES ARCHIVOS, NO DOS</h1>
+<p>Cuando le mandes una versión nueva a un cliente (o cuando actualices tu propia copia), lo que se reemplaza en <strong>Extensions → Apps Script</strong> es:</p>
+<ol><li><code>Code_v3_fixed.gs</code></li><li><code>Index_v3_fixed.html</code></li><li><strong><code>appsscript.json</code></strong> ← el que se olvida</li></ol>
+<p><strong>El tercero es invisible por defecto.</strong> El editor de Apps Script esconde <code>appsscript.json</code> a menos que lo actives:</p>
+<blockquote><p>⚙ <strong>Project Settings</strong> → marca <strong>"Show appsscript.json manifest file in editor"</strong> → vuelve a <strong>Editor</strong> y ya aparece en la lista de la izquierda.</p></blockquote>
+<h2>Por qué importa</h2>
+<p>Ese archivo es donde viven los <strong>permisos</strong>. Si el cliente se queda con el manifiesto viejo, casi todo sigue funcionando y el fallo aparece en un solo sitio, sin ninguna pista de dónde viene. El caso real:</p>
+<pre><code>Exception: Specified permissions are not sufficient to call Ui.showModalDialog.
+Required permissions: https://www.googleapis.com/auth/script.container.ui</code></pre>
+<p>Eso es el wizard de configuración negándose a abrir. El síntoma no dice "manifiesto", dice "permisos", y nadie relaciona una cosa con la otra.</p>
+<h2>Después de cambiarlo</h2>
+<p>Google <strong>va a volver a pedir autorización</strong>, porque cambiaron los permisos. Eso es normal y hay que avisárselo al cliente ANTES, o va a pensar que algo se rompió. Vuelve a salir la pantalla de "app no verificada" → Advanced → "Go to…".</p>
+<h2>La regla corta</h2>
+<blockquote><p>Si cambió <code>appsscript.json</code>, el cliente re-autoriza. Si no cambió, no. Ante la duda, mándalo igual: re-autorizar cuesta treinta segundos, y diagnosticar un permiso que falta cuesta una tarde.</p></blockquote>
+</article></main>
+<footer>
+  <p>Documentos ·
+    <a href="/docs/setup.html">Setting up your warehouse</a> ·
+    <a href="/docs/instalacion.html">Guía de instalación</a> ·
+    <a href="/docs/vista-por-pasillo.html">La vista por pasillo</a> ·
+    <a href="/docs/soporte.html">Soporte y devoluciones</a></p>
+  <p><a href="/">← Acopio</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>
