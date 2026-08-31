@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La vista por pasillo · Acopio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ground:#F0F2F5; --surface:#FFF; --ink:#1A1A2E; --steel:#6B7280;
+    --line:#E5E7EB; --rack:#1B2A4A; --accent:#3B7DD8; --accent-ink:#1E52A0;
+    --amber-wash:#FEF3C7; --amber-ink:#B45309;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+       font:16px/1.7 Inter,-apple-system,BlinkMacSystemFont,sans-serif}
+  header{background:var(--rack);color:#fff;padding:1.1rem 1.4rem}
+  header a{color:#fff;text-decoration:none;font-weight:700;font-family:Archivo,Inter,sans-serif;letter-spacing:.01em}
+  header nav{max-width:820px;margin:0 auto;display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+  header nav .sp{flex:1}
+  header nav a.small{font-weight:500;font-size:.88rem;opacity:.85}
+  header nav a.small:hover{opacity:1}
+  main{max-width:820px;margin:0 auto;padding:2.4rem 1.4rem 5rem}
+  article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:2rem 2.1rem}
+  h1,h2,h3,h4{font-family:Archivo,Inter,sans-serif;line-height:1.25;text-wrap:balance}
+  h1{font-size:2rem;margin:.2rem 0 1.4rem}
+  h2{font-size:1.35rem;margin:2.2rem 0 .7rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+  h3{font-size:1.08rem;margin:1.5rem 0 .5rem}
+  h4{font-size:.98rem;margin:1.2rem 0 .4rem;color:var(--steel)}
+  p{margin:.75rem 0}
+  a{color:var(--accent-ink)}
+  ul,ol{margin:.7rem 0;padding-left:1.3rem}
+  li{margin:.35rem 0}
+  code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.88em;
+       background:var(--ground);border:1px solid var(--line);border-radius:4px;padding:.1em .35em}
+  pre{background:var(--rack);color:#E6ECF5;border-radius:8px;padding:1rem 1.1rem;overflow-x:auto}
+  pre code{background:none;border:0;padding:0;color:inherit;font-size:.84rem}
+  blockquote{margin:1.1rem 0;padding:.8rem 1.1rem;background:var(--amber-wash);
+             border-left:3px solid var(--amber-ink);border-radius:0 8px 8px 0}
+  blockquote p{margin:.35rem 0}
+  .tablewrap{overflow-x:auto;margin:1.1rem 0}
+  table{border-collapse:collapse;width:100%;font-size:.92rem}
+  th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+  th{background:var(--ground);font-weight:700}
+  hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+  footer{max-width:820px;margin:0 auto;padding:0 1.4rem 3rem;color:var(--steel);font-size:.85rem}
+  footer a{color:var(--steel)}
+</style>
+</head>
+<body>
+<header><nav>
+  <a href="/">Acopio</a>
+  <span class="sp"></span>
+  <a class="small" href="/detalle.html">Detalle</a>
+  <a class="small" href="/changelog.html">Changelog</a>
+  <a class="small" href="/novedades.html">Novedades</a>
+</nav></header>
+<main><article>
+<h1>La vista por pasillo — qué es, en qué se diferencia, y para quién sirve</h1>
+<p>Jose vio la maqueta del hero de la landing (una lista de ubicaciones con su material y su cantidad) y preguntó: <em>"así no se ve la app, pero me parece interesante — ¿en qué se diferencia de lo que tenemos, y para qué tipo de empresa serviría?"</em></p>
+<p>Buena pregunta, y la respuesta es más interesante de lo que parece.</p>
+<hr>
+<h2>Lo que la app tiene hoy</h2>
+<p>Dos formas de mirar el inventario, y las dos parten del <strong>material</strong>:</p>
+<ol><li><strong>Stock Dashboard</strong> — una fila por material, con el total sumado de todas las ubicaciones. Contesta <em>"¿cuánto GLASS tenemos?"</em></li><li><strong>Warehouse Map → Rack Drawer</strong> — el mapa muestra los racks como fichas; al hacer clic en uno se abre un panel con lo que hay adentro. Contesta <em>"¿qué hay en A1A?"</em> — <strong>pero de un rack a la vez, y hay que abrirlo.</strong></li></ol>
+<h2>Lo que la maqueta propone</h2>
+<p>Una lista <strong>continua, ordenada por ubicación</strong>, con varias ubicaciones a la vista al mismo tiempo, y el stock bajo resaltado en línea.</p>
+<p>La diferencia de fondo no es estética. Es <strong>cuál es la unidad de lectura</strong>:</p>
+<div class="tablewrap"><table><thead><tr><th></th><th>Vista actual</th><th>Vista por pasillo</th></tr></thead><tbody><tr><td>Empieza por</td><td>El material</td><td>La ubicación</td></tr><tr><td>Pregunta que contesta</td><td>"¿Cuánto tengo de X?"</td><td>"¿Qué hay del A1 al A9?"</td></tr><tr><td>Cuántos racks a la vez</td><td>Uno (hay que abrirlo)</td><td>Muchos, seguidos</td></tr><tr><td>Se usa</td><td>Sentado</td><td><strong>Caminando</strong></td></tr></tbody></table></div>
+<p>Esa última fila es la clave. La vista actual es para responder desde el escritorio. La vista por pasillo es para <strong>llevarla en la mano recorriendo la bodega</strong>.</p>
+<hr>
+<h2>Para qué tipo de empresa sirve de verdad</h2>
+<p><strong>Sirve mucho cuando la ubicación manda sobre el material:</strong></p>
+<ul><li><strong>Bodegas con slotting fijo</strong> — cada material tiene su casa, y la gente se mueve por dirección, no por nombre. Vidrio, ferretería, materiales de construcción, refacciones.</li><li><strong>Operaciones donde se camina el pasillo</strong>: surtir un pedido, revisar un nivel, verificar una fila entera después de un movimiento grande.</li><li><strong>Tiendas y almacenes de tienda</strong> con anaqueles numerados.</li></ul>
+<p><strong>No aporta gran cosa cuando:</strong></p>
+<ul><li>El material no tiene ubicación fija (todo se apila donde cabe).</li><li>Hay pocas ubicaciones — con 5 racks, el mapa actual ya se ve entero.</li><li>La pregunta habitual es de totales, no de dónde está.</li></ul>
+<hr>
+<h2>El uso donde esto deja de ser cosmético</h2>
+<p><strong>Es exactamente la pantalla que necesita un conteo físico.</strong></p>
+<p>Contar es, por definición, recorrer ubicaciones en orden y comparar lo que hay con lo que el sistema dice. Eso pide justo esta vista: ubicaciones seguidas, una línea por material, cantidad al lado, avanzando pasillo abajo.</p>
+<p>O sea: la vista por pasillo <strong>no es una tercera forma de mirar el inventario</strong> — es el chasis del conteo cíclico que ya está diseñado en <code>BACKLOG.md</code>. Construirla suelta y construir el conteo después sería hacer dos veces el mismo trabajo.</p>
+<p><strong>Recomendación: no construirla por separado.</strong> Que salga como parte del conteo cíclico, y una vez que exista, evaluar si vale la pena dejarla también como vista de solo lectura para "recorrer el pasillo" sin estar contando. Ese segundo paso es barato si el primero ya está hecho, y no tiene sentido al revés.</p>
+<hr>
+<h2>Sobre la maqueta de la landing</h2>
+<p>Vale aclarar una cosa: <strong>la maqueta del hero no es una captura de la app.</strong> Es una ilustración honesta —datos y códigos con la forma real que tienen— y está ahí porque comunica el producto en un vistazo mejor que una captura encogida.</p>
+<p>Cuando exista la grabación de pantalla (el hueco ya está en la landing), la maqueta puede quedarse igual: hace un trabajo distinto y lo hace bien.</p>
+</article></main>
+<footer>
+  <p>Documentos ·
+    <a href="/docs/setup.html">Setting up your warehouse</a> ·
+    <a href="/docs/instalacion.html">Guía de instalación</a> ·
+    <a href="/docs/vista-por-pasillo.html">La vista por pasillo</a> ·
+    <a href="/docs/soporte.html">Soporte y devoluciones</a></p>
+  <p><a href="/">← Acopio</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>
