@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Soporte y pagos · Acopio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ground:#F0F2F5; --surface:#FFF; --ink:#1A1A2E; --steel:#6B7280;
+    --line:#E5E7EB; --rack:#1B2A4A; --accent:#3B7DD8; --accent-ink:#1E52A0;
+    --amber-wash:#FEF3C7; --amber-ink:#B45309;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+       font:16px/1.7 Inter,-apple-system,BlinkMacSystemFont,sans-serif}
+  header{background:var(--rack);color:#fff;padding:1.1rem 1.4rem}
+  header a{color:#fff;text-decoration:none;font-weight:700;font-family:Archivo,Inter,sans-serif;letter-spacing:.01em}
+  header nav{max-width:820px;margin:0 auto;display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+  header nav .sp{flex:1}
+  header nav a.small{font-weight:500;font-size:.88rem;opacity:.85}
+  header nav a.small:hover{opacity:1}
+  main{max-width:820px;margin:0 auto;padding:2.4rem 1.4rem 5rem}
+  article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:2rem 2.1rem}
+  h1,h2,h3,h4{font-family:Archivo,Inter,sans-serif;line-height:1.25;text-wrap:balance}
+  h1{font-size:2rem;margin:.2rem 0 1.4rem}
+  h2{font-size:1.35rem;margin:2.2rem 0 .7rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+  h3{font-size:1.08rem;margin:1.5rem 0 .5rem}
+  h4{font-size:.98rem;margin:1.2rem 0 .4rem;color:var(--steel)}
+  p{margin:.75rem 0}
+  a{color:var(--accent-ink)}
+  ul,ol{margin:.7rem 0;padding-left:1.3rem}
+  li{margin:.35rem 0}
+  code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.88em;
+       background:var(--ground);border:1px solid var(--line);border-radius:4px;padding:.1em .35em}
+  pre{background:var(--rack);color:#E6ECF5;border-radius:8px;padding:1rem 1.1rem;overflow-x:auto}
+  pre code{background:none;border:0;padding:0;color:inherit;font-size:.84rem}
+  blockquote{margin:1.1rem 0;padding:.8rem 1.1rem;background:var(--amber-wash);
+             border-left:3px solid var(--amber-ink);border-radius:0 8px 8px 0}
+  blockquote p{margin:.35rem 0}
+  .tablewrap{overflow-x:auto;margin:1.1rem 0}
+  table{border-collapse:collapse;width:100%;font-size:.92rem}
+  th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+  th{background:var(--ground);font-weight:700}
+  hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+  footer{max-width:820px;margin:0 auto;padding:0 1.4rem 3rem;color:var(--steel);font-size:.85rem}
+  footer a{color:var(--steel)}
+</style>
+</head>
+<body>
+<header><nav>
+  <a href="/">Acopio</a>
+  <span class="sp"></span>
+  <a class="small" href="/detalle.html">Detalle</a>
+  <a class="small" href="/changelog.html">Changelog</a>
+  <a class="small" href="/novedades.html">Novedades</a>
+</nav></header>
+<main><article>
+<h1>Soporte y pagos</h1>
+<p>Lo que pagas, cuándo, y qué pasa si algo va mal. En lenguaje llano — el texto que obliga son los <a href="/terms.html">Términos de Servicio</a>.</p>
+<hr>
+<h2>Lo que cuesta</h2>
+<div class="tablewrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><strong>Instalación</strong></td><td>$500, una sola vez</td></tr><tr><td><strong>Suscripción</strong></td><td>$49 al mes, o $490 el año completo</td></tr></tbody></table></div>
+<p>El año completo sale a dos meses gratis. Los precios son en dólares y no incluyen impuestos; si aplican, se suman.</p>
+<p><strong>La instalación no es una cuota de alta.</strong> Es trabajo hecho: se instala en tu cuenta, se cargan tus categorías, tus estantes y tu equipo, y se capacita a la gente que va a usarlo.</p>
+<hr>
+<h2>Qué incluye el mensual</h2>
+<ul><li>Soporte con respuesta en <strong>un día hábil</strong>, de lunes a viernes.</li><li>Todas las versiones nuevas y todos los arreglos, sin costo extra.</li><li>Ayuda para restaurar una copia de seguridad si algún día la necesitas.</li></ul>
+<p>Lo que se cotiza aparte: bodegas adicionales, importaciones grandes de datos históricos, y desarrollo a medida para tu empresa.</p>
+<hr>
+<h2>Cómo se cobra</h2>
+<p>Con tarjeta, a través de <strong>Stripe</strong>. La tarjeta va a Stripe y se queda en Stripe: <strong>nosotros nunca vemos ni guardamos el número.</strong></p>
+<p>La instalación se cobra una vez, al contratarla. La suscripción se cobra sola en cada fecha de renovación, y Stripe te manda recibo de cada cobro.</p>
+<p>Si tu empresa no puede pagar con tarjeta, dilo antes de la instalación y se acuerda otra forma por escrito. Sabemos que hay empresas que solo pagan contra factura con orden de compra.</p>
+<hr>
+<h2>Si un pago no entra</h2>
+<p>Las tarjetas fallan por razones aburridas: una que venció, un banco que rechaza un cargo recurrente. Lo que pasa, en orden:</p>
+<ol><li><strong>Stripe lo reintenta solo</strong> los días siguientes y te avisa cada vez. Ahí termina casi siempre.</li><li><strong>A los 10 días</strong> del primer cobro fallido, si sigue sin pagarse, recibes un correo personal. No queremos que dependa de que notes un recibo que nunca llegó.</li><li><strong>A los 30 días</strong>, si sigue sin pagarse, <strong>se pausan el soporte y las versiones nuevas</strong> hasta que la cuenta se ponga al día.</li></ol>
+<p><strong>No se apaga nada.</strong> El sistema corre en tu propia cuenta de Google — no hay forma de apagarlo desde aquí, y no la usaríamos si la hubiera. Lo que se pausa es el soporte, no el software.</p>
+<p><strong>Y nunca retenemos tus datos para cobrar.</strong> No son nuestros para retenerlos, y la exportación sigue disponible pase lo que pase.</p>
+<hr>
+<h2>Volver después de una pausa</h2>
+<p>Da igual si la cuenta se pausó por un impago o porque cancelaste. Lo que cuesta volver depende de <strong>una sola cosa: cuánto tiempo estuviste fuera.</strong></p>
+<div class="tablewrap"><table><thead><tr><th>Fuera</th><th>Para volver</th></tr></thead><tbody><tr><td><strong>Hasta 2 meses</strong></td><td>Los meses que debes. <strong>Nada más.</strong></td></tr><tr><td><strong>Más de 2 meses</strong></td><td>Los meses que debes, más <strong>$150</strong> de puesta al día.</td></tr><tr><td><strong>Más de 12 meses</strong></td><td>Se trata como instalación nueva, a precios vigentes.</td></tr></tbody></table></div>
+<p><strong>Los $150 no son un castigo por irte.</strong> Mientras una cuenta está pausada deja de recibir los arreglos y las versiones que reciben los demás, así que una instalación que estuvo meses parada hay que ponerla al día antes de poder darle soporte otra vez — y eso es trabajo real. Por debajo de dos meses normalmente no hay nada de eso, y por eso no se cobra.</p>
+<p>Ningún precio promocional o de cliente fundador regresa contigo, en ninguno de los tres casos.</p>
+<hr>
+<h2>Devoluciones</h2>
+<p><strong>La instalación</strong></p>
+<ul><li><strong>Antes de hacerla: se devuelve completa.</strong> Si cambias de opinión antes de que se instale, no se hizo nada y no se cobra nada.</li><li><strong>Una vez hecha: no se devuelve.</strong> Es trabajo entregado, y sigue siendo así aunque después canceles la suscripción.</li></ul>
+<p><strong>La suscripción</strong></p>
+<ul><li><strong>Cancelas dentro de 14 días de un cobro</strong> → ese mes se devuelve completo.</li><li><strong>Después de 14 días</strong> → ese mes no se devuelve, y conservas soporte y versiones hasta que termine el período.</li><li><strong>Plan anual</strong> → se devuelven los meses enteros que no has usado. Los ya empezados, no.</li><li><strong>Si la culpa es nuestra</strong> → si un defecto lo deja inservible y no se arregla en 30 días desde que lo reportaste, se devuelve el período completo, sin importar las fechas. Nadie debe pagar un mes en el que no funcionó.</li></ul>
+<p>Las devoluciones se hacen por el mismo medio de pago con que pagaste, <strong>entre 5 y 10 días hábiles</strong> desde que se acuerdan.</p>
+<hr>
+<h2>Preguntas que nos hacen</h2>
+<p><strong>Cancelé a los 3 días de que me cobraran. ¿Me devuelven?</strong> El mes sí, completo — estás dentro de los 14 días. La instalación no: ese trabajo ya se hizo.</p>
+<p><strong>Estuve dos meses sin usarlo y me cobraron igual.</strong> No hay devolución, porque el servicio estuvo disponible todo ese tiempo. Pero escríbenos de todas formas: dos meses sin usarlo suele significar que algo no está funcionando como esperabas, y eso sí nos interesa arreglarlo.</p>
+<p><strong>¿Pierdo mis datos si dejo de pagar?</strong> No. Nunca. Están en tu propia hoja de Google, en tu propia cuenta. Lo que se pausa es el soporte.</p>
+<hr>
+<h2>Cómo escribirnos</h2>
+<p><a href="mailto:joseisrael5101@gmail.com">joseisrael5101@gmail.com</a> — respuesta en un día hábil, de lunes a viernes.</p>
+<p>Cuando escribas, ayuda mucho que digas <strong>qué esperabas que pasara y qué pasó</strong>, y una captura de pantalla si la tienes. Con eso casi siempre se resuelve en el primer correo.</p>
+</article></main>
+<footer>
+  <p>Documentos ·
+    <a href="/docs/setup.html">Setting up your warehouse</a> ·
+    <a href="/docs/instalacion.html">Guía de instalación</a> ·
+    <a href="/docs/vista-por-pasillo.html">La vista por pasillo</a> ·
+    <a href="/docs/restaurar.html">Volver a una copia</a> ·
+    <a href="/docs/soporte.html">Soporte y devoluciones</a></p>
+  <p><a href="/">← Acopio</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>
