@@ -87,6 +87,1149 @@
 <main class="wrap">
 
   <section class="month">
+    <h2>Septiembre 2026</h2>
+    <p class="sub">Etiquetas que imprimes al recibir, en papel térmico de 4×6.
+       Las entregas dispuestas como una semana en vez de como una lista, y marcar
+       una como llegada ahora te llena su entrada. Un reporte que llega solo cada
+       tarde. Manage Users rehecho para que se lea como la tabla de movimientos.
+       Y dos tandas largas de trabajo sobre las mismas dos preguntas: cuando
+       varias personas usan la app a la vez, ¿ven todas el mismo almacén — y
+       cuando le das a guardar, ¿la pantalla cambia ahora o en once segundos?
+       Borrar trece movimientos pasó de unos dos minutos y medio a cincuenta y
+       cinco segundos por el camino.</p>
+
+    <div class="entry">
+      <span class="ver">v12.00</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>La pantalla cambia en cuanto se guarda</h3>
+      <p>Marcar una entrega como llegada tardaba unos once segundos en verse,
+         mucho después de que el guardado ya hubiera pasado. Había dos cosas mal
+         en la misma línea: nada actualizaba la copia de la que dibuja la
+         pantalla, y el refresco que venía después leía del caché — así que
+         pintaba la respuesta vieja por segunda vez y sólo se corregía cuando
+         terminaba una recarga completa.</p>
+      <p>Ahora la pantalla cambia en el momento en que el guardado llega. No se
+         dibuja nada antes de que el servidor lo acepte; se dibuja justo cuando
+         lo hace. El mismo arreglo cubre adjuntar un documento a un movimiento y
+         editar los datos de un movimiento. Una excepción que conviene saber: al
+         editar una cantidad, la fila cambia al instante, pero el total del
+         material sigue esperando el refresco — eso sólo lo puede calcular el
+         servidor.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.99</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>El mazo de la esquina cuenta lo que tiene, y abre por la más nueva</h3>
+      <p>La insignia del mazo contaba dos de las tres clases de tarjeta que
+         lleva. Las entregas que llegaron sin registrar su entrada quedaban
+         fuera, así que la insignia podía decir 4 con seis tarjetas debajo — y
+         no coincidía con la campana de arriba, que sí las contaba desde el
+         principio.</p>
+      <p>El mazo también abría por arriba, enseñando la más vieja, cuando la más
+         nueva va abajo. Ahora abre por abajo y se queda ahí mientras se
+         despliega. Si subes con la rueda, te suelta: leer las viejas es
+         justamente para lo que está la barra.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.98</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Manage Users funciona como la tabla de movimientos</h3>
+      <p>De siete columnas a cuatro: el nombre va sobre el correo, y el rol
+         sobre la fecha en que se añadió. El formulario de Add User ya no ocupa
+         la parte de arriba — es un botón que lo abre cuando hace falta.</p>
+      <p>Editar y Desactivar salieron de las filas y están en una barra, y se
+         encienden al marcar a alguien. Editar necesita exactamente uno;
+         desactivar funciona con varios a la vez. Tu propia fila no se puede
+         marcar, que es la misma regla que el servidor ya aplicaba, dicha antes
+         de pulsar en vez de después.</p>
+      <p>Y ahora se puede devolver el acceso desde la app. Hasta ahora la
+         ventana te mandaba a editar la hoja de cálculo a mano; el botón dice
+         Reactivate cuando todo lo marcado está inactivo, y se apaga con una
+         mezcla en vez de adivinar qué mitad querías.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.98</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Dos cosas más pequeñas</h3>
+      <p>El muro de tarjetas naranjas se detiene a dos tercios de la ventana en
+         vez de crecer por encima de lo que estabas mirando. Si hay más tarjetas
+         de las que caben, la pila se desplaza dentro de su hueco — no se
+         esconde ninguna.</p>
+      <p>Y en el mapa del almacén, al tocar un material de un estante su nombre
+         aparece en la cabecera mientras sus opciones están abiertas. En el
+         teléfono el dedo tapa la fila, y la cabecera era lo único que quedaba
+         para saber sobre qué vas a pulsar Exit.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.97</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>El último movimiento de una tanda llega a la otra cuenta</h3>
+      <p>Al borrar trece movimientos desde una cuenta, el último no desaparecía
+         nunca de la otra. No lento — nunca. Se quedaba en pantalla todo el
+         tiempo que uno quisiera esperar.</p>
+      <p>La app le pregunta al servidor "¿ha cambiado algo?" comparando un
+         sello. La carga que trae los datos leía los movimientos primero y ese
+         sello al final, así que un borrado que cayera entre las dos lecturas
+         dejaba al navegador con la lista vieja y el sello nuevo. A partir de
+         ahí cada comprobación decía "no ha cambiado nada" y no volvía a
+         preguntar.</p>
+      <p>Ahora el sello se lee antes que los datos. Cuando ocurre la misma
+         carrera, al navegador le queda el sello viejo, nota la diferencia en su
+         siguiente comprobación y vuelve a pedir. Cuesta una consulta de más; lo
+         que evita es una pantalla equivocada para siempre.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.96</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Borrar varios a la vez deja de ser lento</h3>
+      <p>Una versión anterior hizo que una tanda de cambios reconstruyera las
+         tablas de existencias dos veces en vez de una por cambio. Funcionaba —
+         para los guardados. Los borrados tienen su propia cola desde hace
+         tiempo y nunca pasaron por ese código, así que borrar trece movimientos
+         seguía pagando trece reconstrucciones enteras.</p>
+      <p>Cronometrado sobre una grabación: tres hechos en 1:20, seis en 2:00,
+         diez en 2:40. Unos doce segundos cada uno. Eso es también la mayor
+         parte de lo que parecía "la otra cuenta tarda en actualizarse" — la
+         otra ventana no puede enseñar la verdad hasta que el trabajo termine, y
+         el trabajo tardaba dos minutos y medio.</p>
+      <p>Trece borrados cuestan ahora dos reconstrucciones. Dos y no una, y vale
+         la pena decir por qué: la primera no puede esperar, porque cuando sale
+         los otros doce todavía no se han encolado, y la última refresca sola
+         porque detrás de ella ya no viene nadie.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.95</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Los checks dejan de borrarse solos</h3>
+      <p>Marcando varios movimientos para borrarlos, a veces desaparecían todos
+         los checks de golpe. La tabla se plegaba a su primera página cada vez
+         que llegaban datos nuevos —que trabajando entre dos es cada veinte
+         segundos— así que lo marcado más allá de la primera página dejaba de
+         dibujarse.</p>
+      <p>La mitad que no se veía era la que había que arreglar: la selección sí
+         sobrevivía, así que Delete seguía armado sobre filas que ya no estaban
+         en pantalla. Marcar ocho, ver cero y que borrar se lleve ocho es peor
+         que perder la selección, porque perderla al menos se nota.</p>
+      <p>Los datos nuevos ya no cambian la página en la que estás — eso sigue
+         pasando al cambiar de pantalla o de filtro, donde significa algo. Y la
+         regla ahora es simple: lo marcado es lo que se ve. Una fila que sale de
+         la vista, por lo que sea, se lleva su marca con ella.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.95</span>
+      <span class="tag new">Nuevo</span>
+      <h3>La tarjeta del nombre siempre mide lo mismo</h3>
+      <p>Al pasar el ratón por un nombre en la columna User se abría una tarjeta
+         cuyo ancho seguía al largo del correo — y como una tarjeta más ancha
+         tiene que apartarse más para no salirse de la ventana, además aparecía
+         en un sitio distinto cada vez. Una sola causa para las dos quejas.</p>
+      <p>Ahora es de ancho fijo, con el nombre y el correo en una línea. Lo que
+         no cabe se acorta y se puede leer entero pasando el ratón por encima.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.94</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Todo lo que desaparece se ve desaparecer</h3>
+      <p>Un movimiento borrado se encoge y se va en vez de parpadear desde hace
+         varias versiones, y lo mismo uno devuelto desde la papelera. En todos
+         los demás sitios la fila seguía desapareciendo de un fotograma al
+         siguiente, que se lee como una falla y no como algo que pasó.</p>
+      <p>Ahora hace lo mismo al vaciar la papelera, al fusionar ubicaciones,
+         valores del catálogo, duplicados o materiales, al borrar una ubicación
+         y al quitar un valor del catálogo o un contacto. En una fusión se ve
+         exactamente cuáles se fueron, que era la parte difícil de seguir cuando
+         se van tres de golpe.</p>
+      <p>A quien tenga el sistema puesto en "menos movimiento" no le llega nada
+         de esto, y el trabajo se hace igual, al instante.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.93</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Los avisos que se quedaron ahora duran menos</h3>
+      <p>Diez avisos confirman algo que acabas de pulsar tú mismo — guardar un
+         movimiento, editarlo, borrar una entrega esperada, cargar el historial
+         viejo. Ésos se quedan, porque la confirmación sirve, pero ahora se van
+         en dos segundos en vez de tres y medio. Bastante para leer cinco
+         palabras; poco para que tres seguidos se apilen sobre la tabla.</p>
+      <p>Todo lo demás conserva su tiempo. Los errores y las advertencias hay
+         que leerlos. Y también los dos avisos que parecen confirmaciones y no
+         lo son: el que dice qué falta después de empezar una entrada desde una
+         entrega, y el que explica por qué un ajuste de conteo no cambió
+         nada.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.92</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Menos avisos, y una línea de progreso donde se amontonaban</h3>
+      <p>Se quitaron diez avisos del todo — fusionar cosas, guardar los datos de
+         la empresa, añadir o quitar un contacto, renombrar columnas. En todos
+         ésos la pantalla ya enseña el resultado en el momento, así que el aviso
+         repetía algo que estabas mirando.</p>
+      <p>Otros cinco pasaron a la línea de progreso: vaciar la papelera,
+         importar un archivo, subir la foto de un estante, añadir varios
+         proveedores o proyectos de golpe, y marcar varias entregas como
+         llegadas. Son los que tardan o se repiten, y ahora la línea gira
+         mientras trabajan en vez de dejar la pantalla quieta hasta el final.</p>
+      <p>Dos que estaban en la lista de quitar se quedaron, y vale la pena decir
+         por qué: guardar el mapa del almacén ya no dice "guardado", pero sigue
+         nombrando la ubicación que se haya <em>borrado</em> — que es lo único
+         de esa pantalla que no se deshace arrastrando de vuelta. Y un estante
+         que se queda vacío sigue avisando, porque el cajón se cierra solo, y
+         cerrarse sin decir nada parece una avería.</p>
+      <p>Los errores y las advertencias no se tocaron. Ésos hay que leerlos.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.92</span>
+      <span class="tag new">Nuevo</span>
+      <h3>El botón de Email abre Gmail</h3>
+      <p>Antes se lo pasaba a la app de correo que tenga configurada la
+         computadora. Eso es una configuración por computadora, y un clic en
+         "Always" deja el botón atascado en una app que no usas, sin forma de
+         volver atrás desde la app.</p>
+      <p>Ahora abre un correo nuevo de Gmail con la persona ya puesta — igual
+         que los botones de Meet y Schedule que tiene al lado, que ya iban
+         directo a Google. Y si tu app de escritorio está unida a Gmail, el
+         correo llega a la misma bandeja.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.91</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Devolver movimientos también los cuenta</h3>
+      <p>Restaurar cinco movimientos de la papelera daba cinco avisos sobre la
+         ventana de Ajustes que estabas usando — y las filas ya se iban solas de
+         la lista, así que los avisos no contaban nada que no se viera.</p>
+      <p>Ahora los cuenta la misma línea de progreso, y al final dice cuántos
+         volvieron. Además se movió a la izquierda, donde antes tapaba las
+         tarjetas en pantalla ancha, se queda seis segundos en vez de menos de
+         tres, y se cierra con un clic.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.90</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Las filas borradas dejan de volver</h3>
+      <p>Borrar varios movimientos a la vez se veía mal, y en un caso estaba
+         mal. Las filas se iban de la pantalla enseguida, como toca. Y unos
+         segundos después volvían —una por una, en gris, a irse otra vez—.
+         Algunas volvían sin gris siquiera, y se podían seleccionar y borrar una
+         segunda vez, que entonces fallaba con "ya está borrado".</p>
+      <p>Nunca se borró nada dos veces: la app reconoce cada movimiento por su
+         nombre propio y rechaza el segundo intento, diciendo quién lo borró y
+         cuándo. Pero la pantalla estaba enseñando filas que ya no existían, y
+         eso también está mal.</p>
+      <p>La causa era un refresco que llegaba a mitad de la tanda con una foto
+         del almacén tomada antes de que la tanda terminara. Un refresco ya no
+         pinta mientras quede un borrado en el aire.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.90</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Una línea de progreso en vez de una pila de avisos</h3>
+      <p>Borrar trece movimientos ponía trece avisos en pantalla, uno encima de
+         otro, sobre la misma tabla que estabas mirando — y ninguno decía lo
+         único que interesa saber mientras esperas: cuánto falta.</p>
+      <p>Ahora una sola línea en la esquina los va contando —"4 of 13"— y termina
+         en un check verde. Un borrado que falla sigue teniendo su aviso aparte,
+         porque ése hay que leerlo.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.89</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Una tanda de cambios deja de reconstruirlo todo, cada vez</h3>
+      <p>Después de cada cambio —borrar un movimiento, aplicar un arreglo de
+         "Check my data", fusionar dos cosas— la app reconstruía sus tablas de
+         existencias desde cero. Eso son unos nueve viajes a la hoja de cálculo,
+         y hacer diez cambios seguidos lo pagaba diez veces: unos cuarenta
+         segundos de trabajo que sólo necesitaba unos pocos.</p>
+      <p>Ahora una tanda reconstruye dos veces en vez de diez — una al principio,
+         porque todavía no hay nada detrás, y otra al final. Un cambio suelto se
+         comporta exactamente igual que antes.</p>
+      <p>Esto no puede hacer que se saque material que ya no está: si alcanza o
+         no para una salida se comprueba contra el historial de movimientos, no
+         contra las tablas que se aplazan. Y si una tanda se corta —se cierra la
+         ventana, se cae la conexión—, la siguiente persona que abra la app pone
+         las tablas al día antes de enseñar ningún número.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.88</span>
+      <span class="tag safe">Más seguro</span>
+      <h3>Las comprobaciones dejan de romperse por cosas que no son fallos</h3>
+      <p>No cambia nada de la app. Esto es sobre las comprobaciones que corren
+         antes de que algo te llegue.</p>
+      <p>Seis veces en una semana se pusieron rojas sin que nada estuviera mal:
+         cada comprobación llevaba su propia lista, escrita a mano, de qué
+         piezas de la app necesitaba, y esas listas se quedaban viejas cada vez
+         que una pieza crecía una dependencia nueva. Ahora las deducen del
+         código. Una comprobación que se pone roja sola enseña a dejar de
+         leerlas, y el día que una roja es de verdad recibe el mismo encogimiento
+         de hombros.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.87</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>La comilla otra vez — ahora al editar</h3>
+      <p>La versión anterior arregló guardar un movimiento. Editar uno seguía
+         metiendo una comilla, y sólo en los campos que de verdad cambiabas —
+         por eso crear una entrada se veía bien y editarla no.</p>
+      <p>Aquí importa más que en el otro camino: cuando cambia la categoría o el
+         nombre, la identidad del material se recompone a partir de ellos, así
+         que una comilla ahí habría hecho que la fila dejara de coincidir con su
+         propio material.</p>
+      <p>Tercera vez que el mismo fallo sale por otra puerta, así que deja de
+         buscarse a mano: ahora lo cuenta una comprobación. La regla que exige
+         cabe en una línea — una función que escribe la fila con el guardián de
+         texto no cita además sus propios valores. Se cita una vez, en el
+         borde.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.86</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Una comilla delante de todo lo guardado</h3>
+      <p>Los movimientos guardados con la versión anterior metían una comilla
+         delante de cada texto — <code>'WINDOW</code>, <code>'UNIT</code>,
+         <code>'16598</code>. Se estaban aplicando dos protecciones donde hacía
+         falta una, y la hoja de cálculo se quedaba la segunda DENTRO del
+         dato.</p>
+      <p>Y no era sólo feo: la identidad de un material se compone de su
+         categoría y su nombre, así que una fila guardada así no coincidía con
+         el mismo material guardado antes, y sus existencias se habrían partido
+         en dos. El guardado está corregido, y la prueba que existe para esto
+         ahora ejecuta el guardado de punta a punta en vez de leer el código —
+         que es justamente por lo que lo había dejado pasar.</p>
+      <p>Además: la ventana de salida ya no se abre sólo para decir que no.
+         Elegir un material trabado contesta con el motivo ANTES del
+         formulario, en vez de abrirlo y enseñar "locked" en letra pequeña. Y el
+         proveedor en la tarjeta de entrega es ahora una insignia, de un solo
+         color para todos, en vez de texto detrás de un guion.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.85</span>
+      <span class="tag safe">Más seguro</span>
+      <h3>Dos personas a la vez ya no pueden pisarse las entregas</h3>
+      <p>Editar una entrega esperada y borrar otra no estaban coordinadas. Si
+         alguien borraba una entrega mientras vos tenías otra abierta, tu
+         guardado podía caer sobre una entrega distinta de la que editaste — y
+         el compañero cuya entrega quedó pisada no se enteraba nunca.</p>
+      <p>Las tres acciones de entregas esperadas se turnan ahora como toca, y
+         las pantallas esperan su turno y reintentan en vez de mostrar un error.
+         La misma lección se aplicó a los movimientos en septiembre; aquí es
+         donde no se había conectado.</p>
+      <p>Aparte: quitar un usuario por el camino de administración viejo borraba
+         una fila entera de la hoja de ajustes —donde cada columna es una lista
+         distinta— así que podía llevarse un proyecto, una categoría, un
+         proveedor y una locación por delante. Ningún botón de la app llega a
+         ese camino, así que nunca pasó; ahora vacía sólo las dos celdas del
+         usuario.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.84</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Los mensajes de error no enseñan el cableado de la app</h3>
+      <p>Cuando algo falla, el servidor a veces marca el mensaje para que la app
+         lo lea — texto como <code>SYSTEM_BUSY|</code> delante de la frase de
+         verdad. Casi todas las pantallas quitaban esa marca antes de
+         enseñarlo. Seis no, incluido el formulario de entrada, cuyo gemelo el
+         de salida sí lo hacía.</p>
+      <p>Ninguna podía enseñarlo todavía —las acciones que llaman esas
+         pantallas no producen hoy errores marcados— pero la trampa era el
+         desajuste, no el síntoma. Los quince mensajes de error pasan ahora por
+         el mismo filtro, y uno nuevo escrito sin él rompe las comprobaciones a
+         propósito, para que la decisión se tome mientras alguien mira.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.83</span>
+      <span class="tag safe">Más seguro</span>
+      <h3>El fallo de las entradas duplicadas ya tiene una prueba que lo habría cazado</h3>
+      <p>En septiembre una tarjeta de entrega podía saldarse y volver, dejando
+         guardar el mismo movimiento una y otra vez. Se arregló en la v11.70 —
+         pero había una prueba pasando por encima de ese fallo todo el tiempo,
+         porque comprobaba que el arreglo estuviera ESCRITO, no que se
+         EJECUTARA.</p>
+      <p>Ahora ese camino de guardado se ejercita de verdad: el formulario de
+         entrada corre contra un navegador y un servidor de mentira, y lo que se
+         comprueba es lo que ocurrió — la tarjeta se salda sólo después de que
+         el servidor aceptó el movimiento, un guardado fallido no salda nada, y
+         la ventana de etiquetas sale antes del "¿también llegó esto?" en vez de
+         las dos encima. No cambia nada de cómo se comporta la app; lo que
+         cambia es que esta clase de fallo ya no puede pasar desapercibida.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.82</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Las entregas dicen de quién vienen</h3>
+      <p>Cada tarjeta de entrega —en la ventana de la mañana y en las tarjetas
+         de día de la semana— dice ahora <em>material - proveedor</em> en una
+         sola línea. Si el nombre del material es muy largo se acorta con
+         puntos suspensivos para que el proveedor quepa al lado en vez de
+         bajarse a la línea siguiente, y un proveedor larguísimo se acorta
+         igual. Cede el que de verdad sobra: un proveedor corto no se recorta
+         nunca para hacer sitio. Pasando el mouse se lee entero, porque acortar
+         en pantalla no puede significar perder lo que se escribió. Una entrega
+         sin proveedor anotado enseña sólo el material, sin un guion
+         colgando.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.81</span>
+      <span class="tag safe">Más seguro</span>
+      <h3>Renombrar un material ya no puede borrar otro</h3>
+      <p>Renombrar, fusionar o cambiar de categoría cualquier cosa reescribe una
+         columna entera del archivo — incluidas todas las filas que no tocaste.
+         Al pasar, los valores con forma de fecha se convertían en fecha, y un
+         material llamado "07-6329" dejaba de contar en el stock sin avisar.
+         Siete acciones normales hacían esto, y el material que desaparecía no
+         tenía por qué ser el que estabas editando.</p>
+      <p>Ahora el texto sigue siendo texto en esas reescrituras, y también en la
+         hoja de packs, en la reparación de ids de movimiento y en el volcado de
+         diagnóstico, que tenían el mismo hueco.</p>
+      <p>Por debajo, dos guardianes pasaron a ser uno. El viejo sólo protegía de
+         las fórmulas, no de las fechas, y tener los dos significaba que cada
+         trozo de código nuevo era una elección entre el fuerte y el débil —
+         cuarenta y seis sitios habían elegido el débil. El débil ya no está.
+         Una consecuencia visible: un PO escrito "12345" se guarda ahora como
+         texto, así que se ve pegado a la izquierda de la celda en vez de a la
+         derecha. Un PO es una etiqueta, no una cantidad.</p>
+      <p>Esto protege lo que se escriba de aquí en adelante. Lo que ya se
+         convirtió en el pasado no se puede sacar de la celda — sólo de otras
+         filas que todavía lo tengan.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.80</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Un material trabado ahora lo dice donde estás mirando</h3>
+      <p>Trabar un material a un estante lo trababa, pero el candado sólo se
+         veía en dos sitios: el cajón del estante y el formulario de salida. A
+         los dos se llega después de haber decidido ya mover el material. En la
+         tabla de existencias —la pantalla que la mayoría tiene abierta— no
+         había nada.</p>
+      <p>Ahora la columna Location lleva un candado, y al pasar el mouse dice en
+         qué estante, quién lo trabó, por qué y qué se puede seguir haciendo con
+         él: si se puede mover a otros estantes o sólo a unos concretos. Un
+         candado sobre un estante del que el material ya salió no se enseña,
+         porque ya no impide nada.</p>
+      <p>Y trabar o destrabar llega ahora a todos los que tengan la app abierta,
+         en segundos, en vez de esperar a que recarguen. Antes un compañero
+         podía intentar sacar material trabado minutos atrás y enterarse sólo
+         por el error.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.79</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Etiquetas, impresas al recibir</h3>
+      <p>Guardás una entrada y Acopio te ofrece imprimir una etiqueta de 4"×6"
+         de lo que acabás de meter — material, cantidad, estante y PO, cada cosa
+         lo bastante grande para leerla de lejos, y con sitio reservado para un
+         QR o un código de barras.</p>
+      <p>Una etiqueta por estante, no por material: si cuarenta y cuatro
+         unidades fueron a dos estantes, son dos bultos en dos sitios y cada uno
+         lleva su cantidad. Marcá las que necesiten etiqueta —no todo la
+         necesita— y cuántas copias de cada una; una es el valor por defecto.</p>
+      <p>No se imprime nada más. La app desaparece para imprimir y al rollo sólo
+         van las etiquetas.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.78</span>
+      <span class="tag new">Nuevo</span>
+      <h3>"¿También llegó esto?"</h3>
+      <p>Llega un camión con cuatro cosas y tenés los papeles en la mano, así
+         que entrás las cuatro de una vez. Hasta ahora sólo dejaba de esperarse
+         la entrega por la que entraste — las otras tres seguían ahí,
+         aguardando material que ya estaba en tus estantes.</p>
+      <p>Ahora, con la entrada ya guardada, Acopio enseña las entregas esperadas
+         que coinciden con lo que acabás de entrar y ofrece marcarlas como
+         llegadas. Vienen todas marcadas; desmarcá la que no haya llegado.</p>
+      <p>Pregunta en vez de decidir, y es a propósito. Nada une una entrega con
+         un movimiento, así que la coincidencia se deduce del material, la fecha
+         y el PO — y dar por recibida una entrega que sigue en la carretera
+         significa dejar de esperar algo que nunca llegó. Una casilla cuesta un
+         segundo.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.77</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>La campana decía 3 y enseñaba 2 — y las otras pantallas ya se enteran</h3>
+      <p>El contador de avisos incluía los recordatorios naranjas de "llegó y
+         falta su entrada". La lista que sale al abrir la campana no, así que el
+         número y la lista no cuadraban. Ya están en la lista, y arriba del
+         todo: material en el almacén del que tus cantidades no saben nada es lo
+         más urgente que esa lista puede tener.</p>
+      <p>Y marcar una entrega como llegada ya llega a los demás. Las entregas
+         esperadas estaban fuera de la señal que avisa a las sesiones abiertas
+         de que algo cambió — así que una segunda ventana, o un compañero,
+         seguían viendo la entrega como pendiente hasta recargar a mano.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.76</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>El PO de una entrega esperada se quedaba vacío</h3>
+      <p>Escribías <code>08-4885</code> en el PO de una entrega esperada,
+         guardabas, la volvías a abrir y el campo estaba en blanco. Lo escribías
+         otra vez, lo mismo. Las hojas de cálculo leen <code>08-4885</code> como
+         una fecha —mes 08, año 4885— y guardan eso en lugar de tu texto; al
+         leerlo de vuelta, la app se negaba a enseñar una fecha destrozada donde
+         va un PO, así que no enseñaba nada.</p>
+      <p>Las entregas esperadas ya guardan lo que escribes, igual que los
+         movimientos desde hace tiempo. Las filas viejas cuyo PO se comió no se
+         pueden recuperar de la celda —el texto ya no está ahí— así que hay que
+         escribirlos una vez más, y esta vez se quedan.</p>
+      <p>Además: la ventana de la semana ya se actualiza mientras trabajas en
+         ella. Marcar una entrega como llegada desde el popup y registrar su
+         entrada dejaba el popup enseñando el estado viejo hasta cerrarlo y
+         volverlo a abrir — sólo se refrescaba si la pestaña de Incoming
+         resultaba ser la que estaba detrás.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.75</span>
+      <span class="tag new">Nuevo</span>
+      <h3>La fila borrada se va en el momento en que pulsas</h3>
+      <p>Antes se quedaba ahí, atenuada, hasta que el servidor contestaba — que
+         en un almacén real son unos cuatro segundos, porque cada borrado
+         reconstruye tus totales desde el archivo entero. Ahora la fila se
+         encoge al pulsar y las de abajo suben. Si el servidor dice que no, la
+         fila vuelve exactamente a su sitio y te lo dice.</p>
+      <p>Lo de encogerse es la parte que importa. Una fila que sólo se
+         desvanece deja su hueco, y las de abajo saltan cuando el hueco se
+         cierra. Encogiéndose, suben — y ese movimiento es lo que se lee como
+         "esto está pasando" en vez de como un parpadeo.</p>
+      <p>Restaurar desde la papelera usa el mismo movimiento. Los otros sitios
+         donde una fila desaparece —los merges, vaciar la papelera, quitar un
+         valor del catálogo— vienen después: varios repintan su lista entera
+         hoy, y una lista que se repinta no puede enseñar una fila yéndose.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.74</span>
+      <span class="tag fix">Mejorado</span>
+      <h3>Una espera menos en cada guardado</h3>
+      <p>Cada guardado y cada borrado reconstruye tus totales, y parte de eso
+         era leer la hoja de movimientos antiguos incluso cuando estaba vacía.
+         En un almacén real esa lectura costaba medio segundo de no hacer nada,
+         cada vez.</p>
+      <p>Ahora se salta cuando no hay nada. Las instalaciones cuya hoja de
+         movimientos antiguos ya creció no cambian: se sigue leyendo, porque
+         esas filas cuentan.</p>
+      <p>Y la medición detrás de esto vale la pena saberla si alguna vez te
+         preguntas por qué Acopio se queda pensando: leer veinticuatro mil
+         celdas cuesta lo mismo que no leer ninguna. Lo que una hoja de cálculo
+         cobra es el viaje, no los datos.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.73</span>
+      <span class="tag new">Nuevo</span>
+      <h3>La columna User ya es una persona</h3>
+      <p>Antes era una dirección de correo. Ahora enseña el nombre de la
+         persona, con el correo en gris debajo. Al pasar el ratón sale una
+         ficha pequeña que ofrece escribirle, abrir un Google Meet, o dejarle
+         delante una invitación de calendario con su dirección ya puesta.</p>
+      <p>A quien no tenga el nombre escrito en Manage Users se le sigue viendo
+         la dirección, igual que antes. Y el nombre nunca se adivina a partir
+         del correo: que alguien escriba desde "j.castro@" no prueba que se
+         llame J Castro, y un nombre inventado en el registro de quién movió
+         material es peor que una dirección.</p>
+      <p>El nombre se busca al dibujar la fila, no se copia dentro. Corrige una
+         letra en Manage Users y todas las filas que esa persona guardó pasan a
+         decir el nombre nuevo — incluidas las de hace dos años.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.72</span>
+      <span class="tag fix">Mejorado</span>
+      <h3>La ventana de la semana ya enseña la semana entera</h3>
+      <p>Dos cosas se le caían en silencio. Una entrega que llegó el lunes y
+         sigue sin su entrada desaparecía el martes: no está entre lo que se
+         espera, porque ya llegó, ni entre lo de hoy, porque no es de hoy. Y una
+         entrega que se esperaba el lunes y nadie marcó se iba igual, por la
+         misma razón: las dos listas sólo miraban de hoy en adelante.</p>
+      <p>Ahora todo lo que la semana espera o ya recibió está en la ventana. Lo
+         que se esperaba antes y nadie marcó va arriba, en ámbar; lo que llegó
+         sale con el día que llegó y dónde se puso. Ninguna de las dos cambia
+         cuándo se cierra la ventana: eso sigue pasando cuando no queda nada por
+         atender de lo que viene.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.71</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>"Nada llegando hoy", una mañana en la que llegaron tres cosas</h3>
+      <p>La ventana de la mañana listaba lo que seguía esperándose, y una
+         entrega marcada como llegada no bajaba en la lista: se salía de ella.
+         Así que la ventana podía decirte que hoy no llegaba nada con tres
+         entregas recibidas antes de las nueve.</p>
+      <p>Lo que llegó hoy tiene ahora su propio bloque, y cada cosa dice dónde
+         se puso. Si la entrada todavía no se hizo, no dice nada — y ese hueco
+         es justo lo que importa: es como se ve el material que está en el
+         almacén y del que las cantidades no saben nada.</p>
+      <p>El dónde se averigua emparejando la entrega con las entradas, porque
+         nada une las dos directamente. Y se equivoca hacia el lado de callar:
+         un estante equivocado diría que algo está registrado cuando no lo está,
+         que es precisamente el error que esto existe para cazar.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.70</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>La tarjeta del recordatorio ya se salda al hacer la entrada</h3>
+      <p>Al marcar una entrega como llegada, Acopio deja una tarjeta naranja en
+         la esquina: <em>llegó, falta su entrada</em>. Guardar esa entrada tenía
+         que quitar la tarjeta. En la pantalla de entrada de varios materiales
+         —que es la que abre cualquier entrada— no la quitaba. La tarjeta se
+         quedaba, y su botón volvía a abrir el mismo formulario relleno con la
+         misma entrega, así que el mismo ingreso se podía guardar otra vez, y
+         otra.</p>
+      <p>Eso es material que nunca llegó apareciendo en el almacén, y por eso
+         se hizo antes que todo lo demás. Si te quedaron entradas repetidas de
+         una tarjeta que pulsaste dos veces, borra las de más desde Movements:
+         las cantidades se corrigen solas en cuanto la fila desaparece.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.69</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Cinco cantidades se vuelven una barra</h3>
+      <p>In Warehouse, Used, Available, Wasted y Reserved eran cinco columnas
+         sueltas que el ojo tenía que sumar para entender un material. Ahora son
+         una barra: lo que puedes tomar, lo que está apartado, lo que salió a una
+         obra y lo que se dio de baja — cada trozo, su parte de todo lo que hoy
+         se tiene contado de ese material.</p>
+      <p>El número se queda delante, porque en un almacén la pregunta es "¿me
+         alcanza para cuarenta?", y una proporción no contesta eso. Pasa el ratón
+         por la barra para ver las cifras exactas, y quién reservó qué y para qué
+         obra.</p>
+      <p>Una cosa que conviene saber del total: es lo que el material tiene
+         contado <em>hoy</em>, no todo lo que llegó alguna vez. Una corrección de
+         conteo mueve existencias sin que llegue ni salga nada, así que
+         "recibido" dejaría de cuadrar la primera vez que alguien ajusta un
+         estante — y una barra cuyos trozos no llegan al final es peor que no
+         tener barra.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.68</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Elige una categoría y su columna se aparta</h3>
+      <p>Con el dashboard filtrado a una sola categoría, todas las filas de la
+         columna Category decían lo mismo. Eso no es información, es espacio
+         desperdiciado — así que la columna se aparta y la categoría se dice una
+         vez, en el título de la lista. En una pantalla estrecha son unos 130 píxeles menos de scroll
+         lateral.</p>
+      <p>Vuelve sola en cuanto eliges All Categories otra vez, y tu orden de
+         columnas no se toca. Si abres el editor de columnas ahí está, como
+         siempre: no se puede reordenar lo que no está en pantalla.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.67</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>La cesta del dashboard enseña los números de hoy</h3>
+      <p>Marcar materiales en el Stock Dashboard guardaba una copia de cada fila
+         tal como estaba en ese momento. Si otra persona guardaba un movimiento
+         mientras tanto, <em>Exit Selected</em> abría el formulario con las
+         cantidades viejas — la cesta se veía perfectamente bien y ya no era
+         verdad.</p>
+      <p>Ahora guarda sólo qué materiales elegiste y lee sus cifras actuales al
+         usarlos. Un material que deja de existir mientras tienes la cesta
+         abierta —fusionado con otro, renombrado— se cae de la cesta en vez de
+         aparecer con números de antes.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.66</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Devolver varios movimientos de una vez</h3>
+      <p>Pulsar <em>Put back</em> en una tanda de movimientos borrados parecía
+         haberlos olvidado: en cuanto terminaba el primero, todos los demás
+         botones se rearmaban como si nadie los hubiera tocado. El trabajo
+         siempre iba en marcha — la lista se redibujaba desde cero cada vez y
+         perdía lo que seguía en camino. Ahora las filas se quedan marcadas como
+         en camino hasta que de verdad vuelven.</p>
+      <p>Además van de una en una y piden una sola recarga al final, en vez de
+         una lectura completa del almacén por movimiento.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.66</span>
+      <span class="tag safe">Más seguro</span>
+      <h3>Las columnas añadidas después de instalar por fin tienen nombre</h3>
+      <p>Una instalación escribía los títulos de sus columnas una sola vez, al
+         montarse. Lo que llegó en versiones posteriores —las dos columnas de
+         costo, el ID de movimiento— se escribía por posición y su título se
+         quedaba en blanco. Una columna sin nombre parece basura sobrante, y
+         alguien acaba limpiándola.</p>
+      <p>Volver a pasar por Setup rellena ahora los nombres que falten. Un título
+         que ya tiene texto no se toca nunca, diga lo que diga: nada en la app
+         lee esos nombres, así que renombrar el tuyo sería un cambio que nadie
+         pidió.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.65</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Las burbujas de ayuda salen donde estás mirando</h3>
+      <p>Cada <em>i</em> pequeña de Ajustes ponía su explicación un par de
+         centímetros por debajo de su icono y la dibujaba detrás de los recuadros
+         de al lado. La causa era una línea: el título de cada recuadro se sube a
+         su línea de borde con un transform de CSS, y un transform pasa a ser en
+         silencio el marco de referencia de todo lo que se posicione dentro.</p>
+      <p>En vez de quitar esa subida, la burbuja vive ahora fuera de todos los
+         recuadros. Nada de la página la puede recortar, mover ni tapar — ni este
+         recuadro, ni el que se decore el año que viene. Además se acomoda sola
+         en ventanas bajas en vez de salirse por abajo, y se aparta al hacer
+         scroll.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.65</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Check my data recuerda lo que encontró</h3>
+      <p>Cerrar Ajustes y volver a abrirlo mostraba el recuadro vacío, como si el
+         barrido no se hubiera hecho nunca. Los hallazgos nunca se perdieron — el
+         panel simplemente se reconstruía sin dibujarlos. Ahora vuelven, sin
+         volver a escanear.</p>
+      <p>Y aplicar una tanda de arreglos pide una sola recarga al final en vez de
+         una por arreglo. Veinte arreglos eran veinte lecturas completas del
+         almacén.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.64</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>"Sistema ocupado" deja de parecer algo que rompiste tú</h3>
+      <p>Cuando dos personas guardan en el mismo momento, una espera. Eso es
+         normal y el sistema siempre lo ha manejado — pero se rendía a los trece
+         segundos y entonces escribía en pantalla su propia nota interna, con
+         marca y código de referencia incluidos. Ahora espera unas tres veces
+         más, en silencio, y el botón simplemente dice <em>Waiting…</em>.</p>
+      <p>Todas las pantallas que escriben pasan ahora por una sola cola, así que
+         tus propios dos clics ya no chocan entre sí. Seis de ellas no tenían
+         ninguna espera — entre ellas <em>Check my data</em>, donde aplicar un
+         arreglo fallaba sin más si alguien estaba guardando.</p>
+      <p>Y cuando algo de verdad no se puede hacer, el mensaje dice qué está mal
+         en vez de repetir "ocupado". Las marcas internas y la referencia de
+         soporte ya no aparecen en pantalla; la referencia se sigue guardando,
+         donde el soporte la puede buscar.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.64</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>El check de un movimiento se va cuando terminas con él</h3>
+      <p>Seleccionar un movimiento, editarlo y guardarlo dejaba la fila todavía
+         marcada, y cambiar de pestaña y volver también. La selección se limpia
+         ahora al guardar una edición y al salir de la pantalla — sólo sobrevive
+         mientras sigues en la misma página mirando la misma lista.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.63</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Un PO escrito 07-6329 se queda 07-6329</h3>
+      <p>Google Sheets interpreta lo que se le da. Al recibir el texto
+         <code>07-6329</code> decidió que eso significaba <em>julio del año
+         6329</em>, guardó una fecha y tiró la orden de compra. El número que
+         salía después era uno que nadie había escrito nunca.</p>
+      <p>Apareció al borrar un movimiento y devolverlo desde la papelera, que es
+         el camino que copia una fila de una hoja a otra. Pero la misma línea de
+         código está en seis sitios — guardar, editar, la papelera, restaurar y
+         las dos mitades de la rotación nocturna del archivo — más los resúmenes
+         de existencias y las listas del catálogo. Todos escriben ahora el texto
+         como texto.</p>
+      <p>Dos consecuencias que conviene saber. Una orden de compra escrita sólo
+         con dígitos se guarda a partir de ahora como texto, así que queda a la
+         izquierda de la celda en vez de a la derecha: un PO es una etiqueta, no
+         una cantidad. Y las filas escritas antes de esta versión no se reparan
+         con ella — un valor ya convertido perdió el original dentro de la
+         celda, y la única fuente honesta para recuperarlo son las otras filas
+         que todavía lo tienen.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.62</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Varias locaciones de una vez, y una vacía se puede borrar</h3>
+      <p>Montar un estante ya no son seis viajes por el mismo cuadro: escribe
+         <code>A1A, A1B, A1C</code> y salen tres. Las que ya existan se saltan y
+         se nombran, en vez de cancelar todo.</p>
+      <p>Una locación que no tiene nada guardado dentro se puede borrar del
+         todo — aparece una papelera al lado. Los movimientos anteriores no
+         cambian: cada uno se queda con el nombre de la locación con el que se
+         grabó, la misma regla que ya sigue el renombrar. Una locación que
+         todavía tiene material, tiene un candado encima, o está nombrada como
+         destino permitido de un candado, se queda sólo con el botón de
+         archivar, y al pasar el ratón dice cuál de las tres la retiene.</p>
+      <p>Por debajo: ahora la regla la aplica el servidor en vez de fiarse de la
+         pantalla. Esta pantalla siempre ha mandado la lista entera de vuelta,
+         así que una locación podía en principio desaparecer sin que nadie
+         comprobara si estaba vacía. Ahora se comprueba donde no se puede
+         saltar.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.61</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Movements cabe en la pantalla: cuatro columnas son dos</h3>
+      <p>El tipo va ahora encima de la fecha en una columna, y la categoría
+         encima del nombre del material en otra. La misma información, dos
+         columnas menos, y la tabla deja de irse por el lado de la pantalla —
+         sobre todo con el editor de columnas abierto, que antes lo ensanchaba
+         todo.</p>
+      <p>Lo que se pierde a cambio, y conviene saberlo: esas cuatro ya no se
+         pueden reordenar por separado, porque ya no son cuatro. El orden que
+         tuvieras puesto se conserva — la columna fusionada se queda con el
+         sitio que tenía la primera de su pareja.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.60</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Al desbloquear un material te dice quién lo cerró, y por qué</h3>
+      <p>Antes de desbloquear algo, el aviso enseña ahora quién lo cerró, cuándo,
+         la razón que dio con sus propias palabras, y a dónde se permitía
+         moverlo. Todo eso ya estaba guardado — sólo vivía en una ayuda flotante
+         sobre un icono pequeño, que se la enseña a quien pasa por al lado en vez
+         de a quien va a tomar la decisión.</p>
+      <p>También se arreglaron dos mensajes que no ayudaban: que te falte un
+         permiso ahora dice qué intentabas hacer, a quién pedírselo y dónde se
+         enciende; y la ventana de llegadas ya no dice "Good morning" a las ocho
+         de la tarde.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.59</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Marca los movimientos que quieras y actúa sobre ellos</h3>
+      <p>Movements tiene ahora casillas, igual que el Stock Dashboard, con una
+         casilla general en la cabecera que marca <b>lo que estás viendo</b> —
+         no el archivo entero. <b>Edit</b> y <b>Delete</b> están en la misma
+         línea que Columns, apagados hasta que marques algo. Edit trabaja sobre
+         un movimiento a la vez y lo dice; Delete sobre los que quieras, y todos
+         van a la papelera.</p>
+      <p><b>Ya no se mueve nada en esa fila.</b> Los botones están siempre, el
+         texto largo de las columnas se fue al ⓘ, y la columna de acciones dejó
+         de aparecer y desaparecer — esas tres cosas eran las que hacían saltar
+         la tabla cada vez que pulsabas algo. Cambiar un filtro suelta lo que
+         tenías marcado, así que nunca puedes borrar filas que ya no ves.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.58</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Borrar varios movimientos a la vez ya no dice "System busy"</h3>
+      <p>Pulsar cuatro papeleras seguidas le pedía al servidor cuatro
+         reconstrucciones completas del stock en el mismo momento, y las últimas
+         volvían ocupadas. Ahora salen de una en una, en el orden en que las
+         pulsaste: la fila que espera su turno se ve atenuada, se reintenta sola
+         si otra persona está guardando, y sólo habla si de verdad no pudo
+         pasar.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.58</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Vaciar la papelera, y Ajustes deja de volver a pedir lo que no cambió</h3>
+      <p>La papelera tiene ahora su propio botón <b>Empty the trash</b>, dentro
+         del cuadro que vacía. Es la única acción de la app que de verdad no se
+         puede deshacer, así que sigue siendo sólo de administrador aunque
+         borrar un movimiento ya no lo sea.</p>
+      <p>Y abrir Ajustes ya no vuelve a preguntarle al servidor por cosas que no
+         han cambiado desde la última vez — la lista de borrados, los IDs de
+         movimiento y la lista de usuarios se conservan hasta que algo las
+         cambia de verdad. Ajustes también tiene ahora un filo inferior, en vez
+         de terminar a ras del contenido.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.57</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Cambiar de tipo de movimiento dejaba media fila atrás</h3>
+      <p>Pasar de Exit a Transfer arrastraba la cantidad pero no el estante de
+         donde salía, dejando una fila que decía "? unknown rack" con un número
+         de verdad dentro — una fila que parece rellena y no lo está. El
+         marcador de arriba contaba también esa fila, así que podía enseñar más
+         unidades de las que existen.</p>
+      <p>Ahora el estante y la cantidad viajan juntos o no viaja ninguno. Si el
+         material está en un solo estante, se rellenan los dos; si está
+         repartido en varios, ninguno, porque la app no sabe a qué balda fuiste.
+         La lista de estantes de origen también dejó de ofrecer todos los sitios
+         del edificio y ahora enseña sólo los estantes donde ese material está
+         de verdad, con cuánto hay en cada uno.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.56</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>El permiso de "puede borrar movimientos" nunca funcionó de verdad</h3>
+      <p>Darle a un rol de almacén permiso para editar movimientos debía
+         dejarle corregir <i>o borrar</i> un movimiento ya guardado — lo dice el
+         propio interruptor. Corregir funcionaba; borrar seguía siendo sólo de
+         administrador por debajo, así que el interruptor se veía encendido, el
+         botón de borrar aparecía, y al pulsarlo decía "Admin only." Ya
+         funciona, y el permiso sigue sin abrir las operaciones masivas que
+         reescriben la historia entera de un material.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.56</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>"Load Older History" hacía desaparecer los botones de Entry y Exit</h3>
+      <p>Mientras un botón trabaja, los de al lado se esconden para que una
+         etiqueta que crece no se les monte encima. "Load Older History" termina
+         con otro nombre, y cambiaba ese nombre sin avisar a sus vecinos de que
+         había terminado — así que <b>+ Entry (IN)</b> y <b>− Exit (OUT)</b> se
+         quedaban escondidos hasta recargar la página. Arreglado en todos los
+         sitios donde podía pasar, no sólo donde se veía.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.55</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Borrar un movimiento se puede deshacer</h3>
+      <p>Un movimiento borrado va ahora a la papelera en vez de destruirse. En
+         Ajustes → System se ve lo que se ha borrado, quién lo borró y cuándo, y
+         se puede devolver cualquiera de ellos tal cual estaba — misma cantidad,
+         mismo estante, misma fecha — con los totales de stock recalculados en
+         el momento.</p>
+      <p><b>Y la fila desaparece de la pantalla en cuanto se borra</b>, no
+         después de la siguiente recarga completa. El aviso ya no advierte de
+         que esto no se puede deshacer, porque ahora sí se puede.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.55</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Borrar podía llevarse un movimiento distinto del que elegiste</h3>
+      <p>Los movimientos se identificaban por su posición en la lista, y las
+         posiciones se mueven: al borrar uno, todos los de abajo suben. Así que
+         si otra persona borraba algo mientras tu pantalla estaba abierta, el
+         que elegías y el que se iba podían ser dos movimientos distintos — sin
+         error, sin aviso, y sin nada en pantalla que hiciera sospechar que algo
+         había salido mal.</p>
+      <p>Ahora cada movimiento lleva un identificador propio, y borrar señala ese
+         identificador en vez de una posición. No puede equivocarse. Que dos
+         personas borren el mismo movimiento también se trata con honestidad: a
+         la segunda se le dice quién lo borró y cuándo, en vez de decirle que
+         funcionó.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.54</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Ya no aparece "GENERIC" donde va el nombre de un trabajo</h3>
+      <p>El material que entraba al almacén sin asignar a ningún trabajo se
+         anotaba como si perteneciera a uno llamado GENERIC. Era la palabra que
+         usaba la app para decir "sin asignar", y todas las pantallas ya sabían
+         ignorarla — pero en la hoja se leía exactamente como el nombre de un
+         cliente, y eso es algo que un registro de movimientos no debe
+         inventarse nunca.</p>
+      <p>Una entrada sin trabajo ya no anota ningún trabajo. Las filas escritas
+         antes de esta versión siguen diciendo GENERIC y siguen significando lo
+         mismo, así que nada cambia por debajo; se pueden limpiar cuando
+         quieras.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.46 – v11.53</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Todos ven el mismo almacén</h3>
+      <p>Cuando dos o tres personas trabajan en la app al mismo tiempo, el cambio
+         que hace una llega ahora a las demás por su cuenta, en unos veinte
+         segundos — una entrada, una salida, un traspaso, un movimiento borrado.
+         Nadie tiene que darle a actualizar, y no parpadea nada ni se
+         interrumpe lo que estabas escribiendo.</p>
+      <p><b>Guardar en el mismo momento que otra persona ya no falla.</b> La app
+         espera su turno y lo vuelve a intentar sola, hasta cuatro veces,
+         enseñando "Waiting…" mientras tanto. Lo que antes era un error que
+         había que repetir es ahora una pausa corta.</p>
+      <p><b>Sacar más de lo que hay</b> ahora corrige el número en pantalla y
+         explica qué pasó, en vez de sólo negarse. Y si alguien se llevó lo
+         último mientras tenías el formulario abierto, el formulario te lo dice
+         en ese momento, no al darle a guardar.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.52</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Un movimiento borrado podía reaparecer en la pantalla de otro</h3>
+      <p>Cuatro movimientos borrados en una cuenta seguían viéndose en otra doce
+         minutos después, con las dos pantallas conectadas y sin nada raro a la
+         vista. Dos actualizaciones estaban corriendo una carrera, y cuando la
+         más lenta se había pedido <i>antes</i> del borrado y llegaba
+         <i>después</i>, pintaba el almacén viejo encima del nuevo.</p>
+      <p>No fallaba nada, y por eso no avisaba nada: las dos respuestas eran
+         correctas, sólo llegaban en el orden equivocado. Una respuesta a la que
+         ya adelantaron se descarta ahora en vez de dibujarse.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.51</span>
+      <span class="tag fix">Arreglado</span>
+      <h3>Avisos fuera del borde del teléfono, y botones montados uno encima de otro</h3>
+      <p>En el teléfono, los avisos de confirmación salían fuera de la parte
+         visible — o sea que la app contestaba donde nadie podía leerlo. Y un
+         botón que cambiaba de texto a mitad de la acción se hacía tan ancho que
+         se montaba sobre el de al lado. Las dos cosas están arregladas, y que
+         dos personas desbloqueen el mismo material a la vez ya no deja a una de
+         ellas con un error por un trabajo que ya estaba hecho.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.42 – v11.45</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Marca una entrega como llegada y su entrada ya viene llena</h3>
+      <p>La app ya sabía qué llegaba, cuánto, de qué proveedor y con qué PO.
+         Marcarla como llegada significaba volver a teclear todo eso en la
+         pantalla de entrada — que es justo donde empiezan a diferir lo que se
+         esperaba y lo que quedó registrado.</p>
+      <p>Ahora marcarla ofrece registrar la entrada, y la abre con todo lo que la
+         entrega ya sabía. <b>El estante se deja vacío a propósito</b>: la app
+         sabe cuánto llegó, no dónde lo pusieron, y un estante de relleno sería
+         inventario que dice estar en un sitio donde nadie miró.</p>
+      <p>Si no la haces en ese momento, una tarjeta espera en la esquina de la
+         pantalla hasta que la hagas. Se queda ahí aunque abras la entrada y la
+         cierres sin guardar — sólo la borra una entrada guardada.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.44</span>
+      <span class="tag fix">Corregido</span>
+      <h3>El encabezado se quedaba arriba en el teléfono y se iba en la computadora</h3>
+      <p>Las pestañas y el menú de la cuenta tienen que quedarse en lo alto de la
+         pantalla. En cualquier pantalla lo bastante ancha para mostrar el
+         encabezado compacto —o sea, en toda computadora— se iban con el scroll.
+         Dos reglas se peleaban por ello y ganaba la equivocada, justo en las
+         pantallas que usa casi todo el mundo.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.43</span>
+      <span class="tag fix">Corregido</span>
+      <h3>El aviso de la mañana nunca reconocía que ya lo habías atendido</h3>
+      <p>La lista de llegadas de la semana que te recibe por la mañana se quedaba
+         en pantalla enseñando entregas que acababas de marcar como llegadas.
+         Decidía si una entrega seguía esperando comparándola con un estado que
+         la app nunca ha producido, así que nada contaba como hecho.</p>
+      <p>Ahora se cierra sola cuando se atiende la última, y sigue enseñando las
+         demás cuando quedan más.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.41</span>
+      <span class="tag new">Nuevo</span>
+      <h3>La semana de entregas, dispuesta como una semana</h3>
+      <p>Las entregas esperadas eran una lista. Ahora son siete tarjetas —cuatro
+         arriba y tres abajo— todas del mismo tamaño, como se ve una semana en
+         un calendario. Un día cargado hace scroll dentro de su propia tarjeta en
+         vez de estirarse y descuadrar a los demás, así que la forma de la semana
+         se sigue leyendo por desigual que sea.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.40</span>
+      <span class="tag safe">Términos</span>
+      <h3>Qué pasa si dejas de pagar, escrito con claridad</h3>
+      <p>Los Términos dicen ahora exactamente qué pasa cuando una suscripción se
+         vence y cuánto cuesta volver, en vez de dejarlo a decidir caso por caso.
+         Las devoluciones se declaran con un solo plazo —de 5 a 10 días
+         hábiles— en todos los documentos que las mencionan.</p>
+      <p>Lo que no ha cambiado, y vale la pena repetir: <b>tus datos son tuyos y
+         viven en tu propia hoja de Google.</b> Dejar de pagar no te quita tu
+         información ni la app que tienes instalada. Se pierde el soporte y las
+         actualizaciones, nada más.</p>
+    </div>
+      <div class="entry">
+      <span class="ver">v11.39</span>
+      <span class="tag fix">Corregido</span>
+      <h3>Ayudas que no se podían terminar de leer</h3>
+      <p>Las explicaciones pequeñas de la ⓘ se cortaban en el borde de la
+         ventana, y cerca del pie de la pantalla se abrían hacia abajo, hacia la
+         nada. Ahora se quedan dentro de la ventana estén donde estén, y se
+         voltean por encima del icono cuando no hay sitio debajo.</p>
+      <p>Ajustes también creció: en una pantalla grande usa el espacio que tiene
+         en vez de quedarse del ancho de una laptop chica.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.37 – v11.38</span>
+      <span class="tag fix">Corregido</span>
+      <h3>Abrir Ajustes dejó de parecer que la app se recargaba</h3>
+      <p>Cada vez que abrías Ajustes —y cada vez que cambiabas de pestaña dentro—
+         la página entera se ponía en blanco y se volvía a construir. Ahora
+         enseña lo que ya sabe de inmediato y reemplaza en silencio sólo lo que
+         de verdad cambió. Si no cambió nada, no se mueve nada. Y si estás
+         escribiendo en un campo cuando llegan datos nuevos, espera a que
+         termines en vez de redibujar bajo tus manos.</p>
+      <p>Cada área de Ajustes va ahora dentro de un recuadro con su nombre, así
+         se lee como cosas separadas y no como una columna larga de controles.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.35 – v11.36</span>
+      <span class="tag new">Nuevo</span>
+      <h3>Un reporte diario de lo que se movió, cada tarde</h3>
+      <p>A la hora que elijas, la app manda por correo un resumen del día: qué
+         entró, qué salió, qué se corrigió y quién lo hizo. Si no se movió nada
+         lo dice en una línea en vez de mandar una tabla vacía — un día tranquilo
+         también es información.</p>
+      <p>La hora y quién más lo recibe se eligen en <b>Settings → System</b>. Los
+         costos nunca van dentro, sea cual sea el rol de quien lo recibe: un
+         reporte reenviado fuera de la empresa no debería ser la forma en que se
+         escapa el precio de un proveedor.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.33 – v11.34</span>
+      <span class="tag fix">Corregido</span>
+      <h3>Dos formas de perder trabajo, las dos cerradas</h3>
+      <p>Seleccionar filas y abrir un formulario soltaba la selección, así que
+         pulsar Guardar no registraba nada y decía que había funcionado. La
+         selección sobrevive ahora al formulario y sólo se suelta al cerrar la
+         ventana.</p>
+      <p>Y mientras un botón está trabajando, los de al lado se apartan en vez de
+         seguir pulsables. Un segundo clic en un botón vecino a media guardada
+         era una manera real de registrar algo dos veces.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.33</span>
+      <span class="tag safe">Seguridad</span>
+      <h3>Un respaldo nocturno que fallaba en silencio ahora lo dice</h3>
+      <p>Si la instalación del respaldo automático fallaba durante la
+         instalación, no se escribía nada y no se enseñaba nada — la app
+         simplemente no tenía respaldos y nadie lo sabía. El fallo ahora queda
+         registrado, y <b>Settings → System</b> revisa las cuatro tareas
+         automáticas y te dice cuáles están instaladas de verdad.</p>
+    </div>
+
+</section>
+
+  <section class="month">
     <h2>Agosto 2026</h2>
     <p class="sub">Una auditoría completa de la app, y las primeras
        correcciones que salieron de ella: la fecha de la tarde, la cantidad que

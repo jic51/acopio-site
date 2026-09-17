@@ -86,6 +86,1126 @@
 <main class="wrap">
 
   <section class="month">
+    <h2>September 2026</h2>
+    <p class="sub">Labels you print as you receive, on 4×6 thermal paper.
+       Deliveries laid out like a week instead of a list, and marking one arrived
+       now fills in its entry for you. A report that arrives on its own every
+       evening. Manage Users rebuilt to read like the movements table. And two
+       long runs of work on the same two questions: when several people use the
+       app at once, does everyone see the same warehouse — and when you press
+       save, does the screen change now or in eleven seconds? Deleting thirteen
+       movements went from about two and a half minutes to fifty-five seconds
+       along the way.</p>
+
+    <div class="entry">
+      <span class="ver">v12.00</span>
+      <span class="tag fix">Fix</span>
+      <h3>The screen changes the moment the save lands</h3>
+      <p>Marking a delivery arrived took about eleven seconds to show up, long
+         after the save had already gone through. Two things were wrong in the
+         same line: nothing updated the copy the screen draws from, and the
+         refresh that followed read from the cache — so it painted the old
+         answer a second time and only corrected itself once a full reload
+         finished.</p>
+      <p>Now the screen updates as the save lands. Nothing is drawn before the
+         server agrees; it is drawn the instant it does. The same fix covers
+         attaching a document to a movement and editing a movement's details.
+         One exception worth knowing: editing a quantity updates that row
+         immediately, but the material's total still waits for the refresh —
+         only the server can work that out.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.99</span>
+      <span class="tag fix">Fix</span>
+      <h3>The corner pile counts what it holds, and opens on the newest card</h3>
+      <p>The badge on the pile was counting two of the three kinds of card it
+         holds. Deliveries that arrived without their entry recorded were left
+         out, so the badge could read 4 with six cards underneath — and it
+         disagreed with the bell in the top bar, which had been counting all
+         three all along.</p>
+      <p>The pile also opened at the top, showing the oldest card, while the
+         newest sits at the bottom. It now opens at the bottom and stays there
+         while it fans out. Scroll up and it lets go — reading the older ones is
+         what the scrollbar is for.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.98</span>
+      <span class="tag new">New</span>
+      <h3>Manage Users works like the movements table</h3>
+      <p>Seven columns became four: the name sits over the email, the role over
+         the date it was added. The Add User form no longer takes up the top of
+         the window — it is a button that opens it when you need it.</p>
+      <p>Edit and Deactivate moved off the rows and onto a bar, and switch on
+         when you tick somebody. Edit needs exactly one; deactivating works on
+         several at once. Your own row cannot be ticked, which is the same rule
+         the server already enforced, said before you press instead of after.</p>
+      <p>And users can be let back in from the app. Until now the window told
+         you to go and edit the spreadsheet by hand; the button reads Reactivate
+         when everything you ticked is inactive, and switches off on a mixed
+         selection rather than guessing which half you meant.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.98</span>
+      <span class="tag new">New</span>
+      <h3>Two smaller things</h3>
+      <p>The wall of orange cards now stops at two thirds of the window instead
+         of growing over whatever you were looking at. If there are more cards
+         than fit, the pile scrolls inside its own space — none is hidden.</p>
+      <p>And in the warehouse map, tapping a material in a rack puts its name in
+         the header while its options are open. On a phone your finger covers
+         the row, and the header was the only place left to tell you what you
+         are about to press Exit on.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.97</span>
+      <span class="tag fix">Fixed</span>
+      <h3>The last movement of a batch reaches the other account</h3>
+      <p>Deleting thirteen movements from one account, the last one never
+         disappeared from the other. Not slowly — never. It stayed on screen for
+         as long as anyone cared to wait.</p>
+      <p>The app asks the server "has anything changed?" by comparing a stamp.
+         The load that fetches your data was reading the movements first and
+         that stamp last, so a deletion landing between those two reads left a
+         browser holding the old list together with the new stamp. From then on
+         every check said "nothing changed" and it never asked again.</p>
+      <p>The stamp is now read before the data. When the same race happens the
+         browser ends up with an old stamp instead, notices the difference on
+         its next check, and asks once more. The cost is one extra fetch; what
+         it replaces is a screen that was wrong for good.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.96</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Deleting several at once stops being slow</h3>
+      <p>An earlier version made a run of changes rebuild the stock tables twice
+         instead of once per change. It worked — for saves. Deletes have had
+         their own queue since a while back and never went through that code, so
+         deleting thirteen movements still paid for thirteen full rebuilds.</p>
+      <p>Timed off a recording: three done at 1:20, six at 2:00, ten at 2:40.
+         About twelve seconds each. That is also most of what looked like "the
+         other account is slow to update" — the other window cannot show the
+         truth until the work is finished, and the work was taking two and a
+         half minutes.</p>
+      <p>Thirteen deletes now cost two rebuilds. Two and not one, and it is
+         worth saying why: the first cannot wait, because when it leaves the
+         other twelve have not been queued yet, and the last refreshes on its
+         own because nothing follows it.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.95</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Ticked rows stop clearing themselves</h3>
+      <p>Ticking several movements to delete them, the ticks would sometimes all
+         vanish at once. The table was folding back to its first page every time
+         fresh data arrived — which, with two people working, is every twenty
+         seconds — so anything ticked past the first page stopped being drawn.</p>
+      <p>The half that did not show was the one worth fixing: the selection
+         itself survived, so Delete stayed armed on rows that were no longer on
+         screen. Ticking eight, seeing none, and having Delete take eight is
+         worse than losing the selection, because losing it is at least
+         visible.</p>
+      <p>Fresh data no longer changes which page you are on — that still happens
+         when you switch screens or change a filter, where it means something.
+         And the rule is now simple: what is ticked is what is on screen. A row
+         that leaves the view, for any reason, leaves the selection with it.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.95</span>
+      <span class="tag new">New</span>
+      <h3>The name card is always the same size</h3>
+      <p>Hovering a name in the User column opened a card whose width followed
+         the length of the email — and because a wider card has to shift further
+         to stay inside the window, it also appeared in a different place each
+         time. One cause, both complaints.</p>
+      <p>Fixed width now, with the name and email on one line. Anything too long
+         is shortened and can still be read in full by hovering it.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.94</span>
+      <span class="tag new">New</span>
+      <h3>Everything that disappears is seen to disappear</h3>
+      <p>A deleted movement has shrunk away instead of blinking out since an
+         earlier version, and so has one put back from the trash. Everywhere
+         else a row still vanished between one frame and the next, which reads
+         as a glitch rather than as something that happened.</p>
+      <p>Now the same thing happens when emptying the trash, merging locations,
+         catalog values, duplicates or materials, deleting a location, and
+         removing a catalog value or a contact. On a merge you see exactly which
+         rows left, which is the part that was hard to follow when three go at
+         once.</p>
+      <p>Anyone whose system asks for reduced motion gets none of it, and the
+         work still happens immediately.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.93</span>
+      <span class="tag new">New</span>
+      <h3>The notices that stayed are shorter now</h3>
+      <p>Ten notices confirm something you just pressed yourself — saving a
+         movement, editing one, deleting an expected delivery, loading older
+         history. Those stay, because the confirmation is worth having, but they
+         now clear in two seconds instead of three and a half. Long enough to
+         read five words; short enough that three in a row stop stacking over
+         the table.</p>
+      <p>Everything else keeps its timing. Errors and warnings have to be read.
+         So do the two notices that look like confirmations and are not: the one
+         that tells you what is still missing after starting an entry from a
+         delivery, and the one that explains why a count adjustment changed
+         nothing.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.92</span>
+      <span class="tag new">New</span>
+      <h3>Fewer notices, and a progress line where they were piling up</h3>
+      <p>Ten notices were removed outright — merging things, saving the company
+         details, adding or removing a contact, renaming columns. In every one
+         of those the screen already shows the result the moment it happens, so
+         the notice was repeating something you were looking at.</p>
+      <p>Five more moved to the progress line: emptying the trash, importing a
+         file, uploading a rack photo, adding several suppliers or projects at
+         once, and marking several deliveries as arrived. These are the ones
+         that take a while or repeat, and the line now spins while they run
+         instead of leaving the screen still until the end.</p>
+      <p>Two that were on the list to remove were kept, and it is worth saying
+         why: saving the warehouse map no longer says "saved", but it still
+         names any location that was <em>deleted</em> — that is the one thing on
+         that screen you cannot undo by dragging back. And a rack drawer that
+         empties out still says so, because it closes itself, and closing on its
+         own without a word looks like a fault.</p>
+      <p>Errors and warnings were not touched. Those you have to read.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.92</span>
+      <span class="tag new">New</span>
+      <h3>The Email button opens Gmail</h3>
+      <p>It used to hand off to whatever mail app the computer is set to open.
+         That is a per-computer setting, and one wrong click on "Always" leaves
+         the button stuck on an app you never use, with no way back from inside
+         the app.</p>
+      <p>Now it opens a new Gmail message with the person already filled in —
+         the same as the Meet and Schedule buttons beside it, which already went
+         straight to Google. If your desktop mail app is linked to Gmail, the
+         message still lands in the same inbox.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.91</span>
+      <span class="tag new">New</span>
+      <h3>Putting movements back counts them too</h3>
+      <p>Restoring five movements from the trash used to raise five notices over
+         the Settings window you were working in — and the rows were already
+         leaving the list on their own, so the notices said nothing you could
+         not see.</p>
+      <p>Now the same progress line counts them and ends with how many went
+         back. It also sits on the left instead of the right, where it was
+         covering the cards on a wide screen, stays six seconds instead of
+         under three, and closes on a click.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.90</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Deleted rows stop coming back</h3>
+      <p>Deleting several movements at once looked wrong, and in one case was
+         wrong. The rows left the screen right away, as they should. Then, a few
+         seconds later, they came back — one by one, greyed out, to leave all
+         over again. Some came back not greyed out at all, and could be selected
+         and deleted a second time, which then failed with "already deleted".</p>
+      <p>Nothing was ever deleted twice: the app recognises each movement by its
+         own name and refuses the second attempt, saying who deleted it and
+         when. But the screen was showing rows that no longer existed, which is
+         its own kind of wrong.</p>
+      <p>The cause was a refresh that arrived mid-run carrying a picture of the
+         warehouse taken before the run finished. A refresh no longer paints
+         while a deletion is still in the air.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.90</span>
+      <span class="tag new">New</span>
+      <h3>One progress line instead of a stack of notices</h3>
+      <p>Deleting thirteen movements used to put thirteen notices on the screen,
+         one on top of another, over the very table you were looking at — and
+         none of them said the one thing worth knowing while you wait: how much
+         is left.</p>
+      <p>Now a single line in the corner counts them off — "4 of 13" — and ends
+         in a green check. A deletion that fails still gets its own notice,
+         because that one has to be read.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.89</span>
+      <span class="tag fix">Fixed</span>
+      <h3>A run of changes stops rebuilding everything, every time</h3>
+      <p>After each change — deleting a movement, applying a "Check my data"
+         fix, merging two things — the app rebuilt its stock tables from
+         scratch. That is about nine round trips to the spreadsheet, and doing
+         ten changes in a row paid it ten times: roughly forty seconds of work
+         that only needed a few.</p>
+      <p>Now a run of changes rebuilds twice instead of ten times — once at the
+         start, because nothing is behind it yet, and once at the end. A single
+         change on its own behaves exactly as before.</p>
+      <p>Nothing can be oversold because of this: whether there is enough stock
+         to take something out is checked against the movement history, not
+         against the tables being deferred. And if a run is cut short — the
+         window closes, the connection drops — the next person to open the app
+         brings the tables up to date before showing any number.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.88</span>
+      <span class="tag safe">Safer</span>
+      <h3>The checks stop breaking for reasons that are not bugs</h3>
+      <p>Nothing in the app changes. This is about the checks that run before
+         anything reaches you.</p>
+      <p>Six times in one week they went red without anything being wrong: each
+         check carried its own hand-written list of which pieces of the app it
+         needed, and those lists went stale every time a piece grew a new
+         dependency. They now work it out from the source instead. A check that
+         goes red on its own teaches people to stop reading the checks, and the
+         day a real one goes red it gets the same shrug.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.87</span>
+      <span class="tag fix">Fixed</span>
+      <h3>The apostrophe again — this time when editing</h3>
+      <p>The previous version fixed saving a movement. Editing one still added
+         an apostrophe, and only to the fields you actually changed, which is
+         why creating an entry looked fine and editing one did not.</p>
+      <p>It matters more on this path than on the other: when the category or
+         name changes, the material's identity is rebuilt from them, so an
+         apostrophe there would have made the row stop matching its own
+         material.</p>
+      <p>Third time the same mistake came out through a different door, so it
+         is no longer looked for by hand — a check now counts them. The rule it
+         enforces is one line: a function that writes the row through the text
+         guard does not also guard its own values. Quote once, at the edge.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.86</span>
+      <span class="tag fix">Fixed</span>
+      <h3>An apostrophe in front of everything just saved</h3>
+      <p>Movements saved on the previous version stored an apostrophe in front
+         of every text value — <code>'WINDOW</code>, <code>'UNIT</code>,
+         <code>'16598</code>. Two protections were being applied where one was
+         needed, and the spreadsheet kept the second one inside the data.</p>
+      <p>It was not only ugly: a material's identity is built from its category
+         and name, so a row saved that way did not match the same material saved
+         before it, and its stock would have split in two. Saving is corrected,
+         and the check that exists for this now runs the save end to end instead
+         of reading the code — which is exactly why it had let this through.</p>
+      <p>Also: the exit window no longer opens just to say no. Choosing a
+         material that is locked now answers with the reason before the form,
+         instead of opening it and showing "locked" in small print. And the
+         supplier on a delivery card is now a badge, in one colour for every
+         supplier, instead of text after a dash.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.85</span>
+      <span class="tag safe">Safer</span>
+      <h3>Two people at once can no longer overwrite each other's deliveries</h3>
+      <p>Editing an expected delivery and deleting one were not coordinated. If
+         somebody deleted a delivery while you had another one open, your save
+         could land on a different delivery than the one you edited — and the
+         colleague whose delivery you overwrote would never find out.</p>
+      <p>The three delivery actions now take turns properly, and the screens
+         wait their turn and retry instead of showing an error. The same lesson
+         was applied to movements in September; this is where it had not been
+         wired in.</p>
+      <p>Separately, removing a user through the old admin path deleted a whole
+         row of the settings sheet — where each column is a different list — so
+         it could have taken a project, a category, a supplier and a location
+         with it. No button in the app reaches that path, so it never happened;
+         it now clears just the user's own two cells.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.84</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Error messages never show the app's own wiring</h3>
+      <p>When something goes wrong the server sometimes marks the message for
+         the app to read — text like <code>SYSTEM_BUSY|</code> in front of the
+         real sentence. Most screens stripped that marker before showing it.
+         Six did not, including the entry form, whose twin the exit form
+         already did.</p>
+      <p>None of them could show it yet — the actions those screens call do not
+         produce marked errors today — but the mismatch was the trap, not the
+         symptom. All fifteen error messages now go through the same filter, and
+         a new one written without it fails the checks on purpose, so the
+         decision happens while somebody is looking.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.83</span>
+      <span class="tag safe">Safer</span>
+      <h3>The duplicate-entry bug now has a test that would have caught it</h3>
+      <p>In September a delivery card could be settled and come back, letting
+         the same movement be saved over and over. It was fixed in v11.70 — but
+         there had been a test passing over that bug the whole time, because it
+         checked that the fix was WRITTEN rather than that it RAN.</p>
+      <p>That save path is now exercised for real: the entry form runs against
+         a stand-in browser and server, and the checks are about what actually
+         happened — the card is settled only after the server accepted the
+         movement, a failed save settles nothing, and the label window comes
+         before "did these arrive too?" instead of both at once. Nothing about
+         how the app behaves changes; what changes is that this class of bug
+         cannot pass unnoticed again.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.82</span>
+      <span class="tag new">New</span>
+      <h3>Deliveries now say who they are coming from</h3>
+      <p>Every delivery card — in the morning window and on the week's day
+         cards — now reads <em>material - supplier</em> on one line. When the
+         material name is too long it shortens with an ellipsis so the supplier
+         still fits beside it rather than dropping to a second line, and a very
+         long supplier name shortens the same way. Whichever one is actually
+         too long is the one that gives way; a short supplier is never clipped
+         to make room. Hovering either one shows it in full, because
+         shortening on screen must never mean losing what was typed. A delivery
+         with no supplier recorded simply shows the material, with no dangling
+         dash.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.81</span>
+      <span class="tag safe">Safer</span>
+      <h3>Renaming one material can no longer erase another</h3>
+      <p>Renaming, merging or re-categorising anything rewrites a whole column
+         of the archive — including every row you did not touch. On the way
+         through, values that look like a date to a spreadsheet were being
+         converted into one, and a material called "07-6329" would quietly stop
+         counting toward stock. Seven everyday actions did this, and the
+         material that vanished did not have to be the one you were editing.</p>
+      <p>Text now stays text through those rewrites, and through the packs
+         sheet, the movement-id repair and the diagnostics dump, which had the
+         same gap.</p>
+      <p>Underneath, two guards became one. The older one only protected
+         against spreadsheet formulas, not against dates, and having both meant
+         every new piece of code was a choice between the strong one and the
+         weak one — forty-six places had picked the weak one. The weak one is
+         gone. One visible consequence: a purchase order typed as "12345" is
+         now stored as text, so it sits on the left of the cell rather than the
+         right. A PO is a label, not a quantity.</p>
+      <p>This protects what gets written from now on. Values already converted
+         in the past cannot be recovered from the cell — only from other rows
+         that still hold them.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.80</span>
+      <span class="tag fix">Fixed</span>
+      <h3>A locked material now says so where you are looking</h3>
+      <p>Locking a material to a rack held it, but the padlock only showed in
+         two places: the rack drawer and the exit form. Both of them are places
+         you reach after you have already decided to move the material. On the
+         stock table — the screen most people have open — there was nothing.</p>
+      <p>Now the Location column carries a padlock, and hovering it says which
+         rack, who locked it, why, and what you can still do with it: whether it
+         can be moved to other racks or only to particular ones. A lock on a
+         rack the material has since left is not shown, because it no longer
+         stops anything.</p>
+      <p>And locking or unlocking now reaches everyone else with the app open,
+         in seconds, instead of waiting for them to reload. Previously a
+         colleague could try to take out material that had been locked minutes
+         earlier and only find out from the error.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.79</span>
+      <span class="tag new">New</span>
+      <h3>Labels, printed as you receive</h3>
+      <p>Save an entry and Acopio offers to print a 4"×6" label for what you
+         just took in — material, quantity, rack and PO, each one big enough to
+         read from across the warehouse, with space left for a QR or barcode.</p>
+      <p>One label per rack, not per material: if forty-four units went to two
+         racks, that is two bundles in two places and each one gets its own
+         count. Tick the ones that need a label — not everything does — and set
+         how many copies of each; one is the default.</p>
+      <p>Nothing else prints. The app disappears for the print and only the
+         labels go to the roll.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.78</span>
+      <span class="tag new">New</span>
+      <h3>"Did these arrive too?"</h3>
+      <p>A truck turns up with four things on it and you have the paperwork in
+         your hand, so you enter all four at once. Until now only the one
+         delivery you came in through stopped being "expected" — the other three
+         sat there waiting for material that was already on your shelves.</p>
+      <p>Now, once the entry is saved, Acopio shows the expected deliveries that
+         match what you just entered and offers to mark them arrived. Everything
+         is ticked; untick anything that has not actually turned up.</p>
+      <p>It asks rather than deciding, and that is deliberate. Nothing links a
+         delivery to a movement, so the match is worked out from the material,
+         the date and the PO — and marking a delivery received while it is still
+         on the road means you stop waiting for something that never came. A
+         tickbox costs a second.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.77</span>
+      <span class="tag fix">Fixed</span>
+      <h3>The bell said 3 and showed 2 — and other screens now notice</h3>
+      <p>The notification count included the orange "arrived, entry not made"
+         reminders. The list you get when you open the bell did not, so the
+         number and the list disagreed. They are in the list now, at the top:
+         material sitting in the warehouse that your stock figures know nothing
+         about is the most urgent thing that list can hold.</p>
+      <p>And marking a delivery arrived now reaches other people. Expected
+         deliveries were left out of the signal that tells open sessions
+         something changed — so a second window, or a colleague, kept showing
+         the delivery as pending until they reloaded by hand.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.76</span>
+      <span class="tag fix">Fixed</span>
+      <h3>A PO on an expected delivery stayed empty</h3>
+      <p>Type <code>08-4885</code> into an expected delivery's PO field, save,
+         reopen it, and the field was blank. Type it again, same thing.
+         Spreadsheets read <code>08-4885</code> as a date — month 08, year 4885
+         — and store that instead of your text; reading it back, the app
+         refused to show a garbled date where a PO belongs, so it showed
+         nothing.</p>
+      <p>Expected deliveries now store what you typed, exactly as movements
+         already did. Existing rows whose PO was eaten cannot be recovered from
+         the cell — the text is not in there any more — so those need typing in
+         once more, and this time they stay.</p>
+      <p>Also: the week's window now updates while you work in it. Marking a
+         delivery arrived from the popup and recording its entry left the popup
+         showing the old state until you closed and reopened it — it only
+         refreshed if the Incoming tab happened to be the one behind it.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.75</span>
+      <span class="tag new">New</span>
+      <h3>A deleted row leaves the moment you press the bin</h3>
+      <p>It used to sit there, dimmed, until the server came back — which on a
+         real warehouse file is about four seconds, because every delete
+         rebuilds your stock totals from the whole archive. Now the row shrinks
+         away as you press, and the rows below it move up. If the server
+         refuses, the row comes back to exactly where it was and says so.</p>
+      <p>The shrinking is the part that matters. A row that only fades leaves
+         its gap behind, and the rows below jump when the gap finally closes.
+         Shrinking, they rise — and that movement is what reads as "this is
+         happening" instead of as a flicker.</p>
+      <p>Restoring from the trash uses the same motion. The other places a row
+         disappears — merges, emptying the trash, removing a catalogue value —
+         are next; several of them redraw their whole list today, and a list
+         that redraws cannot show a row leaving.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.74</span>
+      <span class="tag fix">Improved</span>
+      <h3>One fewer wait on every save</h3>
+      <p>Every save and every delete rebuilds your stock totals, and part of
+         that was reading the older-movements sheet even when it was empty. On
+         a real warehouse file that read cost about half a second of doing
+         nothing, every time.</p>
+      <p>It is skipped when there is nothing there. Installations whose older
+         movements sheet has grown are unaffected — it still gets read, because
+         those rows count.</p>
+      <p>The measurement behind this is worth knowing if you ever wonder why
+         Acopio pauses: reading twenty-four thousand cells costs the same as
+         reading none. What a spreadsheet charges for is the trip, not the
+         data.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.73</span>
+      <span class="tag new">New</span>
+      <h3>The User column is a person now</h3>
+      <p>It used to be an email address. It now shows the person's name, with
+         the address in grey underneath. Hover it and a small card offers to
+         email them, open a Google Meet, or put a calendar invite in front of
+         them with their address already filled in.</p>
+      <p>Anyone whose name is not filled in under Manage Users still shows as
+         an address — the same as before. Names are never guessed from the
+         address itself: "j.castro@" is not proof that anybody is called
+         J Castro, and a made-up name on the record of who moved stock is worse
+         than an address.</p>
+      <p>The name is looked up when the row is drawn, not copied into it. Fix a
+         spelling in Manage Users and every row that person ever saved says the
+         new name — including the ones from two years ago.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.72</span>
+      <span class="tag fix">Improved</span>
+      <h3>The week's window now shows the whole week</h3>
+      <p>Two things were quietly falling out of it. A delivery that arrived on
+         Monday and still has no entry was gone by Tuesday — not among what is
+         expected, because it arrived, and not among today's, because it is not
+         today. And a delivery that was due on Monday and nobody ever marked
+         left the same way, for the same reason: both lists only looked forward
+         from today.</p>
+      <p>Now everything this week expects or has received is in the window.
+         What was due earlier and never marked sits at the top in amber; what
+         has arrived shows with the day it came and where it was put. Neither
+         one changes when the window closes — that still happens when nothing
+         ahead is left to deal with.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.71</span>
+      <span class="tag fix">Fixed</span>
+      <h3>"Nothing arriving today", on a morning when three things arrived</h3>
+      <p>The morning window listed what was still expected, and a delivery you
+         marked as arrived did not move down the list — it left it. So the
+         window could tell you nothing was arriving today while three deliveries
+         had turned up before nine.</p>
+      <p>Today's arrivals now have their own block, and each one says where it
+         was put. If the entry has not been made yet, it says nothing — and that
+         blank is the point: it is how you spot material sitting in the
+         warehouse that the stock numbers know nothing about.</p>
+      <p>Where it was put is worked out by matching the delivery against the
+         entries, since nothing links the two directly. It errs on the side of
+         silence: a wrong rack would tell you something is recorded when it is
+         not, and that is the one mistake this is meant to catch.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.70</span>
+      <span class="tag fix">Fixed</span>
+      <h3>The reminder card now clears itself when you make the entry</h3>
+      <p>Mark a delivery as arrived and Acopio leaves an orange card in the
+         corner: <em>arrived, entry not made</em>. Saving that entry is supposed
+         to take the card away. On the multi-material entry screen — which is
+         the one every entry actually opens — it did not. The card stayed, and
+         its button re-opened the same form filled in with the same delivery, so
+         the same receipt could be saved again, and again.</p>
+      <p>That is stock that was never received appearing in the warehouse, which
+         is why this went ahead of everything else. If you have duplicate
+         entries from a card you pressed twice, delete the extra ones from
+         Movements — the numbers correct themselves once the row is gone.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.69</span>
+      <span class="tag new">New</span>
+      <h3>Five stock numbers become one bar</h3>
+      <p>In Warehouse, Used, Available, Wasted and Reserved were five separate
+         columns your eye had to add up before you understood a material. They
+         are now one bar: what you can take, what is spoken for, what has gone
+         out to a job, and what was written off — each a share of everything
+         that material is accounted for today.</p>
+      <p>The number stays in front, because in a warehouse the question is
+         "have I got enough for forty?", and a proportion does not answer that.
+         Hover the bar for the exact figures, and for who reserved what and for
+         which job.</p>
+      <p>One thing worth knowing about the total: it is what the material is
+         accounted for <em>today</em>, not everything ever received. A count
+         correction moves stock without anything arriving or leaving, so
+         "received" would stop adding up the first time anyone adjusts a shelf —
+         and a bar whose pieces do not reach the end is worse than no bar.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.68</span>
+      <span class="tag new">New</span>
+      <h3>Pick a category and its column steps aside</h3>
+      <p>With the dashboard filtered to one category, every row in the Category
+         column said the same thing. That is not information, it is wasted space — so
+         the column now steps aside and the category is named once, in the
+         heading above the list. On a narrow screen that is about 130 pixels
+         less to scroll sideways.</p>
+      <p>It comes back on its own the moment you go back to All Categories, and
+         your own column order is untouched. Open the column editor and it is
+         there as usual: you cannot rearrange what is not on screen.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.67</span>
+      <span class="tag fix">Fix</span>
+      <h3>The dashboard basket shows today's numbers</h3>
+      <p>Ticking materials on the Stock Dashboard kept a copy of each row as it
+         looked at that moment. If somebody else saved a movement in the
+         meantime, <em>Exit Selected</em> opened the form with the older
+         quantities — the basket looked perfectly fine and was no longer
+         true.</p>
+      <p>It now keeps only which materials you picked and reads their current
+         figures when you use them. A material that stops existing while your
+         basket is open — merged into another, renamed — drops out of the basket
+         instead of turning up with numbers from before.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.66</span>
+      <span class="tag fix">Fix</span>
+      <h3>Putting several movements back at once</h3>
+      <p>Pressing <em>Put back</em> on a run of deleted movements looked as if it
+         had forgotten them: the moment the first one finished, every other
+         button reset itself as though it had never been pressed. The work was
+         always going ahead — the list was being redrawn from scratch each time
+         and losing what was still in flight. Rows now stay marked as on their
+         way until they are actually back.</p>
+      <p>They also go back one at a time and ask for a single refresh at the end,
+         instead of one full read of the warehouse per movement.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.66</span>
+      <span class="tag safe">Safer</span>
+      <h3>Columns added after you installed finally get their names</h3>
+      <p>An installation only ever wrote its column headings once, when it was
+         first set up. Anything added in a later version — the two cost columns,
+         the movement ID — was written by position, and its heading stayed
+         blank. A column with no name looks like leftover junk, and eventually
+         somebody clears it out.</p>
+      <p>Re-running Setup now fills in the missing names. A heading that already
+         has text is never touched, whatever it says: nothing in the app reads
+         those names, so renaming yours would be a change nobody asked for.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.65</span>
+      <span class="tag fix">Fix</span>
+      <h3>The help bubbles appear where you are looking</h3>
+      <p>Every small <em>i</em> in Settings put its explanation a couple of
+         centimetres below its icon and drew it behind the boxes around it. The
+         cause was one line: the heading of each box is lifted onto its border
+         line with a CSS transform, and a transform quietly becomes the frame of
+         reference for anything positioned inside it.</p>
+      <p>Rather than remove that lift, the bubble now lives outside every box
+         entirely. Nothing on the page can clip it, shift it or draw over it —
+         not this box, and not whatever gets styled next year. It also fits
+         itself into short windows instead of running off the bottom, and it
+         gets out of the way when you scroll.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.65</span>
+      <span class="tag fix">Fix</span>
+      <h3>Check my data remembers what it found</h3>
+      <p>Closing Settings and opening it again showed an empty box, as if the
+         scan had never run. The findings were never lost — the panel simply
+         rebuilt itself without drawing them. They come back now, without
+         re-scanning.</p>
+      <p>And applying a run of fixes asks for one refresh at the end instead of
+         one per fix. Twenty fixes used to mean twenty full reads of the whole
+         warehouse.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.64</span>
+      <span class="tag fix">Fix</span>
+      <h3>"System busy" stops looking like something you broke</h3>
+      <p>When two people save at the same moment, one of them waits. That is
+         normal and the system has always handled it — but it used to give up
+         after about thirteen seconds and then print its own internal note on
+         the screen, marker and reference code included. It now waits about
+         three times longer, quietly, with the button simply saying
+         <em>Waiting…</em>.</p>
+      <p>Every screen that writes goes through one queue now, so your own two
+         clicks no longer collide with each other. Six of them previously had no
+         waiting at all — including <em>Check my data</em>, where applying a fix
+         would just fail if anyone else happened to be saving.</p>
+      <p>And when something genuinely cannot be done, the message says what is
+         actually wrong instead of repeating "busy". Internal markers and the
+         support reference no longer appear on screen; the reference is still
+         recorded, where support can find it.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.64</span>
+      <span class="tag fix">Fix</span>
+      <h3>The tick on a movement clears when you are done with it</h3>
+      <p>Selecting a movement, editing it and saving used to leave the row still
+         ticked, and so did switching to another tab and back. The selection now
+         clears when you save an edit and when you leave the screen — it only
+         survives while you are still on the same page looking at the same
+         list.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.63</span>
+      <span class="tag fix">Fix</span>
+      <h3>A PO number written 07-6329 stays 07-6329</h3>
+      <p>Google Sheets reads what it is given. Handed the text
+         <code>07-6329</code> it decided that meant <em>July, year 6329</em>,
+         stored a date, and threw the purchase order away. The number that came
+         back afterwards was one nobody had ever typed.</p>
+      <p>It showed up when deleting a movement and putting it back from the
+         trash, which is the path that copies a row between sheets. But the same
+         line of code sits in six places — saving, editing, the trash, the
+         restore, and both halves of the nightly archive rotation — plus the
+         stock summaries and the catalog lists. All of them now write text as
+         text.</p>
+      <p>Two consequences worth knowing. A purchase order typed as digits is
+         stored as text from now on, so it sits on the left of the cell instead
+         of the right: a PO is a label, not a quantity. And rows written before
+         this version are not repaired by it — a value already converted has
+         lost the original in the cell, and the only honest source for it is the
+         other rows that still carry it.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.62</span>
+      <span class="tag new">New</span>
+      <h3>Several locations at once, and an empty one can be deleted</h3>
+      <p>Setting up a rack no longer means six trips through the same box: type
+         <code>A1A, A1B, A1C</code> and you get three. Names that already exist
+         are skipped and named, rather than cancelling the whole thing.</p>
+      <p>A location with nothing stored in it can now be deleted outright — a
+         bin appears next to it. Past movements are unaffected: each one keeps
+         the location name it was recorded with, the same rule renaming already
+         follows. A location that still holds material, has a lock on it, or is
+         named as a lock's allowed destination keeps only the archive button,
+         and hovering it says which of the three is holding it.</p>
+      <p>Under that: the server now enforces the rule instead of trusting the
+         screen. This page has always sent the whole list back, so a location
+         could in principle be dropped without anyone checking whether it was
+         empty. Now it is checked where it cannot be skipped.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.61</span>
+      <span class="tag new">New</span>
+      <h3>Movements fits on the screen: four columns became two</h3>
+      <p>Type now sits above the date in one column, and the category above the
+         material name in another. Same information, two fewer columns, and the
+         table stops running off the side of the screen — especially with the
+         column editor open, which used to widen everything.</p>
+      <p>The trade, which is worth knowing: those four can no longer be
+         reordered separately, because they are no longer four. Whatever order
+         you had set is carried over — the merged column keeps the place the
+         first of its pair had.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.60</span>
+      <span class="tag new">New</span>
+      <h3>Unlocking a material tells you who locked it, and why</h3>
+      <p>Before you unlock something, the confirmation now shows who locked it,
+         when, the reason they gave in their own words, and where it was allowed
+         to be moved to. All of that was already recorded — it just lived in a
+         tooltip on a small icon, which shows it to whoever walks past instead
+         of to the person about to make the decision.</p>
+      <p>Two messages that were unhelpful also got fixed: being refused for a
+         missing permission now says what you were trying to do, who to ask, and
+         where they turn it on; and the arrivals window no longer says "Good
+         morning" at eight in the evening.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.59</span>
+      <span class="tag new">New</span>
+      <h3>Tick the movements you want, then act on them</h3>
+      <p>Movements has checkboxes now, the same as the Stock Dashboard, with a
+         select-all in the header that ticks <b>what you can currently see</b> —
+         not the whole archive. <b>Edit</b> and <b>Delete</b> sit on the same
+         line as Columns, greyed out until you tick something. Edit works on one
+         movement at a time and says so; Delete works on as many as you like and
+         sends them all to the trash.</p>
+      <p><b>Nothing on that row moves any more.</b> The buttons are always
+         there, the long column help moved into the ⓘ, and the actions column
+         stopped appearing and disappearing — those three were what made the
+         table jump every time you pressed something. Changing a filter clears
+         your ticks, so you can never delete rows you can no longer see.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.58</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Deleting several movements at once no longer says "System busy"</h3>
+      <p>Pressing four bins in a row asked the server for four full stock
+         rebuilds at the same moment, and the last ones came back busy. They
+         now go one at a time, in the order you pressed them: a row waiting its
+         turn is dimmed, it retries by itself if somebody else is saving, and
+         it only speaks up if it genuinely could not get through.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.58</span>
+      <span class="tag new">New</span>
+      <h3>Empty the trash, and Settings stops re-fetching what hasn't changed</h3>
+      <p>The trash now has its own <b>Empty the trash</b> button, inside the box
+         it empties. It is the one action in the app that really cannot be
+         undone, so it stays admin-only even though deleting a movement no
+         longer is.</p>
+      <p>And opening Settings no longer re-asks the server for things that
+         haven't changed since you last looked — the deleted list, the movement
+         IDs and the user list are kept until something actually changes them.
+         Settings also has a proper bottom edge now, instead of ending flush
+         against the content.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.57</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Switching movement type left half a row behind</h3>
+      <p>Going from Exit to Transfer carried the quantity across but not the
+         rack it came from, leaving a row that read "? unknown rack" with a real
+         number in it — a row that looks filled in and isn't. The badge at the
+         top counted that row too, so it could show more units than exist.</p>
+      <p>Now the rack and the quantity travel together or neither does. If the
+         material sits in one rack, both are filled in for you; if it is spread
+         across several, neither is, because the app doesn't know which shelf
+         you walked to. The source-rack dropdown also stopped offering every
+         location in the building and now lists only the racks that material is
+         actually in, with how much is in each.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.56</span>
+      <span class="tag fix">Fixed</span>
+      <h3>The "can delete movements" permission never actually worked</h3>
+      <p>Giving a warehouse role permission to edit movements was supposed to
+         let them fix <i>or delete</i> a saved movement — the switch says so.
+         Editing worked; deleting was still admin-only underneath, so the
+         switch looked on, the delete button appeared, and pressing it said
+         "Admin only." It works now, and the permission still does not open the
+         bulk operations that rewrite a material's whole history.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.56</span>
+      <span class="tag fix">Fixed</span>
+      <h3>"Load Older History" made the Entry and Exit buttons disappear</h3>
+      <p>While a button is working, the ones beside it are hidden so a growing
+         label can't land on top of them. "Load Older History" finishes under a
+         new name, and it changed that name without telling its neighbours it
+         had finished — so <b>+ Entry (IN)</b> and <b>− Exit (OUT)</b> stayed
+         hidden until the page was reloaded. Fixed everywhere it could happen,
+         not just where it showed.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.55</span>
+      <span class="tag new">New</span>
+      <h3>Deleting a movement can be undone</h3>
+      <p>A deleted movement now goes to the trash instead of being destroyed.
+         Settings → System lists what has been deleted, who deleted it and when,
+         and puts any of it back exactly as it was — same quantity, same rack,
+         same date — with the stock totals recalculated straight away.</p>
+      <p><b>And the row leaves the screen the moment it is deleted</b>, rather
+         than after the next full refresh. The confirmation no longer warns that
+         this cannot be undone, because now it can.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.55</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Deleting could remove a different movement than the one you clicked</h3>
+      <p>Movements were identified by their position in the list, and positions
+         move: deleting one lifts everything below it. So if somebody else
+         deleted a movement while your screen was open, the one you clicked and
+         the one that went could be two different movements — with no error, no
+         warning, and nothing on screen to suggest anything had gone wrong.</p>
+      <p>Every movement now carries an identifier of its own, and deleting names
+         that identifier instead of a position. It cannot pick the wrong one.
+         Two people deleting the same movement is also handled honestly now:
+         the second person is told who deleted it and when, instead of being
+         told it worked.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.54</span>
+      <span class="tag fix">Fixed</span>
+      <h3>"GENERIC" no longer appears where a job name should be</h3>
+      <p>Material received into stock without being assigned to a job was
+         written down as belonging to a job called GENERIC. It was the app's own
+         word for "not assigned", and every screen already knew to ignore it —
+         but it sat in the spreadsheet looking exactly like a customer's name,
+         which is not something a movement log should ever invent.</p>
+      <p>An entry with no job now records no job. Rows written before this
+         update still say GENERIC and still mean the same thing, so nothing
+         changes underneath you; they can be cleared whenever you like.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.46 – v11.53</span>
+      <span class="tag new">New</span>
+      <h3>Everyone sees the same warehouse</h3>
+      <p>When two or three people work in the app at the same time, a change one
+         of them makes now reaches the others on its own, within about twenty
+         seconds — an entry, an exit, a transfer, a deleted movement. Nobody has
+         to press refresh, and nothing flashes or interrupts what you were
+         typing.</p>
+      <p><b>Saving at the same moment as somebody else no longer fails.</b> The
+         app waits its turn and tries again by itself, up to four times, showing
+         "Waiting…" while it does. What used to be an error you had to redo is
+         now a short pause.</p>
+      <p><b>Taking out more than there is</b> now corrects the number on screen
+         and explains what happened, instead of only refusing. If someone else
+         took the last of it while your form was open, the form says so — the
+         moment it happens, not when you press save.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.52</span>
+      <span class="tag fix">Fixed</span>
+      <h3>A deleted movement could come back on somebody else's screen</h3>
+      <p>Four movements deleted on one account were still showing on another
+         twelve minutes later, with both screens connected and nothing wrong in
+         sight. Two refreshes were racing each other, and when the slower one
+         had been asked for <i>before</i> the deletion and arrived <i>after</i>
+         it, it painted the older warehouse back over the newer one.</p>
+      <p>Nothing failed, which is why nothing warned: both answers were correct,
+         they just arrived in the wrong order. An answer that has been overtaken
+         is now discarded instead of drawn.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.51</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Notices off the edge of a phone, and buttons on top of each other</h3>
+      <p>On a phone, the small confirmation notices appeared outside the visible
+         area — so the app was answering where nobody could read it. And a
+         button that changed its label mid-action grew wide enough to sit on top
+         of the one beside it. Both are fixed, and two people unlocking the same
+         material at once no longer leaves one of them with an error for work
+         that was already done.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.42 – v11.45</span>
+      <span class="tag new">New</span>
+      <h3>Mark a delivery arrived, and its entry is already filled in</h3>
+      <p>The app already knew what was arriving, how much, from which supplier
+         and under which PO. Marking it arrived used to mean typing all of it
+         again on the entry screen — which is exactly where what was expected
+         and what got recorded start to differ.</p>
+      <p>Now marking it arrived offers to record the entry, and opens it with
+         everything the delivery already knew. <b>The rack is left empty on
+         purpose</b>: the app knows how much arrived, not where it was put, and a
+         filler rack would be stock claiming to sit somewhere nobody looked.</p>
+      <p>If you don't do it right away, a card waits in the corner of the screen
+         until you do. It stays there if you open the entry and close it without
+         saving — only a saved entry clears it.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.44</span>
+      <span class="tag fix">Fixed</span>
+      <h3>The header stayed put on a phone and scrolled away on a computer</h3>
+      <p>The tabs and the account menu are meant to stay at the top of the
+         screen. On any screen wide enough to show the compact header — which is
+         to say every desktop — they scrolled away with the page instead. Two
+         rules were fighting over it and the wrong one was winning, on exactly
+         the screens most people use.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.43</span>
+      <span class="tag fix">Fixed</span>
+      <h3>The morning reminder never admitted you had dealt with it</h3>
+      <p>The list of this week's arrivals that greets you in the morning stayed
+         on screen showing deliveries you had just marked as arrived. It was
+         deciding whether a delivery was still waiting by looking for a status
+         the app has never produced, so nothing ever counted as done.</p>
+      <p>It now closes itself when the last one is handled, and keeps showing
+         the rest when there are more.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.41</span>
+      <span class="tag new">New</span>
+      <h3>The week's deliveries, laid out like a week</h3>
+      <p>Expected deliveries were a list. They are now seven cards — four across
+         the top, three below — all the same size, the way a calendar week
+         looks. A busy day scrolls inside its own card instead of stretching it
+         and pushing the other days out of shape, so the shape of the week stays
+         readable no matter how uneven it is.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.40</span>
+      <span class="tag safe">Terms</span>
+      <h3>What happens if you stop paying, written down plainly</h3>
+      <p>The Terms now say exactly what happens when a subscription lapses and
+         what it costs to come back, instead of leaving it to be decided case by
+         case. Refunds are stated as one timeframe — 5 to 10 business days — in
+         every document that mentions them.</p>
+      <p>What has not changed, and is worth repeating: <b>your data is yours and
+         lives in your own Google spreadsheet.</b> Stopping payment does not take
+         away your information or the app you have installed. You lose support
+         and updates, nothing else.</p>
+    </div>
+      <div class="entry">
+      <span class="ver">v11.39</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Help text you could not finish reading</h3>
+      <p>The small ⓘ explanations were being cut off at the edge of the window,
+         and near the bottom of the screen they opened downward into nothing.
+         They now stay inside the window wherever they are, and flip above the
+         icon when there is no room below.</p>
+      <p>Settings also grew: on a large screen it now uses the room it has
+         instead of staying at the width of a small laptop.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.37 – v11.38</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Opening Settings stopped looking like the app was reloading</h3>
+      <p>Every time you opened Settings — and every time you switched tabs
+         inside it — the whole page blanked and rebuilt itself. It now shows
+         what it already knows immediately and quietly replaces only what
+         actually changed. If nothing changed, nothing moves. And if you are
+         typing in a field when fresh data arrives, it waits until you are done
+         rather than redrawing under your hands.</p>
+      <p>Each area of Settings is now boxed and labelled, so it reads as
+         separate things rather than one long column of controls.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.35 – v11.36</span>
+      <span class="tag new">New</span>
+      <h3>A daily report of what moved, sent to you every evening</h3>
+      <p>At an hour you choose, the app emails a summary of the day: what came
+         in, what went out, what was corrected, and who did it. If nothing moved
+         it says so in one line rather than sending an empty table — a quiet day
+         is information too.</p>
+      <p>You pick the hour and who else receives it in <b>Settings → System</b>.
+         Costs are never included, whatever the recipient's role: a report
+         forwarded outside the company should not be the way a supplier price
+         gets out.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.33 – v11.34</span>
+      <span class="tag fix">Fixed</span>
+      <h3>Two ways to lose work, both closed</h3>
+      <p>Selecting rows and opening a form used to drop the selection, so
+         pressing Save recorded nothing and said it had worked. The selection now
+         survives the form and is only released when the window closes.</p>
+      <p>And while one button is working, the buttons beside it now step out of
+         the way instead of staying pressable. A second press on a neighbouring
+         button mid-save was a real way to record something twice.</p>
+    </div>
+
+    <div class="entry">
+      <span class="ver">v11.33</span>
+      <span class="tag safe">Safety</span>
+      <h3>A nightly backup that failed silently now says so</h3>
+      <p>If setting up the automatic nightly backup failed during installation,
+         nothing was written down and nothing was shown — the app simply had no
+         backups and no one knew. The failure is now recorded and
+         <b>Settings → System</b> checks all four automatic jobs and tells you
+         which ones are really installed.</p>
+    </div>
+
+</section>
+
+  <section class="month">
     <h2>August 2026</h2>
     <p class="sub">A full audit of the app, and the first fixes out of it: the
        evening date, the quantity that was not whole, and a check that counts
