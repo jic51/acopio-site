@@ -11,7 +11,7 @@ account to create. The data stays in the customer's own Google Drive.
 
 ## Pages
 
-- [Acopio — know what is on the shelf without walking there](https://www.acopio.net/): Acopio turns a Google Sheet into a warehouse system: record what comes in and what goes out, see every rack, and know what is in stock from any phone.
+- [Acopio — know what's on the shelf without going to look](https://www.acopio.net/): Acopio turns your Google Sheet into a real warehouse system — in, out, locations, costs and low-stock alerts. We install and set it up for you.
 - [Acopio en detalle — qué hace, pantalla por pantalla](https://www.acopio.net/detalle.html): El recorrido largo de Acopio: qué resuelve, qué hace hoy en producción, qué huecos tiene y qué cuesta. Escrito para leerse entero antes de decidir.
 - [What is new in Acopio — every change, in plain words](https://www.acopio.net/changelog.html): Every change that reaches a customer installation, newest first, with what it fixes and why it mattered.
 - [Novedades de Acopio — todos los cambios, explicados](https://www.acopio.net/novedades.html): Cada cambio que llega a la instalación de un cliente, del más nuevo al más viejo, con qué arregla y por qué importaba.
