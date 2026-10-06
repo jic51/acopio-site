@@ -1,0 +1,7 @@
+# www.acopio.net
+# Nothing here is private. What is private was never published:
+# tools/build-site.js publishes only what it names, and nothing else.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.acopio.net/sitemap.xml

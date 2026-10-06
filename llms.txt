@@ -1,0 +1,27 @@
+# Acopio
+
+> A warehouse system that lives in a Google Sheet the customer already
+> owns. It records what comes into the warehouse and what leaves, keeps
+> stock per rack and per project, and is used from a browser or a phone
+> by several people at once. Built by a warehouse manager for his own
+> warehouse, and sold to others.
+
+Installation is copying a spreadsheet: there is no server to run and no
+account to create. The data stays in the customer's own Google Drive.
+
+## Pages
+
+- [Acopio — know what is on the shelf without walking there](https://www.acopio.net/): Acopio turns a Google Sheet into a warehouse system: record what comes in and what goes out, see every rack, and know what is in stock from any phone.
+- [Acopio en detalle — qué hace, pantalla por pantalla](https://www.acopio.net/detalle.html): El recorrido largo de Acopio: qué resuelve, qué hace hoy en producción, qué huecos tiene y qué cuesta. Escrito para leerse entero antes de decidir.
+- [What is new in Acopio — every change, in plain words](https://www.acopio.net/changelog.html): Every change that reaches a customer installation, newest first, with what it fixes and why it mattered.
+- [Novedades de Acopio — todos los cambios, explicados](https://www.acopio.net/novedades.html): Cada cambio que llega a la instalación de un cliente, del más nuevo al más viejo, con qué arregla y por qué importaba.
+
+## Customer documentation
+
+- [Guía de instalación](https://www.acopio.net/docs/instalacion.html): Cómo instalar Acopio en tu propia hoja de Google, paso a paso y sin saber de programación. Copiar el archivo, autorizarlo y publicarlo.
+- [Setting up your warehouse system](https://www.acopio.net/docs/setup.html): How to set up your Acopio warehouse system the first time: your categories, your racks, your people, and the first movement.
+- [Si algo se dañó, así vuelves a ayer](https://www.acopio.net/docs/restaurar.html): Si algo se borró o se dañó, así vuelves al estado de ayer. Qué copias hay, dónde están y cómo se usa cada una.
+- [La vista por pasillo](https://www.acopio.net/docs/vista-por-pasillo.html): Qué es la vista por pasillo de Acopio, en qué se diferencia de una lista de materiales, y cuándo conviene cada una.
+- [Soporte y pagos](https://www.acopio.net/docs/soporte.html): Qué cubre el soporte de Acopio, cuánto cuesta, cómo se paga y qué pasa si algo sale mal o quieres darte de baja.
+- [Terms of Service](https://www.acopio.net/terms.html): The terms you agree to when you use Acopio: what the licence covers, what it does not, and how either side ends it.
+- [Privacy Policy](https://www.acopio.net/privacy.html): What Acopio does and does not collect, where your warehouse data lives, who can reach it, and how to delete it.
