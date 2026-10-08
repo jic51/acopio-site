@@ -76,6 +76,8 @@
 </nav></header>
 <main><article>
 <h1>Guía de instalación — Acopio</h1>
+<blockquote><h3>⚠️ SI ALGUIEN NO PUEDE ENTRAR, EMPIEZA POR LA DIRECCIÓN</h3>
+<p>Casi siempre es la misma causa: <strong>la dirección de tu app no está donde tiene que estar</strong>, o no es la misma en todos los sitios. Antes de buscar nada más, abre tu hoja y usa <strong>🏭 Acopio → 🔧 Advanced → 🩺 Check this installation</strong>: lo comprueba y lo repara solo. Si después de eso sigue sin dejar entrar, escribe a quien te instaló el sistema y dile exactamente qué mensaje ves.</p></blockquote>
 <p><strong>Tiempo estimado: 5 minutos.</strong> No necesitas saber programación. Solo una cuenta de Google (Gmail normal o de empresa).</p>
 <p>Al terminar vas a tener tu propio sistema de inventario, corriendo en tu propia cuenta de Google, con tus datos en tu propio Google Drive. Nadie más —ni siquiera nosotros— tiene acceso a tu información.</p>
 <hr>
@@ -95,6 +97,10 @@
 <p>Nada de esto se pierde si cierras la ventana a medias — retoma donde ibas.</p>
 <hr>
 <h2>Paso 3 — El único paso técnico (una sola vez)</h2>
+<blockquote><p><strong>⚠️ DE DÓNDE SE COPIA LA DIRECCIÓN, Y DE DÓNDE NO</strong></p>
+<p>Cópiala <strong>sólo</strong> de la pantalla donde el asistente te la muestra al publicar.</p>
+<p><strong>NO la copies de la barra del navegador.</strong> Ahí Google le añade trozos según con qué cuenta estés mirando, y esas variantes <strong>no funcionan</strong> pegadas en ningún sitio: dan <em>"Sorry, unable to open the file at this time"</em>.</p>
+<p>Si te equivocas, no pasa nada: <strong>🏭 Acopio → 🔧 Advanced → 🩺 Check this installation</strong> lo detecta y lo corrige.</p></blockquote>
 <p>Al final del asistente, te va a pedir <strong>publicar tu sistema</strong>. Es el único paso donde vas a ver algo parecido a "código", y el asistente te lleva de la mano:</p>
 <ol><li><strong>Extensiones → Apps Script</strong> (se abre en una pestaña nueva; esta pestaña se queda abierta, regresa a ella después).</li><li>Arriba a la izquierda dice <strong>"Proyecto sin título"</strong> — haz clic y ponle el nombre de tu empresa. Esto es lo que tu equipo va a ver en la pantalla de permisos, así que vale la pena hacerlo antes de publicar.</li><li>Botón azul <strong>Implementar (Deploy) → Nueva implementación</strong></li><li>Engranaje ⚙️ junto a "Seleccionar tipo" → <strong>Aplicación web</strong></li><li><strong>Ejecutar como: Yo</strong> · <strong>Quién tiene acceso: Cualquier usuario con una cuenta de Google</strong></li><li><strong>Implementar</strong>, luego <strong>Autorizar acceso</strong></li></ol>
 <blockquote><p><strong>¿Sale "Google no ha verificado esta aplicación"?</strong> Es normal — le estás dando permiso a tu propio sistema, no a una app pública. Clic en <strong>Configuración avanzada → Ir a [tu proyecto] (no seguro)</strong>.</p>
@@ -132,6 +138,11 @@ Required permissions: https://www.googleapis.com/auth/script.container.ui</code>
 <p>Google <strong>va a volver a pedir autorización</strong>, porque cambiaron los permisos. Eso es normal y hay que avisárselo al cliente ANTES, o va a pensar que algo se rompió. Vuelve a salir la pantalla de "app no verificada" → Advanced → "Go to…".</p>
 <h2>La regla corta</h2>
 <blockquote><p>Si cambió <code>appsscript.json</code>, el cliente re-autoriza. Si no cambió, no. Ante la duda, mándalo igual: re-autorizar cuesta treinta segundos, y diagnosticar un permiso que falta cuesta una tarde.</p></blockquote>
+<hr>
+<h2>⚠️ SI ALGO FALLA AL ENTRAR, EMPIEZA POR LA DIRECCIÓN</h2>
+<p><strong>🏭 Acopio → 🔧 Advanced → 🩺 Check this installation.</strong> Comprueba la dirección de tu app y la arregla si hace falta.</p>
+<p>Los dos mensajes más comunes y qué significan:</p>
+<div class="tablewrap"><table><thead><tr><th>Lo que ves</th><th>Qué es</th></tr></thead><tbody><tr><td><em>"Sorry, unable to open the file at this time"</em></td><td>La dirección guardada apunta a otro sitio. Lo arregla <strong>Check this installation</strong></td></tr><tr><td><em>"Access blocked — redirect_uri_mismatch"</em></td><td>Falta un permiso en la cuenta de Google de tu empresa. <strong>Esto no lo puedes arreglar tú</strong>: escribe a quien te instaló el sistema</td></tr><tr><td><em>"Access not granted — this account is not registered"</em></td><td><strong>No es la dirección.</strong> Ese correo no está dado de alta, o está mal escrito. Lo arregla un administrador en ⚙️ Settings → Permissions</td></tr></tbody></table></div>
 </article></main>
 <footer>
   <p>Documentos ·

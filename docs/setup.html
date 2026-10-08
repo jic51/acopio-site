@@ -76,6 +76,8 @@
 </nav></header>
 <main><article>
 <h1>Setting up your warehouse system</h1>
+<blockquote><h3>⚠️ IF SOMEBODY CANNOT SIGN IN, START WITH THE ADDRESS</h3>
+<p>It is almost always the same cause: <strong>your app's address is not where it needs to be</strong>, or is not the same everywhere. Before looking at anything else, open your sheet and run <strong>🏭 Acopio → 🔧 Advanced → 🩺 Check this installation</strong> — it checks the address and repairs it. If it still will not let anyone in, write to whoever set the system up and tell them the exact message you see.</p></blockquote>
 <p>About 10 minutes, once. You do not need to install anything, and you do not need to be technical — but there is one screen partway through that looks alarming and isn't. It's explained below, in step 4.</p>
 <p>Everything lives in <strong>your own</strong> Google account. Nobody else can see your inventory, including us.</p>
 <hr>
@@ -110,6 +112,11 @@
 <p><strong>The link from setup doesn't open</strong> — Google sometimes reports the wrong address here. Go back to the Apps Script editor, <strong>Deploy → Manage deployments</strong>, copy the URL shown there, and paste it into the setup window using <strong>"Paste the correct link"</strong>.</p>
 <p><strong>Someone can't get in</strong> — they must be on the user list (Settings → Directory), and signed in with the Google account that matches the email on that list. Being on the company's Google domain identifies you; it does not authorise you. Both are needed.</p>
 <p><strong>Someone without a company email can't get in</strong> — people outside your Google domain (a personal Gmail, a contractor) need one extra setup step that is switched on separately. Ask whoever set the system up; the full workflow and troubleshooting is in <code>ACCESO-Y-LOGIN.md</code>.</p>
+<hr>
+<h2>⚠️ IF SIGNING IN FAILS, START WITH THE ADDRESS</h2>
+<p><strong>🏭 Acopio → 🔧 Advanced → 🩺 Check this installation.</strong> It checks your app's address and repairs it.</p>
+<p>The three messages you might see, and what each one means:</p>
+<div class="tablewrap"><table><thead><tr><th>What you see</th><th>What it is</th></tr></thead><tbody><tr><td><em>"Sorry, unable to open the file at this time"</em></td><td>The saved address points somewhere else. <strong>Check this installation</strong> fixes it</td></tr><tr><td><em>"Access blocked — redirect_uri_mismatch"</em></td><td>A permission is missing on your company's Google account. <strong>You cannot fix this one yourself</strong> — write to whoever set the system up</td></tr><tr><td><em>"Access not granted — this account is not registered"</em></td><td><strong>Not the address.</strong> That email is not registered, or is misspelled. An administrator fixes it in ⚙️ Settings → Permissions</td></tr></tbody></table></div>
 </article></main>
 <footer>
   <p>Documentos ·
