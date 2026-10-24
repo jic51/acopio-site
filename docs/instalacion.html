@@ -75,7 +75,10 @@
   <a class="small" href="/novedades.html">Novedades</a>
 </nav></header>
 <main><article>
-<h1>Guía de instalación — Acopio</h1>
+<h1>Guía de instalación — Acopio <strong>Pro</strong></h1>
+<blockquote><h3>📦 ¿Cuál de las dos estás instalando?</h3>
+<p>Esta guía es la de <strong>Acopio Pro</strong>: la que montamos contigo, con tu equipo y tus racks. Si lo que tienes es <strong>Acopio Básico</strong> —la edición gratis, de una sola persona— salta a <strong>«Si lo tuyo es Acopio Básico»</strong>, al final: son tres pasos y ninguno de los de abajo.</p>
+<p><strong>Lo que más confunde, dicho de una vez:</strong> en Básico <strong>no hay menú 🏭 Acopio dentro de la hoja</strong>, y no es que no aparezca — <em>no puede</em> aparecer. Un menú dentro de una hoja necesita un permiso que Google clasifica como sensible, y la edición gratis no lo pide a propósito, porque pedirlo trae la pantalla de aviso que hace abandonar la instalación a la mitad de la gente. Cada vez que esta guía diga «🏭 Acopio → …», eso es de Pro.</p></blockquote>
 <blockquote><h3>⚠️ SI ALGUIEN NO PUEDE ENTRAR, EMPIEZA POR LA DIRECCIÓN</h3>
 <p>Casi siempre es la misma causa: <strong>la dirección de tu app no está donde tiene que estar</strong>, o no es la misma en todos los sitios. Antes de buscar nada más, abre tu hoja y usa <strong>🏭 Acopio → 🔧 Advanced → 🩺 Check this installation</strong>: lo comprueba y lo repara solo. Si después de eso sigue sin dejar entrar, escribe a quien te instaló el sistema y dile exactamente qué mensaje ves.</p></blockquote>
 <p><strong>Tiempo estimado: 5 minutos.</strong> No necesitas saber programación. Solo una cuenta de Google (Gmail normal o de empresa).</p>
@@ -138,6 +141,13 @@ Required permissions: https://www.googleapis.com/auth/script.container.ui</code>
 <p>Google <strong>va a volver a pedir autorización</strong>, porque cambiaron los permisos. Eso es normal y hay que avisárselo al cliente ANTES, o va a pensar que algo se rompió. Vuelve a salir la pantalla de "app no verificada" → Advanced → "Go to…".</p>
 <h2>La regla corta</h2>
 <blockquote><p>Si cambió <code>appsscript.json</code>, el cliente re-autoriza. Si no cambió, no. Ante la duda, mándalo igual: re-autorizar cuesta treinta segundos, y diagnosticar un permiso que falta cuesta una tarde.</p></blockquote>
+<hr>
+<h2>Si lo tuyo es Acopio Básico</h2>
+<p>La edición gratis se instala en tres pasos y <strong>no tiene asistente ni menú</strong>.</p>
+<ol><li><strong>Abre el enlace que te enviamos</strong> y acepta <strong>«Hacer una copia»</strong>.</li><li>En tu copia: <strong>Extensiones → Apps Script → Implementar → Implementación nueva → App web</strong>. Google te va a pedir permiso una vez; acéptalo. (Medido con un cronómetro en una copia limpia: <strong>1 minuto 47 segundos</strong>. Y <strong>no</strong> sale la pantalla de «Google no ha verificado esta aplicación» — ésa es la diferencia por la que esta edición existe.)</li><li><strong>Copia la dirección que termina en <code>/exec</code></strong> y ábrela. Ésa es tu app. Guárdala en favoritos; es por donde vas a entrar siempre.</li></ol>
+<p><strong>El nombre de tu empresa</strong> se escribe dentro de la app, la primera vez que entra: en Básico no hay asistente que te lo pregunte desde la hoja.</p>
+<p><strong>Lo que esta edición no trae</strong>, para que no lo busques: equipo con sus propios accesos, fotos y documentos, etiquetas impresas y lectura de códigos, pedidos por llegar, correos y avisos, respaldo automático, alertas de stock mínimo, y leer un correo o una factura para llenar la entrada. <strong>No están escondidas:</strong> se ven en la app y al tocarlas te dicen qué son. Y lo que sí trae no se quita nunca y no caduca. La lista completa de cada edición está en <a href="https://www.acopio.net/#pro">acopio.net</a>.</p>
+<p><strong>¿Una copia de seguridad en Básico?</strong> A mano: <strong>Archivo → Hacer una copia</strong>, con la fecha en el nombre. Hazlo antes de importar o de borrar muchas filas.</p>
 <hr>
 <h2>⚠️ SI ALGO FALLA AL ENTRAR, EMPIEZA POR LA DIRECCIÓN</h2>
 <p><strong>🏭 Acopio → 🔧 Advanced → 🩺 Check this installation.</strong> Comprueba la dirección de tu app y la arregla si hace falta.</p>
