@@ -123,6 +123,423 @@
        window instead of a photograph, and the page itself got 300&nbsp;KB lighter over
        the wire.</p>
 
+    <div class="entry" id="v14-8">
+      <span class="ver">v14.8</span>
+      <span class="tag fix">Fix</span>
+      <h3>Nothing jumps when you tick a box</h3>
+      <p><b>The action bar rearranged itself as you selected things.</b> Going from 9 ticked to 10
+         &mdash; one digit to two &mdash; was enough to widen a button and shove everything beside
+         it. Every count now sits in a slot wide enough for two digits from the start, with all
+         digits the same width, so the number changes and nothing else does.</p>
+      <p><b>In Projects it was worse than untidy.</b> Ticking one made the rename box take the whole
+         bar, pushing the buttons onto a second line on top of the list. The bar reserved a minimum
+         height &mdash; which stopped it shrinking, but nothing stopped it growing. Measured: 44
+         pixels to 95.</p>
+      <p>The bar is now a fixed height with fixed slots. Rename and Merge are the same width because
+         they share one place; the buttons are anchored to the right edge, so what changes in the
+         middle no longer moves them. From nothing selected to twelve, <b>not one pixel moves</b>.</p>
+      <p>And that is measured rather than assumed: a test opens the bar with 0, 1, 2 &hellip; 12
+         selected and compares the position and size of every piece.</p>
+    </div>
+
+    <div class="entry" id="v14-7">
+      <span class="ver">v14.7</span>
+      <span class="tag fix">Fix</span>
+      <h3>The average cost stops drifting</h3>
+      <p><b>The running average cost was drifting a few cents, and the drift compounded.</b> Each
+         time material came in, the average was recalculated and <i>rounded to the cent</i> &mdash;
+         and that rounded figure went into the next calculation. The error never cancelled out; it
+         leaned the same way every time.</p>
+      <p>Measured over 1,000 entries of 7 units: the stored average came out <b>$0.029 per unit
+         below</b> the true one, which across 7,000 units is <b>$202.72</b> of inventory value that
+         was never there. Nobody notices that until someone reconciles the inventory against the
+         books, and by then it is a mystery rather than a line of code.</p>
+      <p>The average is now kept to six decimals. What you see on the Prices screen, and what is
+         stamped on a movement, is still cents &mdash; the extra precision lives only in the number
+         that feeds the next calculation, which is where it mattered. The cost of an outgoing
+         movement is also worked out from the precise average <i>before</i> rounding, so a line of
+         1,000 units is no longer a dollar off in the company&rsquo;s favour.</p>
+      <p><b>Stock that cannot be true no longer hides behind a zero.</b> If more of something has
+         left than ever arrived &mdash; a movement entered wrongly, a half-finished delete, an import
+         that went in twice &mdash; the screen showed 0 and said nothing. The app had already
+         noticed; it wrote the evidence to a log nobody opens. It now reports it in the Error Log,
+         naming the materials, once a day rather than on every sign-in.</p>
+      <p><b>And the average leaves a trail.</b> Every entry that changes it records what it was and
+         what it became, so a figure that looks wrong next month can be traced instead of only
+         recalculated from scratch.</p>
+    </div>
+
+    <div class="entry" id="v14-6">
+      <span class="ver">v14.6</span>
+      <span class="tag improve">Improvement</span>
+      <h3>Setup: one list you type straight into</h3>
+      <p><b>A name that was already on the list used to vanish without a word.</b> You typed a
+         location that existed, pressed Enter, and the box simply emptied. The list was right
+         &mdash; it refused to add it twice &mdash; but nothing said so, which from the outside is
+         indistinguishable from the app swallowing what you typed.</p>
+      <p>Now what you typed stays put, a line in red says it is already there, and <b>the one it
+         clashes with lights up for a moment</b>, so you can see where it is among fifty.</p>
+      <p><b>And there is one list now, not two.</b> Every list in setup had a box underneath to type
+         into and a row of chips above to look at &mdash; two places for one thing, and no way to
+         correct an entry once it was in. There is a <b>+ Add</b> button on the right of each list:
+         it drops an empty chip with the cursor already inside, and you type there. Add one by
+         mistake and leave it blank &mdash; it removes itself when you move on.</p>
+      <p>Which also means the starting templates are yours to edit. Pick <i>Glass &amp; windows</i>
+         and rename one of its categories on the spot, instead of deleting it and retyping.</p>
+      <p>Trucks and job sites go in the same list as the racks, where they were always shown &mdash;
+         they just used to be typed somewhere else.</p>
+      <p><b>And the button that continues setup can no longer end up off the screen.</b> How tall
+         that window is depends on the screen, not on us; now only the middle scrolls and the footer
+         stays put, whatever the height.</p>
+    </div>
+
+    <div class="entry" id="v14-5">
+      <span class="ver">v14.5</span>
+      <span class="tag improve">Improvement</span>
+      <h3>Fix the bad rows of an import on the screen</h3>
+      <p><b>Three bad rows in a six-hundred-row file used to send you back to the spreadsheet.</b>
+         The preview said <i>597 ready, 3 need fixing in the file</i> and stopped there &mdash; so you
+         opened Excel, hunted for them, fixed them, exported again and uploaded again. All the while
+         this screen already knew exactly which rows they were and what was wrong with each one.</p>
+      <p><b>Now you fix them where they are.</b> The cell that is wrong is a box you type in, and the
+         row turns green the moment it is right. Only the three fields that can make a row invalid are
+         editable &mdash; Category, Name and Qty &mdash; because this is a preview, not a spreadsheet
+         editor.</p>
+      <p><b>And you can find them.</b> Three tabs above the table &mdash; <i>All</i>, <i>Ready</i>,
+         <i>Needs fixing</i> &mdash; each with its count, so three bad rows out of six hundred take
+         one click instead of a scroll. Rows that need fixing are all shown, wherever they sit in the
+         file; before, one on line 480 of a 600-row file could not be displayed at all.</p>
+      <p><b>You can also leave rows out.</b> Every row that is ready has a tick box, on by default.
+         Untick what you do not want and the button counts down with you.</p>
+      <p>The correction never touches your file. It travels with the import and is applied at the
+         point where rows are checked, so a corrected row passes exactly the same test as one that
+         arrived clean &mdash; what you saw fixed is what gets saved &mdash; and the <i>you already
+         imported this file</i> warning still recognises it.</p>
+    </div>
+
+    <div class="entry" id="v14-4">
+      <span class="ver">v14.4</span>
+      <span class="tag improve">Improvement</span>
+      <h3>One way to pick a row, everywhere</h3>
+      <p><b>Five screens asked you to select things in five different ways.</b> Projects, Suppliers,
+         Locations, Directory and Materials each had a <i>mode</i>: you pressed Rename, the list
+         quietly went into rename state, and the pencil on whichever row you touched next did
+         something. Projects and Locations had the mode <i>and</i> a separate tick box for merging
+         &mdash; two ways of choosing, in one list.</p>
+      <p>All five now work the way the Dashboard, Movements and Categories already did: <b>tick what
+         you mean, and a bar says what can be done with it.</b> Tick one and Rename and Delete wake
+         up; tick several and Rename is not offered at all, because renaming several things to one
+         name is not renaming &mdash; it is merging, and Merge is right there.</p>
+      <p><b>The per-row buttons go with it.</b> Materials carried three on every row; with eighty
+         materials on screen that was two hundred and forty buttons competing with the names.
+         Nothing is lost: everything they did is in the bar, acting on what you ticked.</p>
+      <p><b>And things that were not possible before, now are.</b> Remove several contacts from the
+         Directory at once. Merge two materials by ticking them and saying which name stays, instead
+         of typing the exact name of the survivor. Archive or delete several locations in one go
+         &mdash; and Delete appears only when none of them is holding anything, with the reason
+         shown in place of a button that would refuse the click.</p>
+      <p>Also fixed: renaming a material used to grey out every button on the tab, search box
+         included. Only the bar waits now.</p>
+      <p><b>And &ldquo;at zero&rdquo; now means the warehouse is empty.</b> It used to require the
+         job sites to be empty too, so a material with nothing left on the shelf raised no alarm
+         while a pallet sat at a job &mdash; which is exactly when you need to reorder. What has
+         gone out cannot be taken off the shelf again.</p>
+    </div>
+
+    <div class="entry" id="v14-3">
+      <span class="ver">v14.3</span>
+      <span class="tag fix">Fix</span>
+      <h3>The low-stock window points at the materials, and the Save buttons work again</h3>
+      <p><b>The summary line counted, and stopped there.</b> It said <i>3 at zero &middot; 7 below
+         minimum</i>, and turning that 3 into three names meant reading the warehouse figure on card
+         after card &mdash; the screen knew the answer and handed back arithmetic.</p>
+      <p>The cards that line is counting are now marked in <b>the same two colours the line itself
+         uses</b>: red for at zero, orange for below minimum. Both come from the same count, so they
+         cannot say different things, and raising a minimum above the stock puts the orange out as
+         you type.</p>
+      <p><b>And the Save buttons in Move, Edit movement and Attach are fixed.</b> For one version
+         they did nothing visible &mdash; no spinner, no greying out, just a button sitting there
+         while the save went ahead behind it.</p>
+      <p>That was ours, and it came out of the fix before it. Reopening a window clears a button left
+         spinning by an interrupted save; but <i>opening</i> was being read as <i>being open</i>, and
+         pressing Save changes the window too, so the button was put back the instant it started. The
+         two are told apart now, and both behave: the spinner stays while it saves, and a reopened
+         window still comes back clean.</p>
+    </div>
+
+    <div class="entry" id="v14-2">
+      <span class="ver">v14.2</span>
+      <span class="tag fix">Fix</span>
+      <h3>Low-stock alerts: one button that told the truth, and a screen that answers while you use it</h3>
+      <p><b>There were two buttons and they did exactly the same thing.</b> &ldquo;Watch
+         everything&rdquo; ticked every box and &ldquo;Clear all&rdquo; unticked every box &mdash;
+         different on screen, identical in effect, because both ended up with no filter, and no
+         filter means <i>watch everything</i>.</p>
+      <p>So the button that promised to stop watching switched the alerts for <b>every</b> material
+         on. Clearing the ticks and still getting the same warnings was never the list failing: it
+         was a button saying the opposite of what it did. There is one button now, named after what
+         actually happens.</p>
+      <p><b>And the window answers while you use it.</b> Tick a material, type a minimum, and a line
+         at the top says what it would mean right now &mdash; <i>Watching 12 of 48 &middot; right
+         now: 3 at zero, 7 below minimum</i>. Before, nothing changed until you saved and closed, so
+         the only way to see the effect of a choice was to leave and look at the dashboard.</p>
+      <p>That line is worked out by <b>the same rule the alert panel itself uses</b>, with the
+         minimums currently typed rather than the ones last saved, so the two cannot drift apart.</p>
+      <p>Also fixed: a minimum set on a material whose name ends in a space is now found again. It
+         used to be saved and then never matched, so that alert simply never arrived &mdash; without
+         anything ever saying so.</p>
+    </div>
+
+    <div class="entry" id="v14-1">
+      <span class="ver">v14.1</span>
+      <span class="tag fix">Fix</span>
+      <h3>A blank quantity no longer stops a whole file from loading</h3>
+      <p><b>An import containing one empty quantity cell &mdash; or one that said a word instead of
+         a number &mdash; never finished loading.</b> Not an error, not a warning: the spinner simply
+         ran for ever. A larger file loaded fine seconds later, which made it look as though the
+         smaller one was damaged.</p>
+      <p>It was not. A quantity that is not a number came back as a value that cannot be written to
+         the format the screen is sent in, and <b>that breaks the entire reply, not just that
+         row</b> &mdash; which is why neither the success nor the failure path ever ran, and nothing
+         was ever shown.</p>
+      <p>Those rows now arrive as what they are: invalid, with the reason beside them. And the
+         reason <b>quotes what was actually typed</b> &mdash; <i>Qty &ldquo;doce&rdquo; is not a
+         number greater than 0</i> &mdash; so the cell can be found in the spreadsheet with a
+         search instead of hunted for by eye.</p>
+      <p><b>And a window you reopen is now a window that was just opened.</b> If a save was
+         interrupted, its button stayed spinning; closing the window and coming back showed it
+         exactly as it had been left, which took away the first thing anyone tries. Any window that
+         opens now clears a button left mid-save &mdash; one rule, for all of them.</p>
+    </div>
+
+    <div class="entry" id="v14-0">
+      <span class="ver">v14.0</span>
+      <span class="tag new">Change</span>
+      <h3>Categories work the way the rest of the app does, and the app stops shutting you out</h3>
+      <p><b>Categories are now chips you tick, grouped in the middle like the Low-Stock Monitor.</b>
+         Tick one and Rename and Delete wake up; tick several and Delete and Merge do, and
+         <b>Rename is not offered at all</b> &mdash; not greyed out, absent. Renaming several things
+         to one name is not renaming, it is merging, and Merge is right there.</p>
+      <p>Renaming happens in the bar rather than in a browser pop-up, so it follows the same text
+         rules as every other screen. Until now this one tab had two ways of picking a row at once:
+         a mode for renaming and a separate tick box for merging.</p>
+      <p><b>And the app stopped shutting itself out.</b> It caps how many operations can run in a
+         minute, so that a runaway loop cannot get your Google account cut off. But the cap reset its
+         own clock every time a call went through, so it did not mean &ldquo;240 a minute&rdquo; &mdash;
+         it meant &ldquo;a full minute of silence, or the count never clears&rdquo;.</p>
+      <p>Working steadily for three minutes could therefore reach the cap without ever going over it
+         in any single minute. That is why a 600-row file sometimes never finished loading while a
+         bigger one loaded fine: it depended on how busy the minutes before it had been.</p>
+      <p>The window now slides properly, and <b>the message says whose limit it is, that nothing was
+         lost, and roughly how long to wait</b>. It is our cap, so saying only &ldquo;too many
+         requests&rdquo; was a system message about our own decision.</p>
+    </div>
+
+    <div class="entry" id="v13-9">
+      <span class="ver">v13.9</span>
+      <span class="tag fix">Fix</span>
+      <h3>Save means there is something to save, and nothing jumps when you tick a box</h3>
+      <p><b>Six Save buttons were lit all the time.</b> A lit button is a promise that there is
+         something to do here; lit always, it stops saying anything &mdash; and then you have to
+         remember yourself whether you changed something, which is the work the screen was meant to
+         save you. Worse, a Save still lit after saving leaves the doubt that it worked, so it gets
+         pressed again.</p>
+      <p>They now light up only when what is on screen differs from what was loaded, and go dark
+         again the moment the server confirms the save. There is one rule written once, so the next
+         form added to the app gets it for free rather than by luck.</p>
+      <p><b>And one of them was not cosmetic.</b> In Permissions the role name could be emptied and
+         saved. A role with no name cannot be given to anyone or taken from anyone &mdash; there is
+         nothing to point at in any list &mdash; while the permission underneath keeps granting what
+         it granted. Save now stays dark while a required field is empty, and the save refuses it a
+         second time from inside, for anything that does not come through the button.</p>
+      <p><b>Ticking two names no longer shoves the list down.</b> The merge strip went from taking no
+         room to taking forty-odd pixels, pushing down the very rows you were ticking, so the next
+         one was no longer where your finger was going. It now holds its place from the start: empty
+         it carries the instruction in grey, and ticking something lights it up instead of moving
+         anything.</p>
+      <p>In Prices, each row&rsquo;s Save now belongs to that row: it wakes for a price that is
+         different, and stays dark for one that is already on record, or for a zero &mdash; which the
+         costing engine reads as &ldquo;no price&rdquo; rather than &ldquo;free&rdquo;.</p>
+    </div>
+
+    <div class="entry" id="v13-8">
+      <span class="ver">v13.8</span>
+      <span class="tag fix">Fix</span>
+      <h3>The spinner that never stopped, and the tick that kept vanishing</h3>
+      <p><b>In the free edition, three boxes in Settings &rarr; System spun a loading spinner for
+         ever.</b> v13.5 stopped those sections asking the server, which was the point &mdash; six
+         calls on opening Settings, three of them for features that copy cannot use. What it did not
+         do was replace the &ldquo;Checking&hellip;&rdquo; they showed while they waited. With no
+         answer coming, nothing cleared it.</p>
+      <p>Worse than before, in other words: a box that used to say something now looked like the app
+         had frozen, on the copy new customers see. Those boxes now show <b>what the feature does</b>,
+         taken from the same text the panel itself uses &mdash; one place where it is written, so the
+         box and the panel cannot disagree.</p>
+      <p><b>And a ticked movement stopped losing its tick when new ones arrived.</b> The previous
+         attempt widened the view &ldquo;only when the list had grown&rdquo;, which sounds right and
+         measures the wrong thing: the list grows once but the screen redraws twice, so the first
+         redraw used the condition up and the second let the tick go.</p>
+      <p>It now asks the question that actually separates the two cases: <b>did you fold the
+         table?</b> Changing a filter, a tab or a page folds it, and anything no longer on screen
+         stops being ticked &mdash; which is the right behaviour, because a Delete button armed over
+         rows nobody can see is worse than losing a tick. New rows arriving do not fold anything,
+         however many times the screen redraws.</p>
+      <p>Also: one line in Settings still described the old 10-million-cell limit after v13.7 raised
+         it to 20 million.</p>
+    </div>
+
+    <div class="entry" id="v13-7">
+      <span class="ver">v13.7</span>
+      <span class="tag fix">Fix</span>
+      <h3>Twice the room you thought you had, and two things that fought your thumb</h3>
+      <p><b>Google doubled what a single spreadsheet holds &mdash; from 10 to 20 million cells &mdash;
+         on 10 September 2026, and the change applies to files that already exist.</b> Acopio was
+         still counting against the old number, so Settings &rarr; System reported it had used
+         <i>twice</i> what it really had, and that you had <i>half</i> the years left.</p>
+      <p>That number is not decoration: it is what decides when older movements need moving into a
+         separate file. Counting against half the real limit would have started that work years
+         early. The limit now carries <b>the date it changed and the source</b> beside it, because
+         this is the second time Google has raised it (5 to 10 million in 2022) and it will not be
+         the last.</p>
+      <p>In practice a file holds about <b>500,000 movements</b> rather than 250,000. At 300
+         movements a day that is four and a half years in the active file alone. What did not
+         change, and matters more: a sheet starts feeling slow around 100,000 rows, and nobody
+         doubled that.</p>
+      <p><b>In Transfer, clicking a suggested rack now fills the empty row</b> instead of adding
+         another one below it. Before, you were left with a blank row that had to be deleted by
+         hand or the save refused &mdash; which made using the suggestion slower than typing the
+         rack yourself.</p>
+      <p><b>And the tick boxes measured 13 pixels on a phone.</b> That is the browser default: the
+         size you get when nobody decides. They are now as big as the buttons already in that row,
+         almost seven times the area, on touchscreens only. It is the box that arms Delete, pressed
+         in a warehouse, often with gloves on.</p>
+    </div>
+
+    <div class="entry" id="v13-6">
+      <span class="ver">v13.6</span>
+      <span class="tag new">Change</span>
+      <h3>What a material is worth, and an undone import that finally goes away</h3>
+      <p><b>Settings &rarr; Prices.</b> Pick a category, find the material, type what one unit is
+         worth. Until now a price could only be typed while recording an <i>entry</i>, so anything
+         already sitting on the shelf had no value at all &mdash; and every movement that took it
+         out went through with <b>no cost on it</b>, silently. The monthly total came out low and
+         nothing said why.</p>
+      <p><b>The screen says how many materials in that category still have no price.</b>
+         &ldquo;12 of 48 have a price&rdquo; is what makes a value report worth reading; a total
+         with no such line is a number nobody can check.</p>
+      <p>It writes the <b>average cost</b> the costing engine already uses, not a second price of
+         its own, so there is nothing here that can disagree with anything else. A price per box
+         still goes through Materials &rarr; packs, the screen that already does that arithmetic.
+         <b>In Acopio Basic too</b>: it needs no Google permission, and a warehouse that cannot
+         value what it holds is missing half of one.</p>
+      <p><b>&ldquo;Undo this import&rdquo; now disappears once you have used it.</b> Before, the
+         button stayed for ever and answered &ldquo;nothing left from that import&rdquo; when
+         pressed, and the same file came back as &ldquo;already imported&rdquo; even though none of
+         its rows were there any more. The record had said what happened all along &mdash; nothing
+         was reading it. An import still being undone in chunks <b>keeps</b> its button, because it
+         still has rows left to remove.</p>
+    </div>
+
+    <div class="entry" id="v13-5">
+      <span class="ver">v13.5</span>
+      <span class="tag new">Change</span>
+      <h3>Things the free edition should always have had, and a limit worth having</h3>
+      <p><b>Check my data is back in Acopio Basic</b>, along with rebuilding stock totals and
+         filling in movement IDs. None of them needed a Pro permission &mdash; they only read your
+         own sheet &mdash; and the free edition is exactly where a messy inventory arrives, because
+         importing a CSV has been open there since October. Hiding the thing that finds the mess,
+         in the edition that receives it, was backwards.</p>
+      <p>What is hidden now <b>takes its box with it</b>. Before, the button went and the frame
+         stayed, so the screen showed an explanation with nothing to press.</p>
+      <p><b>And a padlocked section no longer asks the server anything.</b> Opening Settings used to
+         make six calls, three of them for features that copy cannot use. Those calls are spent out
+         of one Google account that the whole warehouse shares.</p>
+      <p><b>Deleting now stops at 200 at a time, and says so before, not after.</b> The number is
+         not arbitrary: it is the most the trash can show you, so past it some of what you deleted
+         could not be put back. Anything more came from a file &mdash; undo that import instead, it
+         has no limit.</p>
+      <p>Three smaller ones: the trash stays where you left it instead of jumping to the top each
+         time you put something back, a tick stops clearing itself when new movements arrive, and
+         <b>all 23 column headings explain what they are</b> &mdash; ten did before.</p>
+    </div>
+
+    <div class="entry" id="v13-4">
+      <span class="ver">v13.4</span>
+      <span class="tag fix">Fix</span>
+      <h3>A movement you put back lands where it belongs, and lands now</h3>
+      <p>Two things that looked like one. <b>A restored movement came back at the top of the list</b>
+         no matter how old it was, and <b>it took a few seconds to appear at all</b> after the app
+         said it was done.</p>
+      <p>The second one was the app waiting to ask again: the server had already put it back, and
+         the screen still requested the whole list afterwards to find out something it already
+         knew. It goes in straight away now &mdash; the trash row disappearing and the movement
+         reappearing are the same moment, instead of a few seconds where it was in neither place.</p>
+      <p>The first was never about restoring. The list was drawn in <b>sheet order</b>, which is
+         usually the same as time order because rows get added as things happen &mdash; but putting
+         one back writes it at the end, so a movement from two months ago came out first. The list
+         now reads the movement's own date. Anything without a date keeps exactly the order it had,
+         so every normal day looks identical to before.</p>
+      <p>Also: the progress line no longer sits there spinning at &ldquo;6 of 6&rdquo; after a batch
+         delete has finished, the trash shows <b>who</b> deleted something by name with their
+         contact card on hover, and the import screen stopped saying undone rows go to the trash.</p>
+    </div>
+
+    <div class="entry" id="v13-3">
+      <span class="ver">v13.3</span>
+      <span class="tag fix">Fix</span>
+      <h3>Deleting works again &mdash; and the reason it broke is now guarded</h3>
+      <p>v13.2 added a column to the movement record, and <b>deleting stopped working</b> on
+         installations that already had data. A spreadsheet is as wide as it was the day it was
+         created; the app asked for one column more than it had, and the whole operation failed.</p>
+      <p>Fixed, and more to the point: <b>there is now a test that makes this impossible to repeat.</b>
+         It builds a sheet that fails the same way a real one does and runs the real code against
+         it &mdash; and it sweeps the whole file for any other place that reads a full row without
+         widening first. A sheet narrower than the model is not the rare case; it is the normal
+         one, every time a column is added.</p>
+      <p>Three smaller things from the same round: the Acopio&nbsp;Pro window no longer cuts its
+         own title off halfway, the trash stops printing &ldquo;Deleted by&rdquo; when it does not
+         know who, and the &times; beside the file picker stays next to the picker instead of
+         dropping onto the line below when the filename is long.</p>
+    </div>
+
+    <div class="entry" id="v13-2">
+      <span class="ver">v13.2</span>
+      <span class="tag new">Change</span>
+      <h3>Undoing an import no longer fills your trash</h3>
+      <p>Taking an import back off used to move every one of its rows into the trash. That sounds
+         safe and mostly it was noise: <b>the file is the backup</b>. If it imported once it can
+         import again, so a thousand rows were being kept &ldquo;just in case&rdquo; alongside the
+         copy already sitting on your own disk &mdash; and that is what filled one trash with
+         hundreds of rows nobody was ever going to read.</p>
+      <p><b>Now they are removed, and the screen says so before you press it</b>, along with how to
+         get them back: import the same file again.</p>
+      <p><b>With one exception, and it is the one that matters.</b> A row you edited after
+         importing is no longer the row that was in the file &mdash; re-importing would bring back
+         the old value and your correction would be gone with no trace. Those are kept in the
+         trash, counted, and named in what the app tells you afterwards.</p>
+      <p>Behind it, two smaller things that made this possible: a movement now carries <b>which
+         import it came from</b> in a field nobody can edit (the note in its comments could be
+         rewritten, and then that row quietly stopped belonging to its import), and the audit line
+         for an edit now names the <b>movement</b> instead of the row number, which moves.</p>
+    </div>
+
+    <div class="entry" id="v13-1">
+      <span class="ver">v13.1</span>
+      <span class="tag fix">Fix</span>
+      <h3>The document reader said your key was wrong. It wasn&rsquo;t.</h3>
+      <p>If you tried to set up the AI document reader on a <b>newly installed copy</b> and it kept
+         refusing the key, the key was never the problem &mdash; and no key would have worked.
+         Google closed the model this app asked for to accounts that had not already used it. An
+         older installation kept working, a brand new one could not get in, and the screen called
+         that <b>a bad key</b>.</p>
+      <p>The app now asks for the current model, and keeps the older names <b>behind it</b> so
+         installations already using them carry on untouched. It also stopped checking a key
+         against a single model: a model that is gone and a key that is wrong fail differently, and
+         only one of them is something you can fix.</p>
+      <p>Nothing to do beyond pasting this version in. If a key was refused before, it will be
+         accepted now.</p>
+    </div>
+
     <div class="entry" id="v13-0">
       <span class="ver">v13.0</span>
       <span class="tag safe">Safety</span>

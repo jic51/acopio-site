@@ -125,6 +125,465 @@
        de ser una foto a ser una ventana, y la p&aacute;gina adelgaz&oacute;
        300&nbsp;KB por la red.</p>
 
+    <div class="entry" id="v14-8">
+      <span class="ver">v14.8</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Nada salta al marcar una casilla</h3>
+      <p><b>La barra de acciones se recolocaba sola a medida que ibas marcando.</b> Pasar de 9
+         marcados a 10 &mdash;de una cifra a dos&mdash; bastaba para ensanchar un bot&oacute;n y
+         empujar todo lo que ten&iacute;a al lado. Ahora cada contador ocupa un hueco con sitio para
+         dos cifras desde el principio, y todas las cifras miden igual: cambia el n&uacute;mero y no
+         cambia nada m&aacute;s.</p>
+      <p><b>En Projects era peor que desordenado.</b> Al marcar uno, el recuadro de renombrar se
+         com&iacute;a la barra entera y los botones bajaban a una segunda l&iacute;nea, encima de la
+         lista. La barra reservaba una altura m&iacute;nima &mdash;que imped&iacute;a encogerse, pero
+         nada imped&iacute;a crecer&mdash;. Medido: de 44 p&iacute;xeles a 95.</p>
+      <p>Ahora la barra tiene altura fija y huecos fijos. Renombrar y Fusionar miden lo mismo porque
+         comparten sitio, y los botones est&aacute;n anclados al borde derecho, as&iacute; que lo que
+         cambia en el medio ya no los mueve. De cero marcados a doce, <b>no se mueve ni un
+         p&iacute;xel</b>.</p>
+      <p>Y eso est&aacute; medido, no supuesto: una prueba abre la barra con 0, 1, 2 &hellip; 12
+         marcados y compara la posici&oacute;n y el tama&ntilde;o de cada pieza.</p>
+    </div>
+
+    <div class="entry" id="v14-7">
+      <span class="ver">v14.7</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>El coste medio deja de desviarse</h3>
+      <p><b>La media de coste se desviaba unos c&eacute;ntimos, y el desv&iacute;o se
+         acumulaba.</b> Cada vez que entraba material, la media se recalculaba y <i>se redondeaba a
+         c&eacute;ntimos</i> &mdash;y ese valor redondeado entraba en el c&aacute;lculo
+         siguiente&mdash;. El error no se compensaba: se iba siempre hacia el mismo lado.</p>
+      <p>Medido sobre 1.000 entradas de 7 unidades: la media guardada sal&iacute;a <b>$0,029 por
+         unidad por debajo</b> de la real, que sobre 7.000 unidades son <b>$202,72</b> de valor de
+         inventario que nunca estuvo ah&iacute;. Eso no se nota hasta que alguien cuadra el
+         inventario con la contabilidad, y para entonces es un misterio en vez de una l&iacute;nea
+         de c&oacute;digo.</p>
+      <p>La media se guarda ahora con seis decimales. Lo que se ve en la pantalla de Prices, y lo
+         que se estampa en un movimiento, siguen siendo c&eacute;ntimos: la precisi&oacute;n de
+         m&aacute;s vive s&oacute;lo en el n&uacute;mero que alimenta el c&aacute;lculo siguiente,
+         que es donde importaba. Y el coste de una salida se calcula con la media precisa
+         <i>antes</i> de redondear, as&iacute; que una l&iacute;nea de 1.000 unidades ya no se va un
+         d&oacute;lar a favor de la empresa.</p>
+      <p><b>Un inventario que no puede ser cierto ya no se esconde detr&aacute;s de un cero.</b> Si
+         ha salido m&aacute;s de algo de lo que entr&oacute; nunca &mdash;un movimiento mal metido,
+         un borrado a medias, una importaci&oacute;n que entr&oacute; dos veces&mdash; la pantalla
+         mostraba 0 y no dec&iacute;a nada. La app ya se hab&iacute;a dado cuenta; escrib&iacute;a la
+         prueba en un registro que nadie abre. Ahora lo dice en el Error Log, nombrando los
+         materiales, una vez al d&iacute;a y no en cada inicio de sesi&oacute;n.</p>
+      <p><b>Y la media deja rastro.</b> Cada entrada que la cambia apunta cu&aacute;nto val&iacute;a
+         y cu&aacute;nto pas&oacute; a valer, as&iacute; que una cifra que el mes que viene parezca
+         rara se puede seguir en vez de s&oacute;lo recalcularla desde cero.</p>
+    </div>
+
+    <div class="entry" id="v14-6">
+      <span class="ver">v14.6</span>
+      <span class="tag improve">Mejora</span>
+      <h3>Instalaci&oacute;n: una sola lista, y se escribe dentro</h3>
+      <p><b>Un nombre que ya estaba en la lista desaparec&iacute;a sin decir nada.</b>
+         Escrib&iacute;as una ubicaci&oacute;n que ya exist&iacute;a, pulsabas Enter y la caja
+         simplemente se vaciaba. La lista hac&iacute;a lo correcto &mdash;se negaba a meterla dos
+         veces&mdash; pero no lo dec&iacute;a, y desde fuera eso no se distingue de que la app se
+         trague lo que escribiste.</p>
+      <p>Ahora lo escrito se queda, una l&iacute;nea en rojo dice que ya est&aacute;, y <b>la que
+         choca se enciende un momento</b>, para que se vea d&oacute;nde est&aacute; entre
+         cincuenta.</p>
+      <p><b>Y hay una sola lista, no dos.</b> Cada lista ten&iacute;a una caja debajo para escribir
+         y una fila de fichas arriba para mirar &mdash;dos sitios para una cosa&mdash;, y no
+         hab&iacute;a forma de corregir una ficha ya puesta. Ahora hay un bot&oacute;n <b>+ Add</b> a
+         la derecha de cada lista: deja una ficha vac&iacute;a con el cursor ya dentro, y se escribe
+         ah&iacute;. Si la a&ntilde;ades sin querer y la dejas en blanco, se va sola al pasar de
+         paso.</p>
+      <p>Lo que adem&aacute;s significa que las plantillas de inicio se pueden editar: eliges
+         <i>Glass &amp; windows</i> y le cambias el nombre a una de sus categor&iacute;as ah&iacute;
+         mismo, en vez de borrarla y reescribirla.</p>
+      <p>Los camiones y las obras van en la misma lista que los estantes, que es donde siempre se
+         mostraban &mdash; s&oacute;lo que antes se escrib&iacute;an en otro sitio.</p>
+      <p><b>Y el bot&oacute;n que contin&uacute;a la instalaci&oacute;n ya no puede quedarse fuera de
+         la pantalla.</b> Lo alta que sea esa ventana depende de la pantalla, no de nosotros; ahora
+         s&oacute;lo se desplaza el medio y el pie se queda donde est&aacute;, mida lo que mida.</p>
+    </div>
+
+    <div class="entry" id="v14-5">
+      <span class="ver">v14.5</span>
+      <span class="tag improve">Mejora</span>
+      <h3>Arreglar las filas malas de una importación en la propia pantalla</h3>
+      <p><b>Tres filas malas en un fichero de seiscientas te mandaban de vuelta a la hoja de
+         c&aacute;lculo.</b> La vista previa dec&iacute;a <i>597 ready, 3 need fixing in the file</i>
+         y ah&iacute; se acababa: abr&iacute;as el Excel, las buscabas, las correg&iacute;as, volv&iacute;as
+         a exportar y volv&iacute;as a subir. Y mientras tanto esta pantalla ya sab&iacute;a exactamente
+         cu&aacute;les eran y qu&eacute; le pasaba a cada una.</p>
+      <p><b>Ahora se arreglan donde est&aacute;n.</b> La celda que falla es un recuadro donde
+         escribir, y la fila se pone verde en cuanto queda bien. S&oacute;lo se pueden tocar los tres
+         campos que pueden invalidar una fila &mdash;Category, Name y Qty&mdash;, porque esto es una
+         vista previa y no un editor de hojas de c&aacute;lculo.</p>
+      <p><b>Y se pueden encontrar.</b> Tres pesta&ntilde;as encima de la tabla &mdash;<i>All</i>,
+         <i>Ready</i>, <i>Needs fixing</i>&mdash; cada una con su n&uacute;mero, as&iacute; que tres
+         filas malas entre seiscientas son un clic en vez de un rato buscando. Y salen todas las que
+         fallan, est&eacute;n donde est&eacute;n del fichero: antes, una en la l&iacute;nea 480 de un
+         fichero de 600 no se pod&iacute;a ni ense&ntilde;ar.</p>
+      <p><b>Tambi&eacute;n se pueden dejar filas fuera.</b> Cada fila que est&aacute; lista lleva su
+         casilla, marcada. Desmarca lo que no quieras y el bot&oacute;n va bajando contigo.</p>
+      <p>La correcci&oacute;n no toca tu fichero. Viaja con la importaci&oacute;n y se aplica en el
+         punto donde se comprueban las filas, as&iacute; que una fila corregida pasa exactamente la
+         misma prueba que una que vino bien &mdash;lo que viste arreglado es lo que se guarda&mdash;
+         y el aviso de <i>este fichero ya lo importaste</i> sigue reconoci&eacute;ndolo.</p>
+    </div>
+
+    <div class="entry" id="v14-4">
+      <span class="ver">v14.4</span>
+      <span class="tag improve">Mejora</span>
+      <h3>Una sola forma de elegir una fila, en toda la app</h3>
+      <p><b>Cinco pantallas pedían elegir de cinco maneras distintas.</b> Projects, Suppliers,
+         Locations, Directory y Materials ten&iacute;an cada una un <i>modo</i>: pulsabas Rename, la
+         lista entraba en estado de renombrar sin que se viera, y el l&aacute;piz de la fila que
+         tocaras despu&eacute;s hac&iacute;a algo. Projects y Locations ten&iacute;an el modo
+         <i>y</i> adem&aacute;s una casilla aparte para fusionar &mdash;dos formas de elegir, en la
+         misma lista&mdash;.</p>
+      <p>Las cinco funcionan ya como el Dashboard, Movements y Categories: <b>marcas lo que quieres,
+         y una barra dice qu&eacute; se puede hacer con ello.</b> Marcas una y se encienden Renombrar
+         y Borrar; marcas varias y Renombrar no aparece, porque poner el mismo nombre a varias cosas
+         no es renombrar &mdash;es fusionar, y Fusionar est&aacute; ah&iacute; al lado&mdash;.</p>
+      <p><b>Y con ello se van los botones de cada fila.</b> Materials llevaba tres en cada una; con
+         ochenta materiales en pantalla eran doscientos cuarenta botones peleando con los nombres.
+         No se pierde nada: todo lo que hac&iacute;an est&aacute; en la barra, sobre lo marcado.</p>
+      <p><b>Y aparecen cosas que antes no se pod&iacute;an hacer.</b> Quitar varios contactos del
+         directorio de una vez. Fusionar dos materiales marc&aacute;ndolos y diciendo cu&aacute;l
+         nombre se queda, en lugar de teclear el nombre exacto del que sobrevive. Archivar o borrar
+         varias ubicaciones de golpe &mdash;y Borrar sale s&oacute;lo cuando ninguna guarda nada, con
+         el motivo escrito en lugar de un bot&oacute;n que rechazar&iacute;a la pulsaci&oacute;n&mdash;.</p>
+      <p>Tambi&eacute;n arreglado: renombrar un material apagaba todos los botones de la
+         pesta&ntilde;a, buscador incluido. Ahora s&oacute;lo espera la barra.</p>
+      <p><b>Y &laquo;a cero&raquo; significa ya que el almac&eacute;n est&aacute; vac&iacute;o.</b>
+         Antes exig&iacute;a que las obras tambi&eacute;n lo estuvieran, as&iacute; que un material
+         sin nada en la estanter&iacute;a no daba la alarma mientras hubiera un pallet en una obra
+         &mdash;que es justo cuando hay que pedir&mdash;. Lo que ya sali&oacute; no se puede volver a
+         sacar del estante.</p>
+    </div>
+
+    <div class="entry" id="v14-3">
+      <span class="ver">v14.3</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>La ventana de stock bajo se&ntilde;ala los materiales, y los botones de guardar vuelven a funcionar</h3>
+      <p><b>La l&iacute;nea de resumen contaba, y ah&iacute; se acababa.</b> Dec&iacute;a <i>3 at
+         zero &middot; 7 below minimum</i>, y convertir ese 3 en tres nombres era ir leyendo el
+         n&uacute;mero de almac&eacute;n tarjeta por tarjeta: la pantalla sab&iacute;a la respuesta
+         y devolv&iacute;a una cuenta por hacer.</p>
+      <p>Las tarjetas que esa l&iacute;nea cuenta van ahora marcadas con <b>los dos mismos colores
+         que usa la l&iacute;nea</b>: rojo las que est&aacute;n a cero, naranja las que est&aacute;n
+         bajo el m&iacute;nimo. Las dos salen de la misma cuenta, as&iacute; que no pueden decir
+         cosas distintas, y subir un m&iacute;nimo por encima del stock apaga el naranja mientras
+         escribes.</p>
+      <p><b>Y los botones de guardar de Mover, Editar movimiento y Adjuntar est&aacute;n
+         arreglados.</b> Durante una versi&oacute;n no hac&iacute;an nada visible: sin rueda, sin
+         apagarse, un bot&oacute;n ah&iacute; quieto mientras el guardado segu&iacute;a por
+         detr&aacute;s.</p>
+      <p>Eso fue nuestro, y sali&oacute; del arreglo anterior. Reabrir una ventana limpia el
+         bot&oacute;n que se qued&oacute; girando en un guardado interrumpido; pero <i>abrirse</i>
+         se estaba leyendo como <i>estar abierta</i>, y pulsar Guardar tambi&eacute;n cambia la
+         ventana, as&iacute; que el bot&oacute;n se devolv&iacute;a a su sitio justo al empezar.
+         Ahora se distinguen las dos cosas, y las dos se portan: la rueda se queda mientras guarda,
+         y una ventana reabierta sigue volviendo limpia.</p>
+    </div>
+
+    <div class="entry" id="v14-2">
+      <span class="ver">v14.2</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Avisos de stock bajo: un bot&oacute;n que dec&iacute;a la verdad, y una pantalla que contesta mientras la usas</h3>
+      <p><b>Hab&iacute;a dos botones y hac&iacute;an exactamente lo mismo.</b> &laquo;Watch
+         everything&raquo; marcaba todas las casillas y &laquo;Clear all&raquo; las desmarcaba
+         &mdash;distintas en pantalla, id&eacute;nticas en efecto&mdash;, porque las dos
+         terminaban sin filtro, y sin filtro significa <i>vig&iacute;lalo todo</i>.</p>
+      <p>As&iacute; que el bot&oacute;n que promet&iacute;a dejar de vigilar encend&iacute;a las
+         alertas de <b>todos</b> los materiales. Quitar los checks y seguir recibiendo los mismos
+         avisos nunca fue un fallo de la lista: era un bot&oacute;n diciendo lo contrario de lo que
+         hac&iacute;a. Ahora hay uno solo, con el nombre de lo que de verdad pasa.</p>
+      <p><b>Y la ventana contesta mientras la usas.</b> Marcas un material, escribes un
+         m&iacute;nimo, y una l&iacute;nea arriba dice qu&eacute; significar&iacute;a ahora mismo
+         &mdash;<i>Watching 12 of 48 &middot; right now: 3 at zero, 7 below minimum</i>&mdash;.
+         Antes no cambiaba nada hasta guardar y cerrar, as&iacute; que la &uacute;nica forma de ver
+         el efecto de una decisi&oacute;n era salir y mirar el panel.</p>
+      <p>Esa l&iacute;nea la calcula <b>la misma regla que usa el panel de alertas</b>, con los
+         m&iacute;nimos que hay escritos y no con los &uacute;ltimos guardados, as&iacute; que las
+         dos no pueden separarse.</p>
+      <p>Tambi&eacute;n arreglado: un m&iacute;nimo puesto a un material cuyo nombre acaba en
+         espacio vuelve a encontrarse. Antes se guardaba y despu&eacute;s no coincid&iacute;a
+         nunca, as&iacute; que ese aviso simplemente no llegaba &mdash;sin que nada lo dijera&mdash;.</p>
+    </div>
+
+    <div class="entry" id="v14-1">
+      <span class="ver">v14.1</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Una cantidad en blanco ya no impide que cargue el fichero entero</h3>
+      <p><b>Una importaci&oacute;n con una sola celda de cantidad vac&iacute;a &mdash;o con una
+         palabra en vez de un n&uacute;mero&mdash; no terminaba de cargar nunca.</b> Ni un error ni
+         un aviso: el reloj girando sin m&aacute;s. Un fichero m&aacute;s grande cargaba bien unos
+         segundos despu&eacute;s, lo que hac&iacute;a parecer que el peque&ntilde;o estaba
+         da&ntilde;ado.</p>
+      <p>No lo estaba. Una cantidad que no es un n&uacute;mero volv&iacute;a como un valor que no se
+         puede escribir en el formato con el que se manda la pantalla, y <b>eso rompe la respuesta
+         ENTERA, no s&oacute;lo esa fila</b> &mdash;por eso no se ejecutaba ni el camino del
+         &eacute;xito ni el del fallo, y nunca se ve&iacute;a nada&mdash;.</p>
+      <p>Esas filas llegan ahora como lo que son: inv&aacute;lidas, con el motivo al lado. Y el
+         motivo <b>cita lo que se escribi&oacute; de verdad</b> &mdash;<i>Qty &ldquo;doce&rdquo; is
+         not a number greater than 0</i>&mdash; as&iacute; que la celda se encuentra en la hoja con
+         una b&uacute;squeda en vez de a ojo.</p>
+      <p><b>Y una ventana que vuelves a abrir es ahora una ventana reci&eacute;n abierta.</b> Si un
+         guardado se interrumpi&oacute;, su bot&oacute;n se quedaba girando; cerrar la ventana y
+         volver lo mostraba igual, lo que quitaba lo primero que cualquiera prueba. Ahora cualquier
+         ventana que se abre devuelve a su sitio un bot&oacute;n que se qued&oacute; a medias
+         &mdash;una regla, para todas&mdash;.</p>
+    </div>
+
+    <div class="entry" id="v14-0">
+      <span class="ver">v14.0</span>
+      <span class="tag new">Cambio</span>
+      <h3>Categor&iacute;as funciona como el resto de la app, y la app deja de cerrarse sola</h3>
+      <p><b>Las categor&iacute;as son ahora chips que se marcan, agrupados en el centro como en el
+         Low-Stock Monitor.</b> Marcas una y se despiertan Renombrar y Borrar; marcas varias y se
+         despiertan Borrar y Fusionar, y <b>Renombrar no aparece</b> &mdash;no apagado: ausente&mdash;.
+         Renombrar varias cosas a un mismo nombre no es renombrar, es fusionar, y Fusionar
+         est&aacute; ah&iacute; al lado.</p>
+      <p>Se renombra en la propia barra y no en una ventanita del navegador, as&iacute; que sigue las
+         mismas reglas de texto que el resto. Hasta ahora esta pesta&ntilde;a ten&iacute;a dos formas
+         de elegir una fila a la vez: un modo para renombrar y una casilla aparte para fusionar.</p>
+      <p><b>Y la app dej&oacute; de cerrarse sola.</b> Tiene un tope de operaciones por minuto para
+         que un bucle descontrolado no deje tu cuenta de Google bloqueada. Pero el tope
+         re&iniciaba su propio reloj cada vez que pasaba una llamada, as&iacute; que no
+         sign&iacute;ficaba &laquo;240 por minuto&raquo;: sign&iacute;ficaba <b>&laquo;un minuto
+         entero de silencio, o la cuenta no se borra&raquo;</b>.</p>
+      <p>Trabajar seguido tres minutos pod&iacute;a llegar al tope sin haberlo pasado en ning&uacute;n
+         minuto. Por eso un fichero de 600 filas a veces no terminaba de cargar mientras uno
+         m&aacute;s grande s&iacute;: depend&iacute;a de lo ocupados que hubieran estado los minutos
+         anteriores.</p>
+      <p>Ahora la ventana se desliza de verdad, y <b>el aviso dice de qui&eacute;n es el tope, que no
+         se perdi&oacute; nada y cu&aacute;nto hay que esperar</b>. El tope es nuestro, as&iacute; que
+         decir s&oacute;lo &laquo;too many requests&raquo; era un mensaje de sistema sobre una
+         decisi&oacute;n nuestra.</p>
+    </div>
+
+    <div class="entry" id="v13-9">
+      <span class="ver">v13.9</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Guardar significa que hay algo que guardar, y nada salta al marcar una casilla</h3>
+      <p><b>Seis botones de Guardar estaban encendidos siempre.</b> Un bot&oacute;n encendido es una
+         promesa: &laquo;hay algo que hacer aqu&iacute;&raquo;. Encendido siempre deja de decir nada
+         &mdash;y entonces tienes que acordarte t&uacute; de si cambiaste algo, que es justo el
+         trabajo que la pantalla ven&iacute;a a ahorrarte&mdash;. Y peor: un Guardar que sigue
+         encendido despu&eacute;s de guardar deja la duda de si funcion&oacute;, as&iacute; que se
+         vuelve a pulsar.</p>
+      <p>Ahora se encienden s&oacute;lo si lo que hay en pantalla es distinto de lo que se
+         carg&oacute;, y se apagan en cuanto el servidor confirma. La regla est&aacute; escrita una
+         vez, as&iacute; que el siguiente formulario que se a&ntilde;ada la tiene de serie y no por
+         casualidad.</p>
+      <p><b>Y uno de ellos no era est&eacute;tica.</b> En Permissions se pod&iacute;a vaciar el
+         nombre del rol y guardar. Un rol sin nombre no se le puede dar ni quitar a nadie
+         &mdash;no hay nada que se&ntilde;alar en ninguna lista&mdash; y el permiso sigue
+         concediendo lo que conced&iacute;a. Ahora Guardar se queda apagado mientras falte algo
+         obligatorio, y la funci&oacute;n lo rechaza una segunda vez desde dentro, para lo que no
+         pase por el bot&oacute;n.</p>
+      <p><b>Marcar dos nombres ya no empuja la lista hacia abajo.</b> La franja de fusionar
+         pasaba de no ocupar nada a ocupar cuarenta y pico p&iacute;xeles, empujando justo las filas
+         que estabas marcando, as&iacute; que la siguiente ya no estaba donde iba tu dedo. Ahora
+         conserva su sitio desde el principio: vac&iacute;a lleva la instrucci&oacute;n en gris, y al
+         marcar algo se le enciende el fondo en vez de mover nada.</p>
+      <p>En Prices, el Guardar de cada fila es de esa fila: se despierta con un precio distinto y se
+         queda apagado con el que ya estaba, o con un cero &mdash;que el motor de costes lee como
+         &laquo;sin precio&raquo;, no como &laquo;gratis&raquo;&mdash;.</p>
+    </div>
+
+    <div class="entry" id="v13-8">
+      <span class="ver">v13.8</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>El reloj que no paraba nunca, y la casilla que se segu&iacute;a borrando</h3>
+      <p><b>En la edici&oacute;n gratis, tres recuadros de Ajustes &rarr; Sistema daban vueltas para
+         siempre.</b> La v13.5 consigui&oacute; que esas secciones dejaran de preguntarle al
+         servidor, que era el objetivo &mdash;seis llamadas al abrir Ajustes, tres de ellas por
+         funciones que esa copia no puede usar&mdash;. Lo que no hizo fue sustituir el
+         &laquo;Checking&hellip;&raquo; que ense&ntilde;aban mientras esperaban. Sin respuesta que
+         llegara, nadie lo borraba.</p>
+      <p>O sea, peor que antes: un recuadro que antes contestaba algo pas&oacute; a parecer una app
+         colgada, en la copia que ven los clientes nuevos. Ahora ense&ntilde;an <b>lo que hace esa
+         funci&oacute;n</b>, sacado del mismo texto que usa la ventana al pulsarla &mdash; un solo
+         sitio donde est&aacute; escrito, para que el recuadro y la ventana no puedan decir cosas
+         distintas.</p>
+      <p><b>Y un movimiento marcado dej&oacute; de perder la marca cuando llegan otros nuevos.</b>
+         El intento anterior ensanchaba la vista &laquo;s&oacute;lo si la lista hab&iacute;a
+         crecido&raquo;, que suena bien y mide lo que no es: la lista crece una vez pero la pantalla
+         se repinta dos, as&iacute; que el primer repintado gastaba la condici&oacute;n y el segundo
+         soltaba la marca.</p>
+      <p>Ahora se hace la pregunta que de verdad distingue los dos casos: <b>&iquest;plegaste la
+         tabla?</b> Cambiar de filtro, de pesta&ntilde;a o de p&aacute;gina la pliega, y lo que deja
+         de verse deja de estar marcado &mdash;que es lo correcto, porque un bot&oacute;n de borrar
+         armado sobre filas que nadie ve es peor que perder una marca&mdash;. Las filas nuevas no
+         pliegan nada, se repinte la pantalla las veces que se repinte.</p>
+      <p>Adem&aacute;s: una l&iacute;nea de Ajustes segu&iacute;a describiendo el tope viejo de 10
+         millones de celdas despu&eacute;s de que la v13.7 lo subiera a 20.</p>
+    </div>
+
+    <div class="entry" id="v13-7">
+      <span class="ver">v13.7</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>El doble de sitio del que creías tener, y dos cosas que peleaban con tu dedo</h3>
+      <p><b>Google dobló lo que cabe en una hoja &mdash;de 10 a 20 millones de celdas&mdash; el 10
+         de septiembre de 2026, y el cambio vale tambi&eacute;n para los archivos que ya existen.</b>
+         Acopio segu&iacute;a contando contra el n&uacute;mero viejo, as&iacute; que Ajustes &rarr;
+         Sistema dec&iacute;a que hab&iacute;a gastado <i>el doble</i> de lo que gast&oacute;, y que
+         te quedaba <i>la mitad</i> de los a&ntilde;os.</p>
+      <p>Ese n&uacute;mero no es adorno: es el que decide cu&aacute;ndo hay que mover los
+         movimientos viejos a otro archivo. Contar contra la mitad habr&iacute;a arrancado ese
+         trabajo a&ntilde;os antes de tiempo. Ahora el tope lleva al lado <b>la fecha en que
+         cambi&oacute; y la fuente</b>, porque es la segunda vez que Google lo sube (de 5 a 10
+         millones en 2022) y no ser&aacute; la &uacute;ltima.</p>
+      <p>En la pr&aacute;ctica, un archivo aguanta unos <b>500.000 movimientos</b> en vez de
+         250.000. A 300 movimientos diarios son cuatro a&ntilde;os y medio s&oacute;lo en el archivo
+         activo. Lo que no cambi&oacute;, y pesa m&aacute;s: una hoja empieza a ir lenta alrededor
+         de las 100.000 filas, y eso no lo dobl&oacute; nadie.</p>
+      <p><b>En Transfer, pulsar una estanter&iacute;a sugerida ahora llena la fila vac&iacute;a</b>
+         en vez de a&ntilde;adir otra debajo. Antes te quedaba una fila en blanco que hab&iacute;a
+         que borrar a mano o el guardado se negaba &mdash; lo que hac&iacute;a que usar la
+         sugerencia fuera m&aacute;s lento que escribir la estanter&iacute;a.</p>
+      <p><b>Y las casillas de marcar med&iacute;an 13 p&iacute;xeles en el tel&eacute;fono.</b> Es
+         el tama&ntilde;o por defecto del navegador: el que sale cuando nadie decide. Ahora son tan
+         grandes como los botones que ya hay en esa fila, casi siete veces el &aacute;rea, y
+         s&oacute;lo en pantalla t&aacute;ctil. Es la casilla que arma el bot&oacute;n de borrar, en
+         una bodega, muchas veces con guantes.</p>
+    </div>
+
+    <div class="entry" id="v13-6">
+      <span class="ver">v13.6</span>
+      <span class="tag new">Cambio</span>
+      <h3>Lo que vale un material, y una importaci&oacute;n deshecha que por fin se va</h3>
+      <p><b>Ajustes &rarr; Prices.</b> Eliges la categor&iacute;a, buscas el material y escribes lo
+         que vale una unidad. Hasta ahora el precio s&oacute;lo se pod&iacute;a escribir al
+         registrar una <i>entrada</i>, as&iacute; que lo que ya estaba en la estanter&iacute;a no
+         val&iacute;a nada &mdash;y cada movimiento que lo sacaba sal&iacute;a <b>sin coste</b>, en
+         silencio. El total del mes sal&iacute;a bajo y nada dec&iacute;a por qu&eacute;.</p>
+      <p><b>La pantalla dice cu&aacute;ntos materiales de esa categor&iacute;a siguen sin
+         precio.</b> &laquo;12 de 48 tienen precio&raquo; es lo que hace que un informe de valor se
+         pueda leer; un total sin esa l&iacute;nea es un n&uacute;mero que nadie puede comprobar.</p>
+      <p>Escribe el <b>coste promedio</b> que el motor de costes ya usa, no un segundo precio
+         propio, as&iacute; que no hay dos cosas que puedan dejar de coincidir. Un precio por caja
+         sigue yendo por Materiales &rarr; paquetes, que es la pantalla que ya hace esa cuenta.
+         <b>Tambi&eacute;n en Acopio Basic</b>: no necesita ning&uacute;n permiso de Google, y un
+         almac&eacute;n que no puede valorar lo que tiene es un almac&eacute;n al que le falta la
+         mitad.</p>
+      <p><b>&laquo;Undo this import&raquo; ya desaparece cuando la has usado.</b> Antes el
+         bot&oacute;n se quedaba para siempre y contestaba &laquo;no queda nada de esa
+         importaci&oacute;n&raquo; al pulsarlo, y el mismo fichero volv&iacute;a como &laquo;ya
+         importado&raquo; aunque ninguna de sus filas siguiera ah&iacute;. El registro lo dec&iacute;a
+         desde el principio &mdash; nadie lo le&iacute;a. Una importaci&oacute;n que se est&aacute;
+         deshaciendo por trozos <b>conserva</b> su bot&oacute;n, porque le quedan filas por quitar.</p>
+    </div>
+
+    <div class="entry" id="v13-5">
+      <span class="ver">v13.5</span>
+      <span class="tag new">Cambio</span>
+      <h3>Lo que la edici&oacute;n gratis deber&iacute;a haber tenido siempre, y un tope que conviene</h3>
+      <p><b>Check my data vuelve a Acopio Basic</b>, junto con reconstruir los totales y rellenar
+         los IDs. Ninguno necesitaba un permiso de Pro &mdash;s&oacute;lo leen tu propia hoja&mdash; y
+         la edici&oacute;n gratis es justo donde llega un inventario desordenado, porque importar un
+         CSV est&aacute; abierto ah&iacute; desde octubre. Esconder lo que encuentra el desorden, en
+         la edici&oacute;n que lo recibe, era al rev&eacute;s.</p>
+      <p>Y lo que s&iacute; se esconde <b>se lleva su recuadro</b>. Antes se iba el bot&oacute;n y
+         se quedaba el marco, as&iacute; que la pantalla ense&ntilde;aba una explicaci&oacute;n sin
+         nada que pulsar.</p>
+      <p><b>Una secci&oacute;n con candado ya no le pregunta nada al servidor.</b> Abrir Ajustes
+         hac&iacute;a seis llamadas, tres de ellas por funciones que esa copia no puede usar. Esas
+         llamadas salen de una sola cuenta de Google que comparte todo el almac&eacute;n.</p>
+      <p><b>Borrar se detiene en 200 a la vez, y lo dice antes, no despu&eacute;s.</b> El
+         n&uacute;mero no es arbitrario: es lo m&aacute;ximo que la papelera puede ense&ntilde;arte,
+         as&iacute; que pasado eso algo de lo borrado no se podr&iacute;a devolver. Lo que pase de
+         ah&iacute; vino de un fichero &mdash; deshaz esa importaci&oacute;n, que no tiene tope.</p>
+      <p>Tres m&aacute;s peque&ntilde;as: la papelera se queda donde la dejaste en vez de saltar
+         arriba cada vez que devuelves algo, una casilla marcada deja de borrarse sola cuando
+         llegan movimientos nuevos, y <b>las 23 cabeceras explican qu&eacute; son</b> &mdash; antes
+         eran diez.</p>
+    </div>
+
+    <div class="entry" id="v13-4">
+      <span class="ver">v13.4</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Un movimiento que devuelves vuelve a su sitio, y vuelve ya</h3>
+      <p>Dos cosas que parec&iacute;an una. <b>Un movimiento restaurado volv&iacute;a al principio
+         de la lista</b> por viejo que fuera, y <b>tardaba unos segundos en aparecer</b> despu&eacute;s
+         de que la app dijera que ya estaba.</p>
+      <p>Lo segundo era la app esperando a volver a preguntar: el servidor ya lo hab&iacute;a puesto,
+         y la pantalla ped&iacute;a la lista entera para enterarse de algo que ya sab&iacute;a. Ahora
+         entra en el acto &mdash; la fila que se va de la papelera y el movimiento que reaparece son
+         el mismo momento, en vez de unos segundos en los que no estaba en ninguna parte.</p>
+      <p>Lo primero nunca fue cosa de restaurar. La lista se pintaba en <b>orden de hoja</b>, que
+         casi siempre coincide con el del tiempo porque las filas se a&ntilde;aden seg&uacute;n van
+         pasando &mdash; pero devolver una la escribe al final, as&iacute; que un movimiento de hace
+         dos meses sal&iacute;a el primero. Ahora la lista mira la fecha del propio movimiento. Lo
+         que no tenga fecha conserva exactamente el orden que ten&iacute;a, as&iacute; que un
+         d&iacute;a normal se ve igual que antes.</p>
+      <p>Adem&aacute;s: la l&iacute;nea de progreso ya no se queda girando en &laquo;6 of 6&raquo;
+         cuando el borrado en tanda ya termin&oacute;, la papelera dice <b>qui&eacute;n</b>
+         borr&oacute; algo por su nombre con su ficha al pasar por encima, y la pantalla de importar
+         dej&oacute; de decir que lo deshecho va a la papelera.</p>
+    </div>
+
+    <div class="entry" id="v13-3">
+      <span class="ver">v13.3</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>Borrar vuelve a funcionar &mdash; y el motivo por el que fall&oacute; queda vigilado</h3>
+      <p>La v13.2 a&ntilde;adi&oacute; una columna al registro de movimientos, y <b>borrar
+         dej&oacute; de funcionar</b> en las instalaciones que ya ten&iacute;an datos. Una hoja
+         mide lo que med&iacute;a el d&iacute;a que se cre&oacute;; la app ped&iacute;a una columna
+         m&aacute;s de las que ten&iacute;a, y la operaci&oacute;n entera fallaba.</p>
+      <p>Arreglado, y sobre todo: <b>ahora hay una prueba que hace imposible repetirlo.</b> Monta
+         una hoja que falla igual que una de verdad y ejecuta el c&oacute;digo real contra ella
+         &mdash; y recorre el archivo entero buscando cualquier otro sitio que lea una fila
+         completa sin ensanchar primero. Una hoja m&aacute;s estrecha que el modelo no es el caso
+         raro: es el normal, cada vez que se a&ntilde;ade una columna.</p>
+      <p>Tres cosas m&aacute;s de la misma ronda: la ventana de Acopio&nbsp;Pro ya no se corta su
+         propio t&iacute;tulo a la mitad, la papelera deja de escribir &laquo;Deleted by&raquo;
+         cuando no sabe qui&eacute;n, y la &times; del selector de ficheros se queda al lado del
+         selector en vez de caerse al rengl&oacute;n de abajo cuando el nombre es largo.</p>
+    </div>
+
+    <div class="entry" id="v13-2">
+      <span class="ver">v13.2</span>
+      <span class="tag new">Cambio</span>
+      <h3>Deshacer una importaci&oacute;n ya no te llena la papelera</h3>
+      <p>Quitar una importaci&oacute;n mandaba todas sus filas a la papelera. Suena prudente y casi
+         todo era ruido: <b>el fichero ES la copia</b>. Si se import&oacute; una vez se puede
+         importar otra, as&iacute; que se guardaban mil filas &laquo;por si acaso&raquo; al lado de
+         la copia que ya est&aacute; en tu propio disco &mdash; y eso es lo que llen&oacute; una
+         papelera de cientos de filas que nadie iba a leer.</p>
+      <p><b>Ahora se quitan, y la pantalla te lo dice antes de pulsar</b>, junto con c&oacute;mo
+         recuperarlas: volver a subir el mismo fichero.</p>
+      <p><b>Con una excepci&oacute;n, y es la que importa.</b> Una fila que editaste despu&eacute;s
+         de importarla ya no es la que ven&iacute;a en el fichero &mdash; volver a subirlo
+         traer&iacute;a el dato viejo y tu correcci&oacute;n se habr&iacute;a perdido sin rastro.
+         &Eacute;sas s&iacute; se guardan en la papelera, contadas y nombradas en lo que la app te
+         dice al terminar.</p>
+      <p>Detr&aacute;s hay dos cosas m&aacute;s peque&ntilde;as que lo hicieron posible: un
+         movimiento lleva ahora <b>de qu&eacute; importaci&oacute;n vino</b> en un campo que nadie
+         puede editar (la nota de su comentario s&iacute; se pod&iacute;a reescribir, y entonces esa
+         fila dejaba de pertenecer a su importaci&oacute;n sin avisar), y la l&iacute;nea de
+         auditor&iacute;a de una edici&oacute;n nombra ahora <b>el movimiento</b> en vez del
+         n&uacute;mero de fila, que se mueve.</p>
+    </div>
+
+    <div class="entry" id="v13-1">
+      <span class="ver">v13.1</span>
+      <span class="tag fix">Arreglo</span>
+      <h3>El lector de documentos dec&iacute;a que tu clave estaba mal. No lo estaba.</h3>
+      <p>Si intentaste configurar el lector de documentos con IA en una <b>copia reci&eacute;n
+         instalada</b> y la clave no se aceptaba, la clave nunca fue el problema &mdash; y ninguna
+         clave habr&iacute;a funcionado. Google cerr&oacute; el modelo que esta app ped&iacute;a a
+         las cuentas que no lo usaban ya. Una instalaci&oacute;n antigua segu&iacute;a funcionando,
+         una nueva no pod&iacute;a entrar, y la pantalla llamaba a eso <b>una clave mala</b>.</p>
+      <p>Ahora la app pide el modelo actual y deja los nombres antiguos <b>detr&aacute;s</b>, para
+         que las instalaciones que ya los usaban sigan igual. Y dej&oacute; de comprobar una clave
+         contra un solo modelo: un modelo que ya no est&aacute; y una clave equivocada fallan de
+         formas distintas, y s&oacute;lo una de las dos la puedes arreglar t&uacute;.</p>
+      <p>No hay nada que hacer aparte de pegar esta versi&oacute;n. Si antes te rechazaba una
+         clave, ahora la acepta.</p>
+    </div>
+
     <div class="entry" id="v13-0">
       <span class="ver">v13.0</span>
       <span class="tag safe">Seguridad</span>
